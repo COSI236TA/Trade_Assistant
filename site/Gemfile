@@ -32,6 +32,12 @@ group :doc do
   gem 'sdoc', require: false
 end
 
+#Yahoo Finance API wrapper
+gem "nas-yahoo_stock", "~> 1.0.8"
+
+#Background job management
+gem 'sidekiq'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.1.2'
 
