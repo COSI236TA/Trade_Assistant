@@ -1,0 +1,33 @@
+<%= form_for(@rule) do |f| %>
+  <% if @rule.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@rule.errors.count, "error") %> prohibited this rule from being saved:</h2>
+
+      <ul>
+      <% @rule.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :stock_id %><br>
+    <%= f.number_field :stock_id %>
+  </div>
+  <div class="field">
+    <%= f.label :indicator_id %><br>
+    <%= f.number_field :indicator_id %>
+  </div>
+  <div class="field">
+    <%= f.label :up_or_down %><br>
+    <%= f.number_field :up_or_down %>
+  </div>
+  <div class="field">
+    <%= f.label :margin %><br>
+    <%= f.number_field :margin %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

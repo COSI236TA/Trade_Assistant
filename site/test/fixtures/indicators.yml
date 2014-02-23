@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: 
+  query_parameter: MyString
+
+two:
+  name: 
+  query_parameter: MyString

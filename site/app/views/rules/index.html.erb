@@ -1,0 +1,33 @@
+<h1>Listing rules</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Stock</th>
+      <th>Indicator</th>
+      <th>Up or down</th>
+      <th>Margin</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @rules.each do |rule| %>
+      <tr>
+        <td><%= rule.stock_id %></td>
+        <td><%= rule.indicator_id %></td>
+        <td><%= rule.up_or_down %></td>
+        <td><%= rule.margin %></td>
+        <td><%= link_to 'Show', rule %></td>
+        <td><%= link_to 'Edit', edit_rule_path(rule) %></td>
+        <td><%= link_to 'Destroy', rule, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Rule', new_rule_path %>

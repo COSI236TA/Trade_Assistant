@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Stock:</strong>
+  <%= @rule.stock_id %>
+</p>
+
+<p>
+  <strong>Indicator:</strong>
+  <%= @rule.indicator_id %>
+</p>
+
+<p>
+  <strong>Up or down:</strong>
+  <%= @rule.up_or_down %>
+</p>
+
+<p>
+  <strong>Margin:</strong>
+  <%= @rule.margin %>
+</p>
+
+<%= link_to 'Edit', edit_rule_path(@rule) %> |
+<%= link_to 'Back', rules_path %>
