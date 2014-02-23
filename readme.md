@@ -6,5 +6,4 @@ Team Members:
 
 Eddie  
 Joe  
-Nick  
 Wenbin  
