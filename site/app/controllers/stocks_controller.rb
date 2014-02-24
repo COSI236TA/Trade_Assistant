@@ -1,3 +1,6 @@
+require 'rubygems'
+require 'yahoo_stock'
+
 class StocksController < ApplicationController
   before_action :set_stock, only: [:show, :edit, :update, :destroy]
 
@@ -12,6 +15,9 @@ class StocksController < ApplicationController
   def show
   end
 
+  def show_by_sym 
+    @quote = YahooStock::Quote.new(:stock_symbols => [params[:sym]])
+  end
   # GET /stocks/new
   def new
     @stock = Stock.new

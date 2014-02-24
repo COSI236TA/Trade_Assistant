@@ -1,11 +1,15 @@
 Site::Application.routes.draw do
+
+  get "stocks/:sym", to: 'stocks#show_by_sym'
+
   resources :users
 
   resources :indicators
 
   resources :markets
 
-  resources :stocks
+  #Stocks in db would not be accessed directly
+  # resources :stocks
 
   resources :rules
 
