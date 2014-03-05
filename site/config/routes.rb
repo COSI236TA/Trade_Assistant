@@ -1,5 +1,8 @@
 Site::Application.routes.draw do
 
+  root to: 'home#index'			     
+			  
+  get "home/index"
   get "stocks/:sym", to: 'stocks#show_by_sym'
 
   resources :users
