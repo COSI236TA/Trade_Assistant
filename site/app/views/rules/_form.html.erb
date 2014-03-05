@@ -11,23 +11,43 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :stock_id %><br>
-    <%= f.number_field :stock_id %>
-  </div>
-  <div class="field">
-    <%= f.label :indicator_id %><br>
-    <%= f.number_field :indicator_id %>
-  </div>
-  <div class="field">
-    <%= f.label :up_or_down %><br>
-    <%= f.number_field :up_or_down %>
-  </div>
-  <div class="field">
-    <%= f.label :margin %><br>
-    <%= f.number_field :margin %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+  <!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="generator" content="CoffeeCup HTML Editor (www.coffeecup.com)">
+    <meta name="dcterms.created" content="Wed, 05 Mar 2014 07:31:22 GMT">
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <title></title>
+    
+
+		</div>
+    <!--[if IE]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  <meta name="keywords" content=""></head>
+  <body>
+
+  	<br>
+	
+	<div align="center">
+
+	
+	 <!--**************************************************
+	  need to make placeholder text centered in css file -->
+	<input type="text" name="Ticker" value="" placeholder="Enter symbol here" >
+	 <%= link_to "<button>Submit</button>".html_safe, indicator_rules_path %>
+	
+	<br>
+	<br>
+	
+   	<p><label for="Ticker">Drop down candidates when the user inputs</label></p>
+	
+
+  
+  
+  </body>
+</html>
+
 <% end %>

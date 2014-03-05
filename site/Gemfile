@@ -39,7 +39,7 @@ gem "nas-yahoo_stock", "~> 1.0.8"
 gem 'sidekiq'
 
 # Use ActiveModel has_secure_password
-# gem 'bcrypt-ruby', '~> 3.1.2'
+gem 'bcrypt-ruby', '~> 3.1.2'
 
 # Use unicorn as the app server
 # gem 'unicorn'
