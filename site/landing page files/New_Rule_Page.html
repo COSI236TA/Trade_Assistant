@@ -1,17 +1,4 @@
-<%= form_for(@rule) do |f| %>
-  <% if @rule.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@rule.errors.count, "error") %> prohibited this rule from being saved:</h2>
-
-      <ul>
-      <% @rule.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="utf-8">
@@ -30,6 +17,8 @@
   <body>
 
   	<br>
+	<br>
+	<br>
 	
 	<div align="center">
 
@@ -37,10 +26,8 @@
 	 <!--**************************************************
 	  need to make placeholder text centered in css file -->
 	<input type="text" name="Ticker" value="" placeholder="Enter symbol here" >
-	 <%= link_to "<button>Submit</button>".html_safe, indicator_rules_path %>
+	<input type="button" name="submit" value="submit">
 	
-	<br>
-	<br>
 	
    	<p><label for="Ticker">Drop down candidates when the user inputs</label></p>
 	
@@ -49,5 +36,3 @@
   
   </body>
 </html>
-
-<% end %>

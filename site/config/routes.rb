@@ -14,7 +14,11 @@ Site::Application.routes.draw do
   #Stocks in db would not be accessed directly
   # resources :stocks
 
-  resources :rules
+  resources :rules do
+      collection do
+      get 'indicator'
+      end
+  end
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
