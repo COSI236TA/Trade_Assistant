@@ -71,4 +71,9 @@ class RulesController < ApplicationController
     def rule_params
       params.require(:rule).permit(:stock_id, :indicator_id, :up_or_down, :margin)
     end
+
+    def indicator
+    
+    end
+
 end
