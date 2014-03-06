@@ -9,9 +9,9 @@ class RuleMatchResultController < ApplicationController
         indicator = params[:indicator].to_sym
         up_or_down = params[:up_or_down].to_sym
         target = params[:target].to_i
-        lap = RuleEngine::RuleEngine.new
-        lap.add_fuel(symbol, indicator, up_or_down, target)
-        lap.start
-        @results = lap.get_results
+        rule_engine = RuleEngine::RuleEngine.new
+        rule_engine.add_fuel(symbol, indicator, up_or_down, target)
+        rule_engine.start
+        @results = rule_engine.get_results
     end
 end

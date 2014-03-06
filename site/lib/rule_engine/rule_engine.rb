@@ -20,7 +20,7 @@ class RuleEngine::RuleEngine
             rule = BaseRule.new(symbol)
             rule.add_triggers(raw_trigger)
             rule.ready
-            @results[symbol] = [rule.is_met?, rule.get_condition(symbol)]
+            @results[symbol] = [rule.is_met?, rule.get_condition]
         end
         puts @results
     end
