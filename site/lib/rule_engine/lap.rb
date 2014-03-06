@@ -1,17 +1,15 @@
-#Rule Engine: Querying, Matching and Notifying
+#Lap: Querying, Matching and Notifying
 
 require 'rubygems'
 require 'yahoo_stock'
+require 'base_rule'
 
-class RuleEngine
+class Lap
     def initialize
         @rules = {}
         @result = {}
     end
 
-    def add_fuel symbol, indicator, up_or_down, target
-        @rules[symbol] = {indicator => [up_or_down, target]}
-    end
     def start
         @start_time = Time.now
         puts "%s Engine is on." % @start_time
@@ -25,6 +23,10 @@ class RuleEngine
         end
         @done_time = Time.now
         puts "%s Done. %.4f consumed" % @done_time, @done_time - @start_time
+    end
+
+    def add_fuel symbol, indicator, up_or_down, target
+        @rules[symbol] = {indicator => [up_or_down, target]}
     end
 
     def get_result

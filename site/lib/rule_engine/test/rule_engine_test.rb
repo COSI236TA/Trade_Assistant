@@ -1,7 +1,7 @@
 require 'minitest/autorun'
 require 'minitest/spec'
 require '../rule_engine'
-describe RuleEngine do
+describe Lap do
     it "has hitting_rule" do
         RuleEngine.new.respond_to?(:hitting_rule).must_equal true
     end
