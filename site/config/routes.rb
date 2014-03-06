@@ -1,4 +1,14 @@
 Site::Application.routes.draw do
+  
+  controller :sessions do
+    get 'login' => :new
+    post 'login' => :create
+    delete 'login' => :destroy
+  end
+
+  get "sessions/new"
+  get "sessions/create"
+  get "sessions/destroy"
 
   root to: 'home#index'			     
 			  
@@ -7,7 +17,7 @@ Site::Application.routes.draw do
 
   resources :users
 
-  resources :indicators
+  #resources :indicators
 
   resources :markets
 
