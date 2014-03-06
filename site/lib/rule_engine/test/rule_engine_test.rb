@@ -1,13 +1,13 @@
 require 'minitest/autorun'
 require 'minitest/spec'
-require '../rule_engine'
+
+require_relative '../lap'
+
 describe Lap do
-    it "has hitting_rule" do
-        RuleEngine.new.respond_to?(:hitting_rule).must_equal true
-    end
 
     it "could be started" do
-        RuleEngine.new.respond_to?(:start).must_equal true
+        Lap.new.start
+        Lap.new.respond_to?(:start).must_equal true
     end
 
 end

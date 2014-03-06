@@ -2,16 +2,17 @@
 
 require 'rubygems'
 require 'yahoo_stock'
-require 'base_rule'
 
-class Lap
+require_relative 'base_rule'
+
+class RuleEngine::RuleEngine
     def initialize
         @rules = {}
-        @result = {}
+        @results = {}
     end
 
     def start
-        @start_time = Time.now
+        # @start_time = Time.now
         puts "%s Engine is on." % @start_time
 
         #Iterate all rules
@@ -19,17 +20,16 @@ class Lap
             rule = BaseRule.new(symbol)
             rule.add_triggers(raw_trigger)
             rule.ready
-            @result[symbol] = [rule.is_met?, rule.get_condition(symbol)]
+            @results[symbol] = [rule.is_met?, rule.get_condition(symbol)]
         end
-        @done_time = Time.now
-        puts "%s Done. %.4f consumed" % @done_time, @done_time - @start_time
+        puts @results
     end
 
     def add_fuel symbol, indicator, up_or_down, target
         @rules[symbol] = {indicator => [up_or_down, target]}
     end
 
-    def get_result
-        @result
+    def get_results
+        @results
     end
 end
