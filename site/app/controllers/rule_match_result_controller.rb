@@ -1,17 +1,15 @@
 class RuleMatchResultController < ApplicationController
-    def new
+    def new_rule
     end
     
     def rule_query
-        indicator = params[:indicator]
         symbol = params[:symbol]
-        target = params[:target]
-        up_or_down = params[:up_or_down]
-        stock_info = {symbol => [indicator, up_or_down, target]}
-        rule_engine = RuleEngine.new
-        rule_engine.add_fuel(stock_info)
-        rule_engine.start
-
-        @result = rule_engine.get_result
+        indicator = params[:indicator].to_sym
+        up_or_down = params[:up_or_down].to_sym
+        target = params[:target].to_i
+        lap = RuleEngine::RuleEngine.new
+        lap.add_fuel(symbol, indicator, up_or_down, target)
+        lap.start
+        @results = lap.get_results
     end
 end
