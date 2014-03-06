@@ -27,16 +27,17 @@ class BaseRule
     end
 
     #symbol: string, the symbol representation of the stock. e.g. GOOG
-    def get_condition symbol
-        @condition[symbol]
+    def get_condition
+        @condition
     end
 
     #Last step for match
     def ready
-        quote = YahooStock::Quote.new(:stock_symbols => @symbol, :read_parameters => @triggers.keys + [:last_trade_date])
+        quote = YahooStock::Quote.new(:stock_symbols => @symbol, :read_parameters => @triggers.keys)
         #need to convert the queried value to integer
         begin
-            quote.results(:to_hash).output[0].each { |k, v| @condition[k] = v.to_i }
+            quote.results(:to_hash).output[0].each { |k, v| @condition[k] = v.to_f }
+            @condition[:updated_time] = Time.new
         rescue
             puts "Query failed."
             return false
