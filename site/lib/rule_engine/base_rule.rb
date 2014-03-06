@@ -19,11 +19,16 @@ class BaseRule
         @triggers = Hash.new
     end
 
-    #raw_triggers: { :indicator => [:up_or_down, fringe] }
+    #raw_triggers: { :indicator => [:up_or_down, target] }
     def add_triggers raw_triggers
         raw_triggers.each do |k, v|
             @triggers[k] = triggerize(*v)
         end
+    end
+
+    #symbol: string, the symbol representation of the stock. e.g. GOOG
+    def get_condition symbol
+        @condition[symbol]
     end
 
     #Last step for match
@@ -40,12 +45,12 @@ class BaseRule
     end
 
     #up_or_down: :up or :down
-    #fringe: numeric
-    def triggerize up_or_down, fringe
+    #target: numeric
+    def triggerize up_or_down, target
         if up_or_down == :up
-            lambda { |x| x >= fringe }
+            lambda { |x| x >= target }
         elsif up_or_down == :down
-            lambda { |x| x <= fringe }
+            lambda { |x| x <= target }
         else
             raise "Wrong up_or_down, expecting :up or :down"
         end
