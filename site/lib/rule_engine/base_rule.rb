@@ -43,9 +43,9 @@ class BaseRule
     #fringe: numeric
     def triggerize up_or_down, fringe
         if up_or_down == :up
-            @trigger = lambda { |x| x >= fringe }
+            lambda { |x| x >= fringe }
         elsif up_or_down == :down
-            @trigger = lambda { |x| x <= fringe }
+            lambda { |x| x <= fringe }
         else
             raise "Wrong up_or_down, expecting :up or :down"
         end
