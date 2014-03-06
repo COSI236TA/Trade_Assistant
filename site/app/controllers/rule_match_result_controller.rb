@@ -1,4 +1,6 @@
 class RuleMatchResultController < ApplicationController
+    include SessionsHelper
+
     def new_rule
     end
     
