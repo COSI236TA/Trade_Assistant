@@ -11,7 +11,7 @@
 ```
 val = current_value(security-type, security, property)
 hist = historical_value(security-type, security, value-period, period-statistic)
-fire = compare(relationship, val, his)
+fire = compare(relationship, val, hist)
 
 security_to_s(security-type, security) -> "Google Corporation" or "US Dollar"
 relationship_to_s(relationship) -> "greater than" | "less than"
