@@ -9,4 +9,4 @@
 
 # Make sure your secret_key_base is kept private
 # if you're sharing your code publicly.
-Site::Application.config.secret_key_base = '842448fb045eefe2babd2e54b3cd2707045d17679f06ad88e4cfbfa10b9f7038ebe6474b69606ca6149d408ce9f570b387a70047e4827302d9187053be74d9aa'
+TradeAssistant::Application.config.secret_key_base = '842448fb045eefe2babd2e54b3cd2707045d17679f06ad88e4cfbfa10b9f7038ebe6474b69606ca6149d408ce9f570b387a70047e4827302d9187053be74d9aa'
