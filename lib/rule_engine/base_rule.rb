@@ -33,10 +33,10 @@ class BaseRule
 
     #Last step for match
     def ready
-        quote = YahooStock::Quote.new(:stock_symbols => @symbol, :read_parameters => @triggers.keys)
+        quote = DataPool::DataPool.query(@symbol, @triggers)
         #need to convert the queried value to integer
         begin
-            quote.results(:to_hash).output[0].each { |k, v| @condition[k] = v.to_f }
+            quote.each { |k, v| @condition[k] = v.to_f }
             @condition[:updated_time] = Time.new
         rescue
             puts "Query failed."
