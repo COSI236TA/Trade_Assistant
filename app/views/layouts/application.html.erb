@@ -1,4 +1,4 @@
-		
+    
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -8,10 +8,7 @@
     <link rel="stylesheet" href="main.css">
     <style>
       header {
-        background: url(<%= asset_path "binary_background.jpg" %>);
-        background-size:cover;
-        height: 700px;
-        padding-top: 70px;
+        padding-top: 60px;
       }
     </style>
 
@@ -33,22 +30,32 @@
               <span class="icon-bar"></span>
               <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#"><strong>TradeAssistant</strong></a>
+            <strong>
+            <%= link_to("TradeAssistant", root_path,:class => "navbar-brand") %></strong>
           </div>
           <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
-              <li class="active"><a href="index.html">Home</a></li>
+            <% if user_logged_in? %>
+              <li><%= link_to("Dashboard", dashboard_path) %></li>
+            <% else %>
+              <li><%= link_to("Home", root_path) %></li>
+            <% end %>
               <li><a href="#about">About</a></li>
               <li><a href="#contact">Contact</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
-              <li><%= link_to "Log In", sessions_new_path %></li>
-              <li><%= link_to "Sign Up", new_user_path %></li>
+              <% if user_logged_in? %>
+              <li><a><%= get_email %></a></li>
+              <li><a href="logout">Log Out</a></li>
+              <% else %>
+              <li><a href="login">Login</a></li>
+              <li><a href="register">Sign Up</a></li>
+              <% end %>
             </ul>
           </div><!--/.nav-collapse -->
         </div>
       </div>
-
+      </header>
 
 <%= yield %>
 
