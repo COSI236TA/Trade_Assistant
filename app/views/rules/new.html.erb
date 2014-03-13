@@ -1,5 +1,28 @@
-<h1 align="center">New Rule</h1>
+<%= flash[:notice] if flash[:notice] %>
 
-<%= render 'form' %>
+<center><h1>New Rule </h1>
 
-<!--<%= link_to 'Back', rules_path %>-->
+
+<%= form_for @rule do |rule_form| %>
+  <%= label_tag(:ticker, "Ticker") %>
+  <br />
+  <%= rule_form.text_field :ticker %>
+  <br />
+  <%= label_tag(:property, "Property") %>
+  <br />
+  <%= rule_form.radio_button :property, "last_trade_price_only" %> Price
+  <%= rule_form.radio_button :property, "volume" %> Volume
+  <%= rule_form.radio_button :property, "market_capitalization" %> Market Cap 
+  <br />
+  <%= label_tag(:rel, "Up Or Down") %>
+  <br />
+  <%= rule_form.radio_button :rel, "up" %> Up To
+  <%= rule_form.radio_button :rel, "down" %> Down To
+  <br />
+  <%= label_tag(:target, "Target") %>
+  <%= rule_form.text_field :target %>
+  <br />
+  <%= submit_tag("Hit me") %>
+<% end %>
+
+</center>

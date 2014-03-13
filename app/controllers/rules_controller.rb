@@ -69,7 +69,7 @@ class RulesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def rule_params
-      params.require(:rule).permit(:stock_id, :indicator_id, :up_or_down, :margin)
+      params.require(:rule).permit(:ticker, :property, :up_or_down, :margin)
     end
 
     def indicator

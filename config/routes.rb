@@ -1,4 +1,5 @@
 TradeAssistant::Application.routes.draw do
+  root to: 'home#index'          
   
   get '/login', :to => 'sessions#new'
   get '/register', :to => 'users#new'
@@ -20,12 +21,15 @@ TradeAssistant::Application.routes.draw do
     get 'dashboard' => :new
   end
 
-  root to: 'home#index'			     
+  #Create new rule
+  get "create_rule", to: 'rules#new'
+  post "create_rule", to: 'rules#create'
+
 			  
   get "home/index"
   get "stocks/:sym", to: 'stocks#show_by_sym'
-  get "new_rule", to: 'rule_match_result#new_rule'
   get "rule_query", to: 'rule_match_result#rule_query' 
+
   resources :users do
     resources :rules 
   end
