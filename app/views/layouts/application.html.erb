@@ -37,19 +37,21 @@
             <ul class="nav navbar-nav">
             <% if user_logged_in? %>
               <li><%= link_to("Dashboard", dashboard_path) %></li>
+              <li><%= link_to("Rules", dashboard_path) %></li>
+              <li><%= link_to("Market", dashboard_path) %></li>
             <% else %>
               <li><%= link_to("Home", root_path) %></li>
+              <li><%= link_to("About", home_about_path) %></li>
+              <li><%= link_to("Contact", home_contact_path) %></li>
             <% end %>
-              <li><a href="#about">About</a></li>
-              <li><a href="#contact">Contact</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
               <% if user_logged_in? %>
               <li><a><%= get_email %></a></li>
-              <li><a href="logout">Log Out</a></li>
+              <li><%= link_to("Log Out", logout_path) %></li>
               <% else %>
-              <li><a href="login">Login</a></li>
-              <li><a href="register">Sign Up</a></li>
+              <li><%= link_to("Login", login_path) %></li>
+              <li><%= link_to("Register", register_path) %></li>
               <% end %>
             </ul>
           </div><!--/.nav-collapse -->
