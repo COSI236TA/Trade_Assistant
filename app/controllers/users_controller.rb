@@ -30,7 +30,7 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       if @user.save
-        format.html { redirect_to new_rule_path, notice: "user #{@user.email} was successfully created." }
+        format.html { redirect_to dashboard_path, notice: "user #{@user.email} was successfully created." }
 	session[:user_id] = @user.id
         format.json { render action: 'show', status: :created, location: @user }
       else

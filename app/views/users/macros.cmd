@@ -1,1 +1,0 @@
-start=start /b /min emacs $*

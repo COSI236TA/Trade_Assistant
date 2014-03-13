@@ -1,5 +1,7 @@
 TradeAssistant::Application.routes.draw do
   
+  get "/dashboard" => "dashboard#index"
+
   controller :sessions do
     get 'login' => :new
     post 'login' => :create
