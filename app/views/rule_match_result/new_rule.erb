@@ -1,0 +1,33 @@
+<%= flash[:notice] if flash[:notice] %>
+
+<center><h1>New Rule(Demo Only) </h1>
+
+
+<%= form_tag("/rule_query", method: "get") do %>
+  <%= label_tag(:symbol, "Symbol") %>
+  <br />
+  <%= text_field_tag(:symbol) %>
+  <br />
+  <%= label_tag(:indicator, "Indicator") %>
+  <br />
+  <%= label_tag(:indicator, "Volume") %>
+  <%= radio_button_tag(:indicator, "volume") %>
+
+  <%= label_tag(:indicator, "Price") %>
+  <%= radio_button_tag(:indicator, "last_trade_price_only") %>
+  <br />
+  <%= label_tag(:up_or_down, "Up Or Down") %>
+  <br />
+  <%= label_tag(:up_or_down, "Up to") %>
+  <%= radio_button_tag(:up_or_down, "up") %>
+
+  <%= label_tag(:up_or_down, "Down to") %>
+  <%= radio_button_tag(:up_or_down, "down") %>
+  <br />
+  <%= label_tag(:target, "Target") %>
+  <%= text_field_tag(:target) %>
+  <br />
+  <%= submit_tag("Hit me") %>
+<% end %>
+
+</center>
