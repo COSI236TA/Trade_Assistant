@@ -3,10 +3,12 @@
 <table>
   <thead>
     <tr>
-      <th>Stock</th>
-      <th>Indicator</th>
-      <th>Up or down</th>
-      <th>Margin</th>
+      <th>Ticker</th>
+      <th>Property</th>
+      <th>Relation</th>
+      <th>Target</th>
+      <th>Target Type</th>
+      <th>Activated</th>
       <th></th>
       <th></th>
       <th></th>
@@ -16,10 +18,12 @@
   <tbody>
     <% @rules.each do |rule| %>
       <tr>
-        <td><%= rule.stock_id %></td>
-        <td><%= rule.indicator_id %></td>
-        <td><%= rule.up_or_down %></td>
-        <td><%= rule.margin %></td>
+        <td><%= rule.ticker%></td>
+        <td><%= rule.property%></td>
+        <td><%= rule.rel%></td>
+        <td><%= rule.target%></td>
+        <td><%= rule.target_type%></td>
+        <td><%= rule.activated%></td>
         <td><%= link_to 'Show', rule %></td>
         <td><%= link_to 'Edit', edit_rule_path(rule) %></td>
         <td><%= link_to 'Destroy', rule, method: :delete, data: { confirm: 'Are you sure?' } %></td>
