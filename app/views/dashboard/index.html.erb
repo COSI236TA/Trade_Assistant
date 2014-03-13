@@ -1,2 +1,62 @@
-<h1>Dashboard#index</h1>
-<p>Find me in app/views/dashboard/index.html.erb</p>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="bootstrap.css">
+    <link rel="stylesheet" href="main.css">
+    <style>
+      header {
+        background: url(<%= asset_path "binary_background.jpg" %>);
+        background-size:cover;
+        height: 700px;
+        padding-top: 70px;
+      }
+    </style>
+
+   
+  <title>Trade Assistant</title>
+  <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
+  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+  <%= csrf_meta_tags %>
+
+  </head>
+
+  <body>
+    <header>
+    <div class="navbar navbar-default navbar-fixed-top">
+        <div class="container">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#"><strong>TradeAssistant</strong></a>
+          </div>
+          <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+              <li class="active"><a href="index.html">Dashboard</a></li>
+              <li><a href="#about">Rules</a></li>
+              <li><a href="#contact">Daily Market</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+              <li><%= link_to "Log In", sessions_new_path %></li>
+              <li><%= link_to "Sign Up", new_user_path %></li>
+            </ul>
+          </div><!--/.nav-collapse -->
+        </div>
+      </div>
+  
+
+  <a href="#" class="btn btn-danger btn-large">Create New Rule</a>
+
+  <table class="table table-bordered"><thead>
+    <tr><th>Last Triggered</th><th>Description</th><th>Active/Inactive</th></tr></thead>
+    <tbody>
+      <tr><td>Never Triggered</td><td>Let me know when the Price of GOOG is 200</td><td>Active</td></tr>
+      <tr><td>Today</td><td>Let me know when the Market Cap of SHOO is 4.25</td><td>Active</td></tr>
+      <tr><td>Last Month</td><td>Let me know when the Volume of APPL is down to 100</td><td>Inactive</td></tr>
+    </tbody>
+  </table>
+
