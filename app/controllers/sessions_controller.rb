@@ -14,7 +14,7 @@ include SessionsHelper
      redirect_to dashboard_path, notice: "You have logged in as #{user.email}"
     else
 
-    redirect_to sessions_new_path, alert: "Invalid user/password combination"
+    redirect_to dashboard_path, alert: "Invalid user/password combination"
  end
 
   end
