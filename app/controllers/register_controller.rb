@@ -1,4 +1,4 @@
-class UsersController < ApplicationController
+class RegisterController < ApplicationController
   
   before_action :set_user, only: [:show, :edit, :update, :destroy]
 
