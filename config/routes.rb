@@ -22,10 +22,7 @@ TradeAssistant::Application.routes.draw do
   get "stocks/:sym", to: 'stocks#show_by_sym'
   get "new_rule", to: 'rule_match_result#new_rule'
   get "rule_query", to: 'rule_match_result#rule_query' 
-
-  get "/register/" => "register#new"
-  post "/register/" => "register#create"
-  #resources :register
+  resources :users
 
   #resources :indicators
 
