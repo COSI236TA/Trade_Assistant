@@ -1,29 +1,9 @@
-    
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="bootstrap.css">
-    <link rel="stylesheet" href="main.css">
-    <style>
-      header {
-        background: url(<%= asset_path "binary_background.jpg" %>);
-        background-size:cover;
-        height: 700px;
-        padding-top: 70px;
-      }
-    </style>
-  </head>
-
-  <body>
-    <header>
-    <div class="jumbotron">
+<body>
+    <div class="jumbotron" background="background.jpg">
       <h1>Trading made easy!</h1>
       <p><a href="register" class="btn btn-success btn-lg">Get TradeAssistant For Free</a></p>
       <a href="#learn" class="smoothScroll">Find out more<a>
     </div>
-    </header>
 
     <div class="container marketing">
 
@@ -74,7 +54,7 @@
           <%= image_tag "trade_symbol.jpg" %>
     </div>
         <div class="col-md-7">
-          <h2 class="featurette-heading">Trader Bot <span class="text-muted"><a href="sign_up.html">An investor's best friend!</a></span></h2>
+          <h2 class="featurette-heading">Trader Bot <span class="text-muted"><a href= "/register">An investor's best friend!</a></span></h2>
           <p class="lead">Traders input various strategies into their portofolio and our system will monitor the market over a desired time, alerting the user to changes in stocks they are tracking. </p>
         </div>
       </div>
@@ -83,7 +63,7 @@
 
       <div class="row featurette">
         <div class="col-md-7">
-          <h2 class="featurette-heading">And lastly, New Traders<span class="text-muted">Making money has never been easier.</span></h2>
+          <h2 class="featurette-heading">And lastly, New Traders<span class="text-muted"> Making money has never been easier.</span></h2>
           <p class="lead">Novice traders no longer constantly have to monitor the market, alerts about desired stocks will be sent to users by email.</p>
         </div>
         <div class="col-md-5">
