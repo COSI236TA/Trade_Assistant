@@ -6,6 +6,9 @@ TradeAssistant::Application.routes.draw do
   get '/logout', :to => 'sessions#destroy'
 
   get "/dashboard" => "dashboard#index"
+  get "home/about"
+  get "home/contact"
+
 
   controller :sessions do
     get 'login' => :new
