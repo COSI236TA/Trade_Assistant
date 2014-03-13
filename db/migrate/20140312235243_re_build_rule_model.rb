@@ -7,6 +7,7 @@ class ReBuildRuleModel < ActiveRecord::Migration
       t.float :target
       t.text :target_type
       t.text :duration
+      t.text :activated
 
       t.timestamps
     end
