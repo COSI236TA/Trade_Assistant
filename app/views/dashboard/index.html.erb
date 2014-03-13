@@ -1,2 +1,15 @@
-<h1>Dashboard#index</h1>
-<p>Find me in app/views/dashboard/index.html.erb</p>
+<h1>Hi, <%= get_email %></h1>
+<table> 
+  <thead>
+    <th>Last Triggered</th>
+    <th>Description</th>
+    <th>Activated</th>
+  </thead>
+  <tbody>
+    <%= @my_rules.each do |rule| %>
+    <td><% rule.last_triggered %></td>
+    <td><% rule.description %></td>
+    <td><% rule.activated? %></td>
+    <% end %>
+  </tbody>
+</table>
