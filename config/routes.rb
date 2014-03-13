@@ -1,5 +1,9 @@
 TradeAssistant::Application.routes.draw do
   
+  get '/login', :to => 'sessions#new'
+  get '/register', :to => 'users#new'
+  get '/logout', :to => 'sessions#destroy'
+
   get "/dashboard" => "dashboard#index"
 
   controller :sessions do
