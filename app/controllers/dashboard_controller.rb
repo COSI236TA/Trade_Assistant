@@ -2,7 +2,7 @@ class DashboardController < ApplicationController
   include SessionsHelper
 
   def new
-    @my_rules = 1
+    # @my_rules = 
   end
 
   def create
