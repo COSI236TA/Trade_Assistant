@@ -1,6 +1,6 @@
 class RulesController < ApplicationController
   before_action :set_rule, only: [:show, :edit, :update, :destroy]
-
+  respond_to :html, :xml, :json
   # GET /rules
   # GET /rules.json
   def index
@@ -14,7 +14,9 @@ class RulesController < ApplicationController
 
   # GET /rules/new
   def new
-    @rule = Rule.new
+    @user = User.find(session[:user_id])
+    @rule = @user.rules.build
+    respond_with @rule
   end
 
   # GET /rules/1/edit
@@ -24,7 +26,8 @@ class RulesController < ApplicationController
   # POST /rules
   # POST /rules.json
   def create
-    @rule = Rule.new(rule_params)
+    @user = User.find(session[:user_id])
+    @rule = @user.rules.build(rule_params)
 
     respond_to do |format|
       if @rule.save
@@ -69,7 +72,7 @@ class RulesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def rule_params
-      params.require(:rule).permit(:ticker, :property, :up_or_down, :margin)
+      params.require(:rule).permit(:ticker, :property, :rel, :target)
     end
 
     def indicator
