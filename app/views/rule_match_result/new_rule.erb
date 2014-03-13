@@ -1,19 +1,8 @@
 <%= flash[:notice] if flash[:notice] %>
 
-<h1> <center>New Rule(Demo Only) </center>
+<center><h1>New Rule(Demo Only) </h1>
 
-  <%if user_logged_in? %>
-       <p align="right"> User <%= get_user_name%> is logged in</p> 
-       <br>
 
-       <%else %>
-       	 
-        <p align="right">   User is not logged in  </p>
-	<%end %> 
-
- </h1>
-
-<center>
 
 <%= form_tag("/rule_query", method: "get") do %>
   <%= label_tag(:symbol, "Symbol") %>

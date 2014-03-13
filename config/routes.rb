@@ -10,6 +10,10 @@ TradeAssistant::Application.routes.draw do
   get "sessions/create"
   get "sessions/destroy"
 
+  controller :dashboard do
+    get 'dashboard' => :new
+  end
+
   root to: 'home#index'			     
 			  
   get "home/index"
