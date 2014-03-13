@@ -11,7 +11,6 @@ include SessionsHelper
     user = User.find_by(email: params[:email])
      if user and user.authenticate(params[:password])
      session[:user_id] = user.id
-     @current_user = user
      redirect_to dashboard_path, notice: "You have logged in as #{user.email}"
     else
 
