@@ -14,6 +14,7 @@ class Rule < ActiveRecord::Base
   def description
     "Let me know if #{ticker}'s #{property} goes #{rel} to #{target}"
   end
+  
   private
   def get_ticker
     self[:ticker]
