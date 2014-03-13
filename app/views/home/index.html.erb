@@ -1,4 +1,4 @@
-		
+    
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="main.css">
     <style>
       header {
-        background: url(<%= asset_path "green_money.jpg" %>);
+        background: url(<%= asset_path "binary_background.jpg" %>);
         background-size:cover;
         height: 700px;
         padding-top: 70px;
@@ -43,7 +43,7 @@
       </div>
     <div class="jumbotron">
       <h1>Trading made easy!</h1>
-      <p><a href="sign_up.html" class="btn btn-success btn-lg">Get TradeAssistant For Free</a></p>
+      <p><a href="app/views/users/index.html.erb" class="btn btn-success btn-lg">Get TradeAssistant For Free</a></p>
       <a href="#learn" class="smoothScroll">Find out more<a>
     </div>
     </header>
@@ -54,9 +54,9 @@
       <div id="learn" class="row">
         <div class="col-lg-4">
           <i style="font-size:9em; color: #428bca;" class="glyphicon glyphicon-time"></i>
-          <h3>Automated Trading</h3>
+          <h3>Automated Analyzing</h3>
       </br>
-          <p>TradeAssistant tracks investor's money automatically.</p>
+          <p>TradeAssistant tracks investor's stocks automatically.</p>
            <a style="text-decoration:none;" href="#1" type="button" class="btn btn-large btn-primary smoothScroll">Learn More</a>
         </div><!-- /.col-lg-4 -->
         <div class="col-lg-4">
@@ -70,7 +70,7 @@
           <i style="font-size:9em; color: #428bca; i:active: color:" class="glyphicon glyphicon-file"></i>
           <h3>New Traders</h3>
       </br>
-          <p>Trading has never been easier. Apply your own rules with our simple interface and watch your portfoli grow!</p>
+          <p>Trading has never been easier. Apply your own rules with our simple interface and watch your portfolio grow!</p>
           <a style="text-decoration:none;" href="#3" type="button" class="btn btn-large btn-primary smoothScroll">Learn More</a>
         </div><!-- /.col-lg-4 -->
       </div><!-- /.row -->
@@ -82,8 +82,8 @@
 
       <div class="row featurette">
         <div class="col-md-7">
-          <h2 class="featurette-heading">Automated Trading. <span class="text-muted">Use your own rules!</span></h2>
-          <p class="lead">Our system will allow you to input your own analytics and make autoinvestments!!</p>
+          <h2 class="featurette-heading">Automated Analyzing. <span class="text-muted">Use your own rules!</span></h2>
+          <p class="lead">Our system will watch the market for you and alert you when your rules are triggered!</p>
         </div>
         <div class="col-md-5">
           <%= image_tag "light_money.jpg" %>
@@ -98,7 +98,7 @@
     </div>
         <div class="col-md-7">
           <h2 class="featurette-heading">Trader Bot <span class="text-muted"><a href="sign_up.html">An investor's best friend!</a></span></h2>
-          <p class="lead">Traders input various strategies into their portofolio and our system will monitor the market over a desired time, applying user systems. </p>
+          <p class="lead">Traders input various strategies into their portofolio and our system will monitor the market over a desired time, alerting the user to changes in stocks they are tracking. </p>
         </div>
       </div>
 
