@@ -1,8 +1,8 @@
 module SessionsHelper
 
-  def get_user_name
+  def get_email
       #User.find_by(name: params[:name])
-      User.find(session[:user_id]).name
+      User.find(session[:user_id]).email
   end
 
   def user_logged_in?
