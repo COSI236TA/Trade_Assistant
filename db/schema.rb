@@ -11,6 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema.define(version: 20140223232336) do
 
   create_table "indicators", force: true do |t|
@@ -65,6 +66,9 @@ end
 # It's strongly recommended that you check this file into your version control system.
 
 ActiveRecord::Schema.define(version: 20140312235243) do
+=======
+ActiveRecord::Schema.define(version: 20140313002919) do
+>>>>>>> 98a65bcea191064a48045b1ce7d1bd5362be2b7a
 
   create_table "indicators", force: true do |t|
     t.string   "name"
@@ -99,7 +103,7 @@ ActiveRecord::Schema.define(version: 20140312235243) do
   end
 
   create_table "users", force: true do |t|
-    t.string   "name"
+    t.string   "email"
     t.string   "password_digest"
     t.datetime "created_at"
     t.datetime "updated_at"
