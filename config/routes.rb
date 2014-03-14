@@ -1,7 +1,5 @@
 TradeAssistant::Application.routes.draw do
   root to: 'home#index'          
-
-  match "register" => "users#create", :via => "post"
   
   get '/login', :to => 'sessions#new'
   get '/register', :to => 'users#new'
@@ -18,7 +16,6 @@ TradeAssistant::Application.routes.draw do
     delete 'login' => :destroy
   end
 
-  
   match "register" => "users#create", :via => "post", :as => :users
   resources :users, :except => ['create']
 
