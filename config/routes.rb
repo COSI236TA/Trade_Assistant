@@ -1,5 +1,7 @@
 TradeAssistant::Application.routes.draw do
   root to: 'home#index'          
+
+  match "register" => "users#create", :via => "post"
   
   get '/login', :to => 'sessions#new'
   get '/register', :to => 'users#new'
@@ -15,6 +17,12 @@ TradeAssistant::Application.routes.draw do
     post 'login' => :create
     delete 'login' => :destroy
   end
+
+  
+  match "register" => "users#create", :via => "post", :as => :users
+  resources :users, :except => ['create']
+
+  #match "users" => "users#index", :via => "get"
 
   get "sessions/new"
   get "sessions/create"
@@ -33,9 +41,7 @@ TradeAssistant::Application.routes.draw do
   get "stocks/:sym", to: 'stocks#show_by_sym'
   get "rule_query", to: 'rule_match_result#rule_query' 
 
-  resources :users do
-    resources :rules 
-  end
+
 
   #resources :indicators
 

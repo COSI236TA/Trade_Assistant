@@ -31,10 +31,11 @@ class UsersController < ApplicationController
     respond_to do |format|
       if @user.save
         format.html { redirect_to dashboard_path, notice: "user #{@user.email} was successfully created." }
-	session[:user_id] = @user.id
+	       session[:user_id] = @user.id
         format.json { render action: 'show', status: :created, location: @user }
       else
-        format.html { render action: 'new' }
+        #format.html {redirect_to register_path, error: "?????????????????"}
+        format.html { render action: 'new'}
         format.json { render json: @user.errors, status: :unprocessable_entity }
       end
     end
