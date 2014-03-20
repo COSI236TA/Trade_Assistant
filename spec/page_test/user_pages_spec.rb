@@ -57,8 +57,8 @@ describe "User pages" do
         it{ should have_link('Register', href: register_path) }
 
       end 
-      describe "item in database" do
-      end
+
+
       describe "with valid user information" do
         before do
           @user = FactoryGirl.build(:user)
@@ -67,12 +67,25 @@ describe "User pages" do
           fill_in "email", with: @user.email
           fill_in "password", with: @user.password
           click_button "Login"
-          save_and_open_page
+          #save_and_open_page
         end
-
+        
+        describe "and check links" do
           it{ should have_link('Log Out', href: logout_path) }
           it{ should have_content("ed@hotmail.com") }
           it{ should have_button("Create New Rule")}
+        end
+
+        describe "and check new rule" do
+          before do
+          click_button "Create New Rule"
+          end
+          it{ should have_content("New Rule") }
+          it{ should have_button("Hit me")}
+
+        end
+
+
       end
   end  
 
