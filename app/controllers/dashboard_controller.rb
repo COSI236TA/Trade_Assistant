@@ -11,7 +11,9 @@ class DashboardController < ApplicationController
   def index
     if user_logged_in?
       #commented out due to problems accessing dashboard
-      #@my_rules = User.find(session[:user_id]).rules.all
+      @user = User.find(session[:user_id])
+      @user_email = @user.email
+      @my_rules = @user.rules.all
     else
       redirect_to login_path
     end

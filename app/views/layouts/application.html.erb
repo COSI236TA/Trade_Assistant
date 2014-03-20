@@ -31,8 +31,8 @@
             <ul class="nav navbar-nav">
             <% if user_logged_in? %>
               <li><%= link_to("Dashboard", dashboard_path) %></li>
-              <li><%= link_to("Rules", dashboard_path) %></li>
-              <li><%= link_to("Market", dashboard_path) %></li>
+              <li><%= link_to("Rules", create_rule_path) %></li>
+              <li><%= link_to("Market", markets_path) %></li>
             <% else %>
               <li><%= link_to("Home", root_path) %></li>
               <li><%= link_to("About", home_about_path) %></li>
@@ -41,7 +41,7 @@
             </ul>
             <ul class="nav navbar-nav navbar-right">
               <% if user_logged_in? %>
-              <li><%= link_to(get_email, users_settings_path) %></li>
+              <li><%= link_to(get_email, settings_path) %></li>
               <li><%= link_to("Log Out", logout_path) %></li>
               <% else %>
               <li><%= link_to("Login", login_path) %></li>
