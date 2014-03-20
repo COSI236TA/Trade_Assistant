@@ -62,7 +62,7 @@
 
 <%= flash[:notice] if flash[:notice] %>
 
-<%= form_for @rule do |rule_form| %>
+<%= bootstrap_form_for @rule do |rule_form| %>
   <%= label_tag(:ticker, "Ticker") %>
   <br />
   <%= rule_form.text_field :ticker %>
