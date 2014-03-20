@@ -10,7 +10,7 @@ module SessionsHelper
     if !session[:user_id].nil?
       user = User.take(session[:user_id])
       if user != nil
-        user.email
+        user[0].email
       else
         "Error"
       end
