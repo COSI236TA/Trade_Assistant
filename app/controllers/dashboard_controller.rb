@@ -10,7 +10,8 @@ class DashboardController < ApplicationController
 
   def index
     if user_logged_in?
-      @my_rules = User.find(session[:user_id]).rules.all
+      #commented out due to problems accessing dashboard
+      #@my_rules = User.find(session[:user_id]).rules.all
     else
       redirect_to login_path
     end

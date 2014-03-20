@@ -1,5 +1,8 @@
 source 'https://rubygems.org'
 
+#gem 'selenium-webdriver'
+gem 'factory_girl_rails', '4.2.1'
+gem "spring", group: :development
 gem 'rspec-rails'
 gem 'capybara'
 #gem "spring", group: :development

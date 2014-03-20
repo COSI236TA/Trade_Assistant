@@ -1,6 +1,8 @@
 TradeAssistant::Application.routes.draw do
   root to: 'home#index'          
   
+  get "users/settings"
+
   get '/login', :to => 'sessions#new'
   get '/register', :to => 'users#new'
   get '/logout', :to => 'sessions#destroy'
@@ -8,6 +10,7 @@ TradeAssistant::Application.routes.draw do
   get "/dashboard" => "dashboard#index"
   get "home/about"
   get "home/contact"
+
 
 
   controller :sessions do
