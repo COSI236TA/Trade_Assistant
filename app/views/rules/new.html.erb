@@ -30,7 +30,6 @@
   <br />
   <div class="form-group">
     <div class="col-md-4">
-  <%= label_tag(:rel, "Up Or Down") %>
   <br />
   <%= rule_form.select(:rel, options_for_select([['Up to',"up"], ['Down to',"down" ]]), class: 'form-group') %>
 </div>
@@ -40,7 +39,6 @@
 
   <div class="form-group">
     <div class="col-md-4">
-  <%= label_tag(:target, "Target") %>
   <%= rule_form.text_field :target , class: 'form-group', placeholder: 'Enter a target value'%>
   <br />
   <span class="help-block">What value do you want the indicator to be?</span>  
