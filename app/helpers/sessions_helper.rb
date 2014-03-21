@@ -20,7 +20,7 @@ module SessionsHelper
   end
 
   def user_logged_in?
-    return (session[:user_id] != nil) && User.take(session[:user_id]) != nil
+    return (session[:user_id] != nil) && User.find_by(id: session[:user_id]) != nil
   end
 
   def destroy
