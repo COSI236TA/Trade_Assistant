@@ -7,20 +7,20 @@ module SessionsHelper
 
   def get_email
     #User.find_by(name: params[:name])
-    if !session[:user_id].nil?
-      user = User.take(session[:user_id])
+    #if !session[:user_id].nil?
+      user = User.find_by(id: session[:user_id])
       if user != nil
-        user[0].email
+        user.email
       else
         "Error"
       end
-    else
-      "error"
-    end
+    	#else
+      #"error"
+   # end
   end
 
   def user_logged_in?
-    return (session[:user_id] != nil) && User.take(session[:user_id]) != nil
+    return (session[:user_id] != nil) && User.find_by(id: session[:user_id]) != nil
   end
 
   def destroy
