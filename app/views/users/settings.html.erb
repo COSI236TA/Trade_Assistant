@@ -1,7 +1,13 @@
 <!-- find me in /views/users/settings.html. -->
 
+<body>
+
+<div id='user'>I am a user. Move your mouse over me</div>
+
+<div>I a piece of useless information. No use hovering over me.</div>
+
 <br> </br>
-<div class="panel panel-default" style = "float:left;">
+<div id='popup' class="panel panel-default" style = "float:left;">
   <div class="panel-heading">My Account</div>
   <div class="panel-body">
     Edit Profile
@@ -21,3 +27,12 @@
 
 <div id="content" style="background-color:#888888;height:1000px;width:Content;">
 Preferred notification</div>
+<script>
+$(document).ready(function() {
+    $('#user').hover(function() {
+        $('#popup').show();
+    }, );
+});
+</script>
+
+</body>

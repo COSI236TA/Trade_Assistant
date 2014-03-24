@@ -37,7 +37,7 @@
             <ul class="nav navbar-nav">
             <% if user_logged_in? %>
               <li><%= link_to("Dashboard", dashboard_path) %></li>
-              <li><%= link_to("Rules", create_rule_path) %></li>
+              <li><%= link_to("Create Rule", create_rule_path) %></li>
               <li><%= link_to("Market", markets_path) %></li>
             <% else %>
               <li><%= link_to("Home", root_path) %></li>
@@ -47,7 +47,20 @@
             </ul>
             <ul class="nav navbar-nav navbar-right">
               <% if user_logged_in? %>
-              <li><%= link_to(get_email, settings_path) %></li>
+              <li id = 'user'><a><%= get_email %></a></li>
+              <div id='popup' class="panel panel-default" style = "float:left;">
+                <div class="panel-heading">My Account</div>
+                <div class="panel-body">
+                  Edit Profile
+                </div>
+                  <div class="panel-body">
+                  Edit Email & Password
+                </div>
+                  <div class="panel-body">
+                Notification Preference
+              </div>
+               
+            </div>
               <li><%= link_to("Log Out", logout_path) %></li>
               <% else %>
               <li><%= link_to("Login", login_path) %></li>
@@ -60,6 +73,19 @@
       </header>
 
 <%= yield %>
+
+
+<script>
+$(document).ready(function() {
+    $('#user').mouseover(function() {
+        $('#popup').show();
+    });
+    $('#popup').mouseleave(function() {
+        $('#popup').hide();
+    });
+
+});
+</script>
 
 </body>
 </html>

@@ -18,6 +18,20 @@ Description...
 @version:       $Revision:$
 */
 
+#popup {
+    height: 50px;
+    width: 150px;
+    text-align: center;
+    vertical-align:middle;
+    color: white;
+    display: none;
+    padding-top: 8px;
+    position: absolute;
+    z-index:1;
+    top: 2px;
+
+}
+
 article,
 aside,
 details,
@@ -5336,7 +5350,14 @@ a.list-group-item:focus {
           box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
 }
 
+.panel:hover{
+  
+  visibility: visible;
+
+}
+
 .panel-body {
+  background-color: #989898;
   padding: 15px;
 }
 
@@ -5408,7 +5429,7 @@ a.list-group-item:focus {
 
 .panel-footer {
   padding: 10px 15px;
-  background-color: #f5f5f5;
+  background-color: #0000FF;
   border-top: 1px solid #dddddd;
   border-bottom-right-radius: 3px;
   border-bottom-left-radius: 3px;
@@ -5429,7 +5450,7 @@ a.list-group-item:focus {
 }
 
 .panel-group .panel-heading + .panel-collapse .panel-body {
-  border-top: 1px solid #dddddd;
+  
 }
 
 .panel-group .panel-footer {
