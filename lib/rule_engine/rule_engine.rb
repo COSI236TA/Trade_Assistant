@@ -1,4 +1,4 @@
-#Lap: Querying, Matching and Notifying
+#RuleEngine: Querying, Matching and Notifying
 
 require 'rubygems'
 require 'yahoo_stock'
