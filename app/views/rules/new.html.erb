@@ -2,46 +2,24 @@
 
 <div class="container">
   <div class="row">
-    <div class="col-md-6 col-md-offset-3">
+    <div class="col-md-8 col-md-offset-2">
 
-<%= flash[:notice] if flash[:notice] %>
-
-<%= bootstrap_form_for @rule do |rule_form| %>
-  <div class= "form-group">
-   <div class="col-md-4">
-
+      <%= flash[:notice] if flash[:notice] %>
+      <%= bootstrap_form_for @rule do |rule_form| %>
   
-  <br />
-  <%= rule_form.text_field :ticker, class: 'form-group', placeholder: 'Enter stock ticker' %>
-  <span class="help-block"> A unique series of letters assigned to a security for trading purposes. NYSE and AMEX listed stocks have three characters or less. Nasdaq-listed securities have four or five characters.</span>  
+        <div class= "form-group">
+          <div class="col-md-12">
+            <%= rule_form.text_field :ticker, class: 'form-group', placeholder: 'Enter stock ticker' %>
+            <span class="help-block"> A unique series of letters assigned to a security for trading purposes. NYSE and AMEX listed stocks have three characters or less. Nasdaq-listed securities have four or five characters.
+            </span>
+            <%= rule_form.select(:property, options_for_select([['Price',"last_trade_price_only"], ['Volume',"volume" ], ['Market Cap', "market_capitalization"],['Div',4], ['Yld',5], ['P/E', 6]]), class: 'form-group') %>
+            <%= rule_form.select(:rel, options_for_select([['Up to',"up"], ['Down to',"down" ]]), class: 'form-group form-control') %>
+            <%= rule_form.text_field :target , class: 'form-group', placeholder: 'Enter a target value'%>
+            <span class="help-block">What value do you want the indicator to be?</span> 
+            <%= rule_form.submit 'Submit Rule', class: 'btn btn-success'%> 
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
 </div>
-</div>
-  <br></br>
-  <br />
-<br>
-  
-  <div class="form-group">
-    <div class="col-md-4">
-
- <%= rule_form.select(:property, options_for_select([['Price',"last_trade_price_only"], ['Volume',"volume" ], ['Market Cap', "market_capitalization"],['Div',4], ['Yld',5], ['P/E', 6]]), class: 'form-group') %>
-</div>
-</div>
-
-  <br />
-  <div class="form-group">
-    <div class="col-md-4">
-  <br />
-  <%= rule_form.select(:rel, options_for_select([['Up to',"up"], ['Down to',"down" ]]), class: 'form-group') %>
-</div>
-</div>
-  
-  <br />
-
-  <div class="form-group">
-    <div class="col-md-4">
-  <%= rule_form.text_field :target , class: 'form-group', placeholder: 'Enter a target value'%>
-  <br />
-  <span class="help-block">What value do you want the indicator to be?</span>  
-  <%= rule_form.submit 'Submit Rule', class: 'btn btn-success'%>
-<% end %>
-
