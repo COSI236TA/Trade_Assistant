@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
-ruby '2.1.0'
+#ruby '2.1.0'
 
 #gem 'selenium-webdriver'
 gem 'factory_girl_rails', '4.2.1'
@@ -51,6 +51,8 @@ gem 'sidekiq'
 
 # Use ActiveModel has_secure_password
 gem 'bcrypt-ruby', '~> 3.1.2'
+
+gem 'bootstrap_form'
 
 # Use unicorn as the app server
 # gem 'unicorn'
