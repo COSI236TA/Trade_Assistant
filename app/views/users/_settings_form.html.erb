@@ -1,0 +1,19 @@
+<%= form_tag("/settings", method: "get") do %>
+
+  <div class="field">
+    <%= label_tag "Current email" %><br>
+    <%= text_field_tag :email%>
+  </div>
+  <div class="field">
+    <%= label_tag "New Password" %><br>
+    <%= password_field_tag :password %>
+  </div>
+  <div>
+    <%= label_tag "Confirm New Password" %><br>
+    <%= password_field_tag :password_confirmation %>
+  </div>
+  <div class="actions">
+    <%= submit_tag("Update Account")%>
+  </div>
+
+<% end %>
