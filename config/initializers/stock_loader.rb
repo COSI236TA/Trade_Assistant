@@ -6,10 +6,9 @@ def load_stocks
   path = "completelist"
   file = "#{Rails.root}/app/txtfiles/#{path}"
 
-  stock_list = []
+  stock_list = {}
   CSV.foreach(file, :col_sep => "|") do |row|
-    entry = { row[0] => row[1] }
-    stock_list << entry
+    stock_list[row[0]] = row[1]
   end
   return stock_list
 end

@@ -62,9 +62,18 @@ class RulesController < ApplicationController
 
   def auto_complete
     s = params[:q]
-    fake_result = [{ "ticker" => 'GOOG', "name" => "Google"}]
+    count = 0
+    result = []
+    stock_list = STOCK_LIST
+    stock_list.each do |ticker, name|
+      puts ticker, name
+      if ticker.include?(s) or name.include?(s)
+        result << { "ticker" => ticker, "name" => name}
+      end
+      break if result.size >= 10
+    end
     respond_to do |format|
-      format.json { render :json => fake_result}
+      format.json { render :json => result}
     end
   end
 
