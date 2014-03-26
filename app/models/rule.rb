@@ -1,5 +1,11 @@
 class Rule < ActiveRecord::Base
   belongs_to :user
+
+  validates :ticker, presence: true, length: { minimum: 3 }
+  validates :property, presence: true
+  validates :rel, presence: true 
+  validates :target, presence: true, numericality: true
+
   def last_triggered
     rule_engine = RuleEngine::RuleEngine.new
     rule_engine.add_fuel(ticker, property, rel, target)

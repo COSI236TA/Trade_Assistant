@@ -49,12 +49,12 @@ class BaseRule
   #rel: :up or :down
   #target: numeric
   def triggerize rel, target
+    raise "Wrong rel, expecting up or down" if rel == nil
+    raise "Wrong target, expecting float" if target == nil
     if rel == 'up'
       return lambda { |x| x >= target }
     elsif rel == 'down'
       return lambda { |x| x <= target }
-    else
-      raise "Wrong rel, expecting :up or :down"
     end
   end
 
@@ -62,7 +62,14 @@ class BaseRule
   #return ture if all triggers are met
   def is_met?
     return false if @condition.size == 0
-    results = @triggers.map { |ind, trigger| trigger.call @condition[ind]}
+    results = @triggers.map do |ind, trigger|
+      cond = @condition[ind]
+      if cond == nil
+        false
+      else
+        trigger.call @condition[ind]
+      end
+    end
     return results.reduce(true) { |c, v| c && v }
   end
 end

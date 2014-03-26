@@ -1,5 +1,5 @@
 class RulesController < ApplicationController
-  PROPERTY_MAP = {1 => 'price', 2 => 'volume', 3 => 'marketcap', 4 => 'div', 5 => 'yld', 6 => 'p/e'}
+  PROPERTY_MAP = {'1' => 'price', '2' => 'volume', '3' => 'marketcap', '4' => 'div', '5' => 'yld', '6' => 'p/e'}
   before_action :set_rule, only: [:show, :edit, :update, :destroy]
   respond_to :html, :xml, :json
   # GET /rules
@@ -28,7 +28,10 @@ class RulesController < ApplicationController
   # POST /rules.json
   def create
     @user = User.find(session[:user_id])
-    @rule = @user.rules.build(rule_params)
+    clean_params = rule_params
+    clean_params[:property] = PROPERTY_MAP[clean_params[:property]]
+    puts clean_params
+    @rule = @user.rules.build(clean_params)
 
     respond_to do |format|
       if @rule.save
@@ -74,7 +77,6 @@ class RulesController < ApplicationController
   # Never trust parameters from the scary internet, only allow the white list through.
   def rule_params
     #Map the number to the real property name
-    params[:property] = PROPERTY_MAP[params[:property].to_i]
     params.require(:rule).permit(:ticker, :property, :rel, :target)
   end
 
