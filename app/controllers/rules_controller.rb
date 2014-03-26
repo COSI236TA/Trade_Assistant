@@ -61,13 +61,16 @@ class RulesController < ApplicationController
   end
 
   def auto_complete
-    s = params[:q]
+    #ignore cases
+    s = params[:q].downcase
     count = 0
     result = []
     stock_list = STOCK_LIST
     stock_list.each do |ticker, name|
-      puts ticker, name
-      if ticker.include?(s) or name.include?(s)
+      #ignore cases
+      dticker = ticker.downcase
+      dname = name.downcase
+      if dticker.include?(s) or dname.include?(s)
         result << { "ticker" => ticker, "name" => name}
       end
       break if result.size >= 10
