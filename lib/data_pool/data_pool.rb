@@ -1,11 +1,16 @@
 class DataPool::DataPool
     #CONFIGURATION
-    DATA_SOURCE = "yahoo"
+    DATA_SOURCE = "db"
     # DATA_SOURCE = "redis"
 
-    def self.query symbol, triggers
-        if DATA_SOURCE == "yahoo"
-            return YahooStock::Quote.new(:stock_symbols => symbol, :read_parameters => triggers.keys).results(:to_hash).output[0]
+    def self.query ticker
+        if DATA_SOURCE == 'db'
+            stock_data = StockData.find_by(ticker: ticker)
+            if stock_data == nil
+                DataPool::DataUpdater.update ticker
+                stock_data = StockData.find_by(ticker: ticker)
+            end
+            return stock_data.attributes
         else
             return nil
         end

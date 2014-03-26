@@ -4,7 +4,8 @@
 <fieldset>
 <center>
 
-<h1>Please Log In</h1>
+<h1>Welcome back to Trade Assistant!</h1>
+<h2>Please Log In</h2>
 
 <center>
 <% if flash[:alert] %>
@@ -18,23 +19,28 @@
 </center>
 
 <center>
-<div>
+	
 <br>
 
-<label 
+<div class="container">
+  <div class="row">
+    <div class="col-md-8 col-md-offset-2">
 
-<%= label_tag :email, 'Email:'%>
-<%= text_field_tag :email , params[:email] %>
+	<div class="form-group">
+		<%= label_tag :email, 'Email:'%>
+		<%= text_field_tag :email , params[:email], class: 'form-control', placeholder: 'Enter your email' %>
+	</div>
 
-
-<%= label_tag :password, 'Password:' %>
-<%= password_field_tag :password, params[:password] %>
-
-
-<%= submit_tag "Login" %>
-</div>
+	<div class="form-group">
+		<%= label_tag :password, 'Password:' %>
+		<%= password_field_tag :password, params[:password], class: 'form-control',  placeholder: 'Enter your password' %>
+		<%= submit_tag "Login", class: 'btn btn-success' %>
+	</div>
+	
 </fieldset>
 <% end %>
 </center>
-
+</div>
+  </div>
+</div>
 </div>

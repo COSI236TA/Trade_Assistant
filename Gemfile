@@ -1,4 +1,5 @@
 source 'https://rubygems.org'
+#ruby '2.1.0'
 
 #gem 'selenium-webdriver'
 gem 'factory_girl_rails', '4.2.1'
@@ -8,13 +9,16 @@ gem 'capybara'
 #gem "spring", group: :development
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.0.1'
+gem 'rails', '~> 4.0.1'
 
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3'
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
+gem 'bootstrap-sass', '~> 3.1.1'
+
+gem 'bootstrap_forms', '~> 2.0.0'
 
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
@@ -47,6 +51,8 @@ gem 'sidekiq'
 
 # Use ActiveModel has_secure_password
 gem 'bcrypt-ruby', '~> 3.1.2'
+
+gem 'bootstrap_form'
 
 # Use unicorn as the app server
 # gem 'unicorn'
