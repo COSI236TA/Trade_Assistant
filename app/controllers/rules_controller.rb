@@ -32,18 +32,15 @@ class RulesController < ApplicationController
     @user = User.find(session[:user_id])
     clean_params = rule_params
     clean_params[:property] = PROPERTY_MAP[clean_params[:property]]
-    puts clean_params
-    @rule = @user.rules.build(clean_params)
-
-    respond_to do |format|
-      if @rule.save
-        format.html { redirect_to @rule, notice: 'Rule was successfully created.' }
-        format.json { render action: 'show', status: :created, location: @rule }
-      else
-        format.html { render action: 'new' }
-        format.json { render json: @rule.errors, status: :unprocessable_entity }
+    tickers = clean_params[:ticker].split(",")
+    tickers.each do |ticker|
+      clean_params[:ticker] = ticker
+      @rule = @user.rules.build(clean_params)
+      if !@rule.save 
+        raise "Illegal rule!"
       end
     end
+    redirect_to dashboard_path
   end
 
   # PATCH/PUT /rules/1
