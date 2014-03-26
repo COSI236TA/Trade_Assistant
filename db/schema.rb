@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140313151626) do
+ActiveRecord::Schema.define(version: 20140324140729) do
 
   create_table "indicators", force: true do |t|
     t.string   "name"
@@ -37,6 +37,16 @@ ActiveRecord::Schema.define(version: 20140313151626) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "user_id"
+  end
+
+  create_table "stock_data", force: true do |t|
+    t.string   "ticker"
+    t.string   "price"
+    t.string   "marketcap"
+    t.string   "volume"
+    t.string   "last_trade_date"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "stocks", force: true do |t|
