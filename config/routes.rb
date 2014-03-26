@@ -3,7 +3,12 @@ TradeAssistant::Application.routes.draw do
   
   #get "users/settings"
 
-  get '/settings', :to => 'users#settings'
+
+  #post "/settings", to: 'users#saved_settings'
+
+  get '/settings', :to => 'users#edit'
+  #get '/users/saved_settings', :to => 'users#saved_settings'
+
   get '/login', :to => 'sessions#new'
   get '/register', :to => 'users#new'
   get '/logout', :to => 'sessions#destroy'
@@ -33,11 +38,12 @@ TradeAssistant::Application.routes.draw do
     get 'dashboard' => :new
   end
 
+
   #Create new rule
   get "create_rule", to: 'rules#new'
   post "create_rule", to: 'rules#create'
 
-			  
+        
   get "home/index"
   get "stocks/:sym", to: 'stocks#show_by_sym'
   get "rule_query", to: 'rule_match_result#rule_query' 
