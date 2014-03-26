@@ -1,6 +1,8 @@
 class UsersController < ApplicationController
-  
-  before_action :set_user, only: [:show, :edit, :update, :destroy]
+include SessionsHelper  
+
+  before_action only: [:show, :edit, :update, :destroy]
+  #before_action :set_user,
 
   # GET /users
   # GET /users.json
@@ -11,7 +13,7 @@ class UsersController < ApplicationController
   # GET /users/1
   # GET /users/1.json
   def show
-
+    @user = User.find_by_email(get_email)
   end
 
   # GET /users/new
@@ -21,10 +23,18 @@ class UsersController < ApplicationController
 
   # GET /users/1/edit
   def edit
+      @user = User.new
   end
 
   def settings
 
+    #format.html { redirect_to dashboard_path, notice: "New Settings Saved"
+  end
+
+  def new_settings
+ 
+      format.html { redirect_to users_saved_settings_path, notice: "Account Updated."}
+   
   end
 
 
@@ -35,8 +45,9 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       if @user.save
-        format.html { redirect_to dashboard_path, notice: "user #{@user.email} was successfully created." }
-	       session[:user_id] = @user.id
+        format.html { redirect_
+          to dashboard_path, notice: "user #{@user.email} was successfully created." }
+         session[:user_id] = @user.id
         format.json { render action: 'show', status: :created, location: @user }
       else
         #format.html {redirect_to register_path, error: "?????????????????"}
@@ -49,12 +60,12 @@ class UsersController < ApplicationController
   # PATCH/PUT /users/1
   # PATCH/PUT /users/1.json
   def update
+    @user = User.find_by_email(get_email)
     respond_to do |format|
       if @user.update(user_params)
-        format.html { redirect_to @user, notice: 'User was successfully updated.' }
+        format.html { redirect_to settings_path, notice: 'Account was successfully updated.' }
         format.json { head :no_content }
-
-      else
+    else
         format.html { render action: 'edit' }
         format.json { render json: @user.errors, status: :unprocessable_entity }
       end
@@ -73,9 +84,9 @@ class UsersController < ApplicationController
 
   private
     # Use callbacks to share common setup or constraints between actions.
-    def set_user
-      @user = User.find(params[:id])
-    end
+   # def set_user
+      #@user = User.find(params[:id])
+   #end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
