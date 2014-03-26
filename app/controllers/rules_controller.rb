@@ -1,3 +1,5 @@
+require 'json'
+
 class RulesController < ApplicationController
   PROPERTY_MAP = {'1' => 'price', '2' => 'volume', '3' => 'marketcap', '4' => 'div', '5' => 'yld', '6' => 'p/e'}
   before_action :set_rule, only: [:show, :edit, :update, :destroy]
@@ -55,6 +57,14 @@ class RulesController < ApplicationController
         format.html { render action: 'edit' }
         format.json { render json: @rule.errors, status: :unprocessable_entity }
       end
+    end
+  end
+
+  def auto_complete
+    s = params[:q]
+    fake_result = [{ "ticker" => 'GOOG', "name" => "Google"}]
+    respond_to do |format|
+      format.json { render :json => fake_result}
     end
   end
 
