@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
-#ruby '2.1.0'
+ruby '2.1.1'
 
 #gem 'selenium-webdriver'
 gem 'factory_girl_rails', '4.2.1'
