@@ -40,6 +40,13 @@ class RuleEngine::RuleEngine
             property = rule.property
             rel = rule.rel
             target = rule.target
+            stock_data = StockData.find_by(ticker: ticker).attributes
+            result = false
+            if rel == 'up'
+            else
+            end
+
+
         end
     end
 end
