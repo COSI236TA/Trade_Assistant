@@ -54,11 +54,7 @@ include SessionsHelper
     @user = User.find_by_email(get_email)
     respond_to do |format|
       if @user.update(user_params)
-<<<<<<< HEAD
-        format.html { redirect_to settings_path, notice: 'User was successfully updated.' }
-=======
         format.html { redirect_to settings_path, notice: 'Account was successfully updated.' }
->>>>>>> 203502920eee6ff8ed88b025a08348cc13cde424
         format.json { head :no_content }
 
       else
