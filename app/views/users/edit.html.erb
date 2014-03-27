@@ -1,13 +1,6 @@
 <h1>Editing user</h1>
 
-<center>
-    <% flash.each do |name, msg| -%>
-      <%= content_tag :div, msg, class: name %>
-    <% end -%>
-
 <%= render 'form' %>
 
-<!-- <%= link_to 'Show', @user %> |  -->
-<!-- <%= link_to 'Back', users_path %>  -->
-
-</center>
+<%= link_to 'Show', @user %> |
+<%= link_to 'Back', users_path %>
