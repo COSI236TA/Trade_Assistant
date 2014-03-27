@@ -1,19 +1,40 @@
-<%= form_tag("/settings", method: "get") do %>
+<div class="container">
+  <div class="row">
+    <div class="col-md-8 col-md-offset-2">
+<center>
 
-  <div class="field">
-    <%= label_tag "Current email" %><br>
-    <%= text_field_tag :email%>
+<% if flash[:error] -%>
+  <p class='error'><%=h flash[:error] %></p>
+<% end -%>
+<% if flash[:notice] -%>
+  <p class='notice'><%=h flash[:notice] %></p>
+<% end -%>
+
+
+<%= form_for :user do |f| %>
+
+  <div class="form-group">
+
+    <%= f.label :email, 'New Email' %><br>
+    <%= f.text_field :email, :id => :email, class: 'form-control', placeholder: 'Enter your email' %>
   </div>
-  <div class="field">
-    <%= label_tag "New Password" %><br>
-    <%= password_field_tag :password %>
+  <div class="form-group">
+    <%= f.label :password, 'New Password' %><br>
+    <%= f.password_field :password, class: 'form-control', placeholder: 'Enter your password' %>
   </div>
   <div>
-    <%= label_tag "Confirm New Password" %><br>
-    <%= password_field_tag :password_confirmation %>
+    <%= f.label :password_confirmation, 'New Password confirmation' %><br>
+    <%= f.password_field :password_confirmation, class: 'form-control', placeholder: 'Verify your password' %>
+  </div>
+    <div>
+    <%= f.label :notification_preference, 'Select Notification Preference' %><br>
   </div>
   <div class="actions">
-    <%= submit_tag("Update Account")%>
+    <%= f.submit 'Submit Info', class: 'btn btn-success'%>
   </div>
-
 <% end %>
+</center>
+
+</div>
+  </div>
+</div>
