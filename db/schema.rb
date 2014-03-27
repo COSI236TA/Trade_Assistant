@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140324140729) do
+ActiveRecord::Schema.define(version: 20140327173505) do
 
   create_table "indicators", force: true do |t|
     t.string   "name"
@@ -22,6 +22,13 @@ ActiveRecord::Schema.define(version: 20140324140729) do
 
   create_table "markets", force: true do |t|
     t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "rule_histories", force: true do |t|
+    t.integer  "rule_id"
+    t.string   "amt"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
