@@ -2,8 +2,8 @@ TradeAssistant::Application.routes.draw do
   root to: 'home#index'          
   
   #get "users/settings"
+   get '/settings', :to => 'users#settings'
 
-  get '/settings', :to => 'users#edit'
   get '/login', :to => 'sessions#new'
   get '/register', :to => 'users#new'
   get '/logout', :to => 'sessions#destroy'
