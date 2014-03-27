@@ -63,13 +63,15 @@ class RulesController < ApplicationController
     count = 0
     result = []
     stock_list = STOCK_LIST
+    id = 0;
     stock_list.each do |ticker, name|
       #ignore cases
       dticker = ticker.downcase
       dname = name.downcase
       if dticker.include?(s) or dname.include?(s)
-        result << { "ticker" => ticker, "name" => name}
+        result << { "id" => id, "ticker" => ticker, "name" => name}
       end
+      id += 1
       break if result.size >= 10
     end
     respond_to do |format|
