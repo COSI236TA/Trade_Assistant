@@ -1,23 +1,18 @@
 <!-- find me in /views/users/settings.html. -->
 
-<br> </br>
-<div class="panel panel-default" style = "float:left;">
-  <div class="panel-heading">My Account</div>
-  <div class="panel-body">
-    Edit Profile
-  </div>
-    <div class="panel-body">
-    Edit Email & Password
-  </div>
-    <div class="panel-body">
-    Notification Preference
-  </div>
-    <div class="panel-heading">Panel heading without title</div>
-  <div class="panel-body">
-    Panel content
-  </div>
 
-</div>
+<body>
 
-<div id="content" style="background-color:#888888;height:1000px;width:Content;">
-Preferred notification</div>
+<center>
+
+<% if flash[:alert] %>
+<p id="notice"><%= flash[:alert] %></p>
+<% end %>
+
+<%= render 'settings_form' %>
+
+</center>
+
+
+
+</body>

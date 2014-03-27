@@ -1,7 +1,8 @@
 class UsersController < ApplicationController
-  
+include SessionsHelper 
   before_action  only: [:show, :edit, :update, :destroy]
   #:set_user,
+
   # GET /users
   # GET /users.json
   def index
@@ -25,7 +26,7 @@ class UsersController < ApplicationController
   end
 
   def settings
-
+    @user = User.new
   end
 
 
@@ -50,9 +51,14 @@ class UsersController < ApplicationController
   # PATCH/PUT /users/1
   # PATCH/PUT /users/1.json
   def update
+    @user = User.find_by_email(get_email)
     respond_to do |format|
       if @user.update(user_params)
+<<<<<<< HEAD
         format.html { redirect_to settings_path, notice: 'User was successfully updated.' }
+=======
+        format.html { redirect_to settings_path, notice: 'Account was successfully updated.' }
+>>>>>>> 203502920eee6ff8ed88b025a08348cc13cde424
         format.json { head :no_content }
 
       else

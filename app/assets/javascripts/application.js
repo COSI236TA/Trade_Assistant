@@ -15,5 +15,3 @@
 //= require bootstrap
 //= require turbolinks
 //= require_tree .
-//= require rule_input
-//= require jquery.tokeninput

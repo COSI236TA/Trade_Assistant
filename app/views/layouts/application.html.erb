@@ -29,7 +29,7 @@
             <ul class="nav navbar-nav">
             <% if user_logged_in? %>
               <li><%= link_to("Dashboard", dashboard_path) %></li>
-              <li><%= link_to("Rules", create_rule_path) %></li>
+              <li><%= link_to("Create Rule", create_rule_path) %></li>
               <li><%= link_to("Market", markets_path) %></li>
             <% else %>
               <li><%= link_to("Home", root_path) %></li>
@@ -52,6 +52,7 @@
       </header>
 
 <%= yield %>
+
 
 </body>
 </html>
