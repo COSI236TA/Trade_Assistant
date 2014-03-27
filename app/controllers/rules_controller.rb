@@ -36,9 +36,7 @@ class RulesController < ApplicationController
     tickers.each do |ticker|
       clean_params[:ticker] = ticker
       @rule = @user.rules.build(clean_params)
-      if !@rule.save 
-        raise "Illegal rule!"
-      end
+      @rule.save 
     end
     redirect_to dashboard_path
   end
