@@ -3,7 +3,7 @@
 <div class="form">
   <div class="container col-md-offset-3 col-md-6">
     <div class="row">
-      <div class="col-md-6">
+      <div class="col-md-6 col-md-offset-2">
 
       
       <h1>Fill out the form to create a new rule!</h1>
@@ -30,7 +30,7 @@
 
         <div class= "form-group">
           <div class="col-md-12">
-            <%= rule_form.select(:rel, options_for_select([['Up to',"up"], ['Down to',"down" ]]), {}, {class: "form-control"}) %>
+            <%= rule_form.select(:rel, options_for_select([['More than',"up"], ['Less than',"down" ]]), {}, {class: "form-control"}) %>
           </div>
         </div>
 
