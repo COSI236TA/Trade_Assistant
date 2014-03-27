@@ -1,7 +1,6 @@
 class UsersController < ApplicationController
-include SessionsHelper 
-  before_action  only: [:show, :edit, :update, :destroy]
-  #:set_user,
+  
+  before_action :set_user, only: [:show, :edit, :update, :destroy]
 
   # GET /users
   # GET /users.json
@@ -26,7 +25,7 @@ include SessionsHelper
   end
 
   def settings
-    @user = User.new
+
   end
 
 
@@ -51,10 +50,9 @@ include SessionsHelper
   # PATCH/PUT /users/1
   # PATCH/PUT /users/1.json
   def update
-    @user = User.find_by_email(get_email)
     respond_to do |format|
       if @user.update(user_params)
-        format.html { redirect_to settings_path, notice: 'Account was successfully updated.' }
+        format.html { redirect_to @user, notice: 'User was successfully updated.' }
         format.json { head :no_content }
 
       else
@@ -76,9 +74,9 @@ include SessionsHelper
 
   private
     # Use callbacks to share common setup or constraints between actions.
-    #def set_user
-    #  @user = User.find(params[:id])
-    #end
+    def set_user
+      @user = User.find(params[:id])
+    end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
