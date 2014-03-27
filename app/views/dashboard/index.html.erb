@@ -2,32 +2,33 @@
 
 <div class="dashboard">
 
-  <div class="container">
-  <div class="row">
-    <div class="col-md-8 col-md-offset-2">
-<h1>Hi, <%= @user_email %></h1>
+  <div class="container col-md-offset-3 col-md-6">
+    <div class="row">
+      <div class="col-md-8 col-md-offset-2">
+        
+        <h1>Hi, <%= @user_email %></h1>
 
-<p><a><%= button_to "Create New Rule", create_rule_path, :method => "get", :class => "btn btn-default" %></a></p>
-<table class="table table-hover table-bordered table-condensed"> 
-  <thead>
-    <th>Last Triggered</th>
-    <th>Description</th>
-    <th>Activated</th>
-  </thead>
-  <tbody>
-    <% if @my_rules != nil %>
-      <% @my_rules.each do |rule| %>
-      <tr>
-      <td><%= rule.last_triggered %></td>
-      <td><%= rule.description %></td>
-      <td><%= rule.activated? %></td>
-      </tr>
-      <% end %>
-    <% end %>
-  </tbody>
-</table>
-</div>
+          <p><a><%= button_to "Create New Rule", create_rule_path, :method => "get", :class => "btn btn-default" %></a></p>
+              <table class="table table-hover table-bordered table-condensed"> 
+                <thead>
+                  <th>Last Triggered</th>
+                  <th>Description</th>
+                  <th>Activated</th>
+                </thead>
+                <tbody>
+                  <% if @my_rules != nil %>
+                  <% @my_rules.each do |rule| %>
+                 <tr>
+                    <td><%= rule.last_triggered %></td>
+                    <td><%= rule.description %></td>
+                    <td><%= rule.activated? %></td>
+                </tr>
+            <% end %>
+        <% end %>
+              </tbody>
+            </table>
+      </div>
 
-</div>
+    </div>
   </div>
 </div>
