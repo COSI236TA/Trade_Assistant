@@ -15,7 +15,6 @@ TradeAssistant::Application.routes.draw do
   get "home/contact"
 
 
-
   controller :sessions do
     get 'login' => :new
     post 'login' => :create
@@ -38,6 +37,8 @@ TradeAssistant::Application.routes.draw do
   #Create new rule
   get "create_rule", to: 'rules#new'
   post "create_rule", to: 'rules#create'
+
+  get "ticker_auto_complete", to: 'rules#auto_complete'
 
 			  
   get "home/index"
