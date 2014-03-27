@@ -3,7 +3,7 @@ TradeAssistant::Application.routes.draw do
   
   #get "users/settings"
 
-  get '/settings', :to => 'users#settings'
+  get '/settings', :to => 'users#edit'
   get '/login', :to => 'sessions#new'
   get '/register', :to => 'users#new'
   get '/logout', :to => 'sessions#destroy'
