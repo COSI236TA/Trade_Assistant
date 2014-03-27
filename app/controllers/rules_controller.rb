@@ -1,3 +1,5 @@
+require 'json'
+
 class RulesController < ApplicationController
   PROPERTY_MAP = {'1' => 'price', '2' => 'volume', '3' => 'marketcap', '4' => 'div', '5' => 'yld', '6' => 'p/e'}
   before_action :set_rule, only: [:show, :edit, :update, :destroy]
@@ -30,18 +32,15 @@ class RulesController < ApplicationController
     @user = User.find(session[:user_id])
     clean_params = rule_params
     clean_params[:property] = PROPERTY_MAP[clean_params[:property]]
-    puts clean_params
-    @rule = @user.rules.build(clean_params)
-
-    respond_to do |format|
-      if @rule.save
-        format.html { redirect_to @rule, notice: 'Rule was successfully created.' }
-        format.json { render action: 'show', status: :created, location: @rule }
-      else
-        format.html { render action: 'new' }
-        format.json { render json: @rule.errors, status: :unprocessable_entity }
+    tickers = clean_params[:ticker].split(",")
+    tickers.each do |ticker|
+      clean_params[:ticker] = ticker
+      @rule = @user.rules.build(clean_params)
+      if !@rule.save 
+        raise "Illegal rule!"
       end
     end
+    redirect_to dashboard_path
   end
 
   # PATCH/PUT /rules/1
@@ -55,6 +54,26 @@ class RulesController < ApplicationController
         format.html { render action: 'edit' }
         format.json { render json: @rule.errors, status: :unprocessable_entity }
       end
+    end
+  end
+
+  def auto_complete
+    #ignore cases
+    s = params[:q].downcase
+    count = 0
+    result = []
+    stock_list = STOCK_LIST
+    stock_list.each do |ticker, name|
+      #ignore cases
+      dticker = ticker.downcase
+      dname = name.downcase
+      if dticker.include?(s) or dname.include?(s)
+        result << { "ticker" => ticker, "name" => name}
+      end
+      break if result.size >= 10
+    end
+    respond_to do |format|
+      format.json { render :json => result}
     end
   end
 
