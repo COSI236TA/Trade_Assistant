@@ -49,14 +49,9 @@ class RuleEngine::RuleEngine
             end
             #If true, we the rule has been triggered, add it to database
             if result
-                history = RuleHistory.find_by(rule_id: rule.id)
-                if history == nil
-                    history = RuleHistory.new(rule_id: rule.id, 
-                        amt: stock_data[property], 
-                        triggered_time: stock_data.fetch("updated_at"))
-                else
-                    history.amt = stock_data[property]
-                end
+                history = RuleHistory.new(rule_id: rule.id,
+                                          amt: stock_data[property],
+                                          triggered_time: stock_data.fetch("updated_at"))
                 if history.save
                     rule.last_triggered = history.id
                     rule.save
