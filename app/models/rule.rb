@@ -6,11 +6,13 @@ class Rule < ActiveRecord::Base
   validates :rel, presence: true 
   validates :target, presence: true, numericality: true
 
-  def last_triggered
-    rule_engine = RuleEngine::RuleEngine.new
-    rule_engine.add_fuel(ticker, property, rel, target)
-    rule_engine.start
-    rule_engine.get_results[ticker][0]
+  def triggered?
+    if last_triggered != nil
+      history = RuleHistory.find_by(id: last_triggered)
+      return history.triggered_time
+    else
+      return "Never"
+    end
   end
 
   def activated?

@@ -36,8 +36,11 @@ class RulesController < ApplicationController
     tickers.each do |ticker|
       clean_params[:ticker] = ticker
       @rule = @user.rules.build(clean_params)
-      @rule.save 
+      if !@rule.save 
+          format.html { redirect_to create_rule_path, notice: 'Rules are not successfully created .' }
+      end
     end
+    RuleEngine::RuleEngine.start
     redirect_to dashboard_path
   end
 
