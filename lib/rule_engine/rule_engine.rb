@@ -43,19 +43,23 @@ class RuleEngine::RuleEngine
             stock_data = StockData.find_by(ticker: ticker).attributes
             result = false
             if rel == 'up'
-               result = stock_data[property].to_f >= target.to_f 
+                result = stock_data[property].to_f >= target.to_f
             else
-               result = stock_data[property].to_f <= target.to_f 
+                result = stock_data[property].to_f <= target.to_f
             end
             #If true, we the rule has been triggered, add it to database
             if result
-                history = RuleHistory.new(rule_id: rule.id, amt: stock_data[property])
+                history = RuleHistory.find_by(rule_id: rule_id)
+                if history == nil
+                    history = RuleHistory.new(rule_id: rule.id, amt: stock_data[property])
+                else
+                    history.amt = stock_data[property]
+                end
                 if history.save
                     rule.last_triggered = history.id
                     rule.save
                 end
-            end 
-
+            end
         end
     end
 end
