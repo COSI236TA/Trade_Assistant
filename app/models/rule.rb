@@ -1,7 +1,7 @@
 class Rule < ActiveRecord::Base
   belongs_to :user
 
-  validates :ticker, presence: true, length: { minimum: 3 }
+  validates :ticker, presence: true, length: { minimum: 1 }
   validates :property, presence: true
   validates :rel, presence: true 
   validates :target, presence: true, numericality: true
