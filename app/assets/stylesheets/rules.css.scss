@@ -15,6 +15,7 @@ form {
 
 h1.create-rule-title {
   position: relative;
+  top: 10%;
   left: 10%;
   font-family: Helvetica, Arial, sans-serif;
 }
@@ -42,4 +43,20 @@ div.center-screen {
   top: 15%;
   font: bold;
   font-size: 60px;
+}
+
+.back {
+  position:relative;
+  left: 50%
+}
+.center-btn {
+  position: relative;
+  left: 40%;
+}
+ul.token-input-list-facebook {
+  width: 100%;
+}
+
+#rule_target {
+  width: 100%;
 }
