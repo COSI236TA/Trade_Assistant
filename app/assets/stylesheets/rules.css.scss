@@ -4,17 +4,42 @@
 
 @import 'token-input-facebook.css';
 
-div.row{
-	background-color: #FFFFFF
-
-	
-
+body, html {
+  height: 100%;
 }
 
-div.form {
-  background: url('new_york.jpg');
-        background-size:cover;
-        height: 700px;
-        padding-top: 70px;
-        
+form {
+  height: 100%;
+  width: 100%;
+}
+
+h1.create-rule-title {
+  position: relative;
+  left: 10%;
+  font-family: Helvetica, Arial, sans-serif;
+}
+.create-rule-section {
+  position: relative;
+  left: 15%;
+  top: 15%;
+  font-family: Arial, sans-serif;
+}
+
+div.full-screen {
+  height: 100%;
+  width: 100%;
+}
+
+div.center-screen {
+  top: 30%;
+  left: 35%;
+  font-family: Arial, sans-serif;
+}
+
+#intro {
+  position: relative;
+  left: 25%;
+  top: 15%;
+  font: bold;
+  font-size: 60px;
 }

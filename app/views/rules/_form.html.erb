@@ -1,56 +1,42 @@
 
 
+<h1 class="create-rule-title">Create a Rule</h1>
+<div class="full-screen">
+  <strong id="intro">What do you want from <br/> <a href="#" id="to-ticker" class="scroll-action">these companies</a>?</strong>
+</div>
+<%= form_for @rule do |rule_form| %>
+<div class= "form-group full-screen" id="ticker">
+  <h2 class="create-rule-section">Enter tickers <small>Step 1 of 4</small></h2>
+  <div class="col-xs-4 center-screen">
+    <%= rule_form.text_field :ticker, hide_label: true, class: 'form-group', placeholder: 'Enter stock ticker' %>
+    <span class="help-block">Like "GOOG" for Google. If you are not sure about the ticker, just type in the company name, we will search for you.
+    </span>
+  </div>
+</div>
 
-<%= form_for(@rule) do |f| %>
-  <% if @rule.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@rule.errors.count, "error") %> prohibited this rule from being saved:</h2>
+<div class= "form-group full-screen" id="property">
+  <h2 class="create-rule-section">Select Property <small>Step 2 of 4</small></h2>
+  <div class="col-xs-4 center-screen">
+    <%= rule_form.select(:property, options_for_select([['Price',1], ['Volume',2 ], ['Market Cap', 3],['Div',4], ['Yld',5], ['P/E', 6]]), {}, {class: "form-control"}) %>
+  </div>
+</div>
 
-      <ul>
-      <% @rule.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
+<div class= "form-group full-screen" id="rel">
+  <h2 class="create-rule-section">Set Relationship <small>Step 3 of 4</small></h2>
+  <div class="col-xs-4 center-screen">
+    <%= rule_form.select(:rel, options_for_select([['More than',"up"], ['Less than',"down" ]]), {}, {class: "form-control"}) %>
+  </div>
+</div>
 
-  <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="generator" content="CoffeeCup HTML Editor (www.coffeecup.com)">
-    <meta name="dcterms.created" content="Wed, 05 Mar 2014 07:31:22 GMT">
-    <meta name="description" content="">
-    <meta name="keywords" content="">
-    <title></title>
-    
-
-		</div>
-    <!--[if IE]>
-    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
-  <meta name="keywords" content=""></head>
-  <body>
-
-  	<br>
-	
-	<div align="center">
-
-	
-	 <!--**************************************************
-	  need to make placeholder text centered in css file -->
-	<input type="text" name="Symbol" value="" placeholder="Enter symbol here" >
-	 <%= link_to "<button>Submit</button>".html_safe, indicator_rules_path %>
-	
-	<br>
-	<br>
-	
-   	<p><label for="Ticker">Drop down candidates when the user inputs</label></p>
-	
-
-  
-  
-  </body>
-</html>
+<div class= "form-group full-screen" id="target">
+  <h2 class="create-rule-section">Set Your Target <small>Step 4 of 4</small></h2>
+  <div class="col-xs-4 center-screen">
+      <%= rule_form.text_field :target , placeholder: 'Enter a target value'%>
+    <span class="help-block">What value do you want the indicator to be?</span> 
+    <%= rule_form.submit 'Submit Rule', class: 'btn btn-success center'%> 
+  </div>
+</div>            
 
 <% end %>
+
+
