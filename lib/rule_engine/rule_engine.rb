@@ -32,4 +32,21 @@ class RuleEngine::RuleEngine
     def get_results
         @results
     end
+    def self.start
+        #Update all stock information
+        DataPool::DataUpdater.update_all
+        Rule.find_each do |rule|
+            ticker = rule.ticker
+            property = rule.property
+            rel = rule.rel
+            target = rule.target
+            stock_data = StockData.find_by(ticker: ticker).attributes
+            result = false
+            if rel == 'up'
+            else
+            end
+
+
+        end
+    end
 end

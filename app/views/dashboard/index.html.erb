@@ -7,7 +7,7 @@
     <div class="col-md-8 col-md-offset-2">
 <h1>Hi, <%= @user_email %></h1>
 
-<p><a><%= button_to "Create New Rule", create_rule_path, :method => "get", :class => "btn btn-default" %></a></p>
+<p><%= link_to "Create New Rule", create_rule_path, :class => "btn btn-default" %></p>
 <table class="table table-hover table-bordered table-condensed"> 
   <thead>
     <th>Last Triggered</th>
