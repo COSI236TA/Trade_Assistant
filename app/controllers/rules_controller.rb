@@ -82,7 +82,7 @@ class RulesController < ApplicationController
   def destroy
     @rule.destroy
     respond_to do |format|
-      format.html { redirect_to rules_url }
+      format.html { redirect_to dashboard_path }
       format.json { head :no_content }
     end
   end
