@@ -13,6 +13,7 @@
     <th>Last Triggered</th>
     <th>Description</th>
     <th>Activated</th>
+    <th>Remove</th>
   </thead>
   <tbody>
     <% if @my_rules != nil %>
@@ -21,6 +22,7 @@
       <td><%= rule.last_triggered %></td>
       <td><%= rule.description %></td>
       <td><%= rule.activated? %></td>
+
       </tr>
       <% end %>
     <% end %>
