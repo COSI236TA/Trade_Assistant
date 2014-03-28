@@ -28,7 +28,9 @@ ActiveRecord::Schema.define(version: 20140328002647) do
 
   create_table "rule_histories", force: true do |t|
     t.integer  "rule_id"
+    t.integer  "stock_id"
     t.string   "amt"
+    t.datetime "triggered_time"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
