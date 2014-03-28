@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140327173505) do
+ActiveRecord::Schema.define(version: 20140328002647) do
 
   create_table "indicators", force: true do |t|
     t.string   "name"
@@ -38,12 +38,12 @@ ActiveRecord::Schema.define(version: 20140327173505) do
     t.text     "property"
     t.text     "rel"
     t.float    "target"
-    t.text     "target_type"
     t.text     "duration"
     t.text     "activated"
+    t.integer  "user_id"
+    t.integer  "last_triggered"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "user_id"
   end
 
   create_table "stock_data", force: true do |t|

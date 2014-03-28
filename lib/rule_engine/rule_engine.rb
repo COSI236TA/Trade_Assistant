@@ -51,7 +51,7 @@ class RuleEngine::RuleEngine
             if result
                 history = RuleHistory.new(rule_id: rule.id, amt: stock_data[property])
                 if history.save
-                    rule.last_trigger = history.id
+                    rule.last_triggered = history.id
                     rule.save
                 end
             end 
