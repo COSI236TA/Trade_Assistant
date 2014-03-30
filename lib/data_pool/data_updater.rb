@@ -44,8 +44,8 @@ class DataPool::DataUpdater
       end
     else
       create = {:ticker => ticker}
-      PARAM_MAPPING.each do |db_param, query_param|
-        create[db_param] = quote[query_param]
+      PARAM_MAPPING.each do |key|
+        create[key] = quote[key]
       end
       Stock.create(create)
     end
