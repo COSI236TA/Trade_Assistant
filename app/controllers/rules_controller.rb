@@ -101,8 +101,4 @@ class RulesController < ApplicationController
     params.require(:rule).permit(:ticker, :property, :rel, :target)
   end
 
-  def indicator
-
-  end
-
 end
