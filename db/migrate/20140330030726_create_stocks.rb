@@ -3,8 +3,8 @@ class CreateStocks < ActiveRecord::Migration
     create_table :stocks do |t|
       t.string :ticker
       #absolute property
-      t.string :price
-      t.string :marketcap
+      t.string :last_trade_price_only
+      t.string :market_capitalization
       t.string :volume
       t.string :earnings_per_share
       t.string :p_e_ratio
@@ -21,20 +21,17 @@ class CreateStocks < ActiveRecord::Migration
       t.string :change_from_52_week_high
       t.string :percent_change_from_52_week_high
       #duration 50 days
-      t.string :moving_average_50_day
-      t.string :change_from_moving_average_50_day
-      t.string :percent_change_from_moving_average_50_day
+      t.string :fifty_day_moving_average
+      t.string :change_from_50_day_moving_average
+      t.string :percent_change_from_50_day_moving_average
       #duration 200 days
-      t.string :moving_average_200_day
-      t.string :change_from_moving_average_200_day
-      t.string :percent_change_from_moving_average_200_day
+      t.string :two_hundred_day_moving_average
+      t.string :change_from_200_day_moving_average
+      t.string :percent_change_from_200_day_moving_average
 
       #time stamps
       t.string :last_trade_time
 
-      #databse issue
-      t.integer :portfolio_id
-      
       t.timestamps
     end
   end

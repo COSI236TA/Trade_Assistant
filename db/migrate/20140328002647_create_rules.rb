@@ -1,7 +1,7 @@
 class CreateRules < ActiveRecord::Migration
   def change
     create_table :rules do |t|
-      t.text :property
+      t.belongs_to :property
       t.text :rel
       t.float :target
       t.text :duration

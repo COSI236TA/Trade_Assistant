@@ -11,20 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140330030726) do
-
-  create_table "indicators", force: true do |t|
-    t.string   "name"
-    t.string   "query_parameter"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "markets", force: true do |t|
-    t.string   "name"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
+ActiveRecord::Schema.define(version: 20140330054903) do
 
   create_table "portfolios", force: true do |t|
     t.string   "name"
@@ -41,6 +28,14 @@ ActiveRecord::Schema.define(version: 20140330030726) do
     t.datetime "updated_at"
   end
 
+  create_table "properties", force: true do |t|
+    t.integer  "p_id"
+    t.string   "d_name"
+    t.string   "q_name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "rule_histories", force: true do |t|
     t.integer  "rule_id"
     t.integer  "stock_id"
@@ -51,7 +46,7 @@ ActiveRecord::Schema.define(version: 20140330030726) do
   end
 
   create_table "rules", force: true do |t|
-    t.text     "property"
+    t.integer  "property_id"
     t.text     "rel"
     t.float    "target"
     t.text     "duration"
@@ -65,8 +60,8 @@ ActiveRecord::Schema.define(version: 20140330030726) do
 
   create_table "stocks", force: true do |t|
     t.string   "ticker"
-    t.string   "price"
-    t.string   "marketcap"
+    t.string   "last_trade_price_only"
+    t.string   "market_capitalization"
     t.string   "volume"
     t.string   "earnings_per_share"
     t.string   "p_e_ratio"
@@ -80,14 +75,13 @@ ActiveRecord::Schema.define(version: 20140330030726) do
     t.string   "percent_change_from_52_week_low"
     t.string   "change_from_52_week_high"
     t.string   "percent_change_from_52_week_high"
-    t.string   "moving_average_50_day"
-    t.string   "change_from_moving_average_50_day"
-    t.string   "percent_change_from_moving_average_50_day"
-    t.string   "moving_average_200_day"
-    t.string   "change_from_moving_average_200_day"
-    t.string   "percent_change_from_moving_average_200_day"
+    t.string   "fifty_day_moving_average"
+    t.string   "change_from_50_day_moving_average"
+    t.string   "percent_change_from_50_day_moving_average"
+    t.string   "two_hundred_day_moving_average"
+    t.string   "change_from_200_day_moving_average"
+    t.string   "percent_change_from_200_day_moving_average"
     t.string   "last_trade_time"
-    t.integer  "portfolio_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

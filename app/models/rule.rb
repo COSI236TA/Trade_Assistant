@@ -1,6 +1,7 @@
 class Rule < ActiveRecord::Base
   belongs_to :user
   belongs_to :portfolio
+  belongs_to :property
 
   validates :portfolio, presence: true, length: { minimum: 1 }
   validates :property, presence: true
@@ -21,6 +22,11 @@ class Rule < ActiveRecord::Base
   end
 
   def description
-    "Let me know if #{portfolio}'s #{property} goes #{rel} to #{target}"
+    property_d_name = property.d_name
+    if property_d_name.include?("percent")
+      "Let me know if #{portfolio}'s #{property_d_name} is #{rel} than #{target}%"
+    else
+      "Let me know if #{portfolio}'s #{property_d_name} is #{rel} than #{target}"
+    end
   end
 end

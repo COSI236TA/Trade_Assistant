@@ -22,5 +22,5 @@ tickers.each do |ticker|
     portfolio.stocks.create(ticker: ticker)
 end
 
-user.rules.create(portfolio: portfolio, property: "change_percent", rel: "up", target: "1")
+user.rules.create(portfolio: portfolio, property: Property.find(7), rel: "more", target: "1")
 puts "Seed done"
