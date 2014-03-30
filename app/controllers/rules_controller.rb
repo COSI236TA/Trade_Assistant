@@ -19,6 +19,9 @@ class RulesController < ApplicationController
   def new
     @user = User.find(session[:user_id])
     @rule = @user.rules.build
+    @portfolio = @user.portfolios.map { |p| [p.name, p.id] }
+    @properties = Property.all.map { |p| [p.d_name, p.id] }
+    @rel = [["More than", "more"], ["Less than", "less"]]
     respond_with @rule
   end
 
@@ -29,17 +32,25 @@ class RulesController < ApplicationController
   # POST /rules
   # POST /rules.json
   def create
+    #Find the user
     @user = User.find(session[:user_id])
+
+    #Get clean params
     clean_params = rule_params
-    clean_params[:property] = PROPERTY_MAP[clean_params[:property]]
-    tickers = clean_params[:ticker].split(",")
-    tickers.each do |ticker|
-      clean_params[:ticker] = ticker
-      @rule = @user.rules.build(clean_params)
-      if !@rule.save 
-          format.html { redirect_to create_rule_path, notice: 'Rules are not successfully created .' }
-      end
+
+    #Build params for create rule
+    build_params = { 
+      :portfolio => Portfolio.find(clean_params[:portfolio]),
+      :property => Property.find(clean_params[:property]),
+      :rel => clean_params[:rel],
+      :target => clean_params[:target]
+    }
+
+    @rule = @user.rules.create(build_params)
+    if !@rule.valid?
+      format.html { redirect_to create_rule_path, notice: 'Rules are not successfully created .' }
     end
+
     RuleEngine::RuleEngine.start
     redirect_to dashboard_path
   end
@@ -98,7 +109,7 @@ class RulesController < ApplicationController
   # Never trust parameters from the scary internet, only allow the white list through.
   def rule_params
     #Map the number to the real property name
-    params.require(:rule).permit(:ticker, :property, :rel, :target)
+    params.require(:rule).permit(:portfolio, :property, :rel, :target)
   end
 
 end
