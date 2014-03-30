@@ -27,6 +27,7 @@ ActiveRecord::Schema.define(version: 20140330030726) do
   end
 
   create_table "portfolios", force: true do |t|
+    t.integer  "stock_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -49,16 +50,6 @@ ActiveRecord::Schema.define(version: 20140330030726) do
     t.text     "activated"
     t.integer  "user_id"
     t.integer  "last_triggered"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "stock_data", force: true do |t|
-    t.string   "ticker"
-    t.string   "price"
-    t.string   "marketcap"
-    t.string   "volume"
-    t.string   "last_trade_date"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -87,6 +78,7 @@ ActiveRecord::Schema.define(version: 20140330030726) do
     t.string   "change_from_moving_average_200_day"
     t.string   "percent_change_from_moving_average_200_day"
     t.string   "last_trade_time"
+    t.integer  "portfolio_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

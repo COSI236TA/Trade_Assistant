@@ -31,6 +31,10 @@ class CreateStocks < ActiveRecord::Migration
 
       #time stamps
       t.string :last_trade_time
+
+      #databse issue
+      t.integer :portfolio_id
+      
       t.timestamps
     end
   end

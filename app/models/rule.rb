@@ -1,5 +1,6 @@
 class Rule < ActiveRecord::Base
   belongs_to :user
+  belongs_to :portfolio
 
   validates :ticker, presence: true, length: { minimum: 1 }
   validates :property, presence: true
