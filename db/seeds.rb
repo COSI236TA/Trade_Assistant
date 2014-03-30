@@ -19,8 +19,10 @@ portfolio = user.portfolios.create(name: "high tech", description: "several high
 
 
 tickers.each do |ticker|
-    portfolio.stocks.create(ticker: ticker)
+  DataPool::DataUpdater.update ticker
+  portfolio.stocks << Stock.find_by(ticker: ticker)
 end
 
 user.rules.create(portfolio: portfolio, property: Property.find(7), rel: "more", target: "1")
+user.rules.create(portfolio: portfolio, property: Property.find(7), rel: "less", target: "1")
 puts "Seed done"
