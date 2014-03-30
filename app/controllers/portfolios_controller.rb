@@ -26,6 +26,22 @@ class PortfoliosController< ApplicationController
   # POST /portfolios.json
   def create
     @user = User.find(session[:user_id])
+    clean_params = portfolio_params
+
+    #Clean paramters 
+    name = clean_params[:name]
+    description = clean_params[:description]
+    tickers = clean_params[:tickers].split(",")
+
+    #Build portfolio, without stocks
+    @portfolio = Portfolio(name: name, description: description)
+
+    #Find the stocks in db, add to portfolio
+    tickers.each do |ticker|
+      DataPool::DataUpdater ticker
+      stock = Stock.find_by(ticker: ticker)
+      @portfolio.stocks << stock
+    end
   end
 
   # PATCH/PUT /portfolios/1
@@ -61,7 +77,7 @@ class PortfoliosController< ApplicationController
   # Never trust parameters from the scary internet, only allow the white list through.
   def portfolio_params
     #Map the number to the real property name
-    params.require(:portfolio).permit(:ticker, :property, :rel, :target)
+    params.require(:portfolio).permit(:tickers, :name, :description)
   end
 
 end
