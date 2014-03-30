@@ -61,7 +61,6 @@ class RulesController < ApplicationController
   def auto_complete
     #ignore cases
     s = params[:q].downcase
-    count = 0
     result = []
     stock_list = STOCK_LIST
     id = 0;

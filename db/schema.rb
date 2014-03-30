@@ -27,7 +27,16 @@ ActiveRecord::Schema.define(version: 20140330030726) do
   end
 
   create_table "portfolios", force: true do |t|
-    t.integer  "stock_id"
+    t.string   "name"
+    t.text     "description"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "portfolios_stocks", force: true do |t|
+    t.integer  "portfolios_id"
+    t.integer  "stocks_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -42,14 +51,14 @@ ActiveRecord::Schema.define(version: 20140330030726) do
   end
 
   create_table "rules", force: true do |t|
-    t.text     "ticker"
     t.text     "property"
     t.text     "rel"
     t.float    "target"
     t.text     "duration"
     t.text     "activated"
-    t.integer  "user_id"
     t.integer  "last_triggered"
+    t.integer  "user_id"
+    t.integer  "portfolio_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

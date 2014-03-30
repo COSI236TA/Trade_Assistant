@@ -5,6 +5,7 @@ class User < ActiveRecord::Base
 			 :length => {:within => 5..25},
 			 format: { with: VALID_EMAIL_REGEX } 
   has_many :rules
+  has_many :portfolios
   has_secure_password
   validates :password, length: { minimum: 5}#, :confirmation => true
   

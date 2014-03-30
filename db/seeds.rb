@@ -9,6 +9,7 @@
 puts "Seeding"
 User.destroy_all
 Rule.destroy_all
+Portfolio.destroy_all
 user = User.create(email: "a@b.c", password: "12345", password_confirmation: "12345")
 puts "Seed done"
 user.rules.create(ticker: "GOOG", property: "price", rel: "up", target: 1000)
