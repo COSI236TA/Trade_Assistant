@@ -21,4 +21,6 @@ portfolio = user.portfolios.create(name: "high tech", description: "several high
 tickers.each do |ticker|
     portfolio.stocks.create(ticker: ticker)
 end
+
+user.rules.create(portfolio: portfolio, property: "change_percent", rel: "up", target: "1")
 puts "Seed done"

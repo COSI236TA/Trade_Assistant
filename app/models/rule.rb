@@ -2,7 +2,7 @@ class Rule < ActiveRecord::Base
   belongs_to :user
   belongs_to :portfolio
 
-  validates :ticker, presence: true, length: { minimum: 1 }
+  validates :portfolio, presence: true, length: { minimum: 1 }
   validates :property, presence: true
   validates :rel, presence: true 
   validates :target, presence: true, numericality: true
@@ -21,6 +21,6 @@ class Rule < ActiveRecord::Base
   end
 
   def description
-    "Let me know if #{ticker}'s #{property} goes #{rel} to #{target}"
+    "Let me know if #{portfolio}'s #{property} goes #{rel} to #{target}"
   end
 end
