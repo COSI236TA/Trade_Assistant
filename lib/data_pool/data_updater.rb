@@ -50,7 +50,7 @@ class DataPool::DataUpdater
   end
 
   def self.update_all
-    stocks = Rule.select("ticker").distinct
+    stocks = Stock.select("ticker").distinct
     symbols = stocks.map { |stock| stock.ticker.to_s }
     parameters = PARAM_MAPPING.values
     quotes = YahooStock::Quote.new(:stock_symbols => symbols, :read_parameters => parameters).results(:to_hash).output

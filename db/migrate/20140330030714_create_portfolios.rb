@@ -8,8 +8,8 @@ class CreatePortfolios < ActiveRecord::Migration
     end
 
     create_table :portfolios_stocks do |t|
-      t.belongs_to :portfolios
-      t.belongs_to :stocks
+      t.belongs_to :portfolio
+      t.belongs_to :stock
       t.timestamps
     end
   end

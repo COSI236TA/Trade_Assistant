@@ -7,11 +7,18 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 puts "Seeding"
+
 User.destroy_all
 Rule.destroy_all
 Portfolio.destroy_all
+tickers = ["GOOG", "TSLA", "AAPL"]
 user = User.create(email: "a@b.c", password: "12345", password_confirmation: "12345")
+
+#Create portfolios
+portfolio = user.portfolios.create(name: "high tech", description: "several high tect stocks")
+
+
+tickers.each do |ticker|
+    portfolio.stocks.create(ticker: ticker)
+end
 puts "Seed done"
-user.rules.create(ticker: "GOOG", property: "price", rel: "up", target: 1000)
-user.rules.create(ticker: "AAPL", property: "price", rel: "up", target: 1000)
-user.rules.create(ticker: "TSLA", property: "price", rel: "up", target: 1000)

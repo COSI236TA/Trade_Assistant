@@ -35,8 +35,8 @@ ActiveRecord::Schema.define(version: 20140330030726) do
   end
 
   create_table "portfolios_stocks", force: true do |t|
-    t.integer  "portfolios_id"
-    t.integer  "stocks_id"
+    t.integer  "portfolio_id"
+    t.integer  "stock_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
