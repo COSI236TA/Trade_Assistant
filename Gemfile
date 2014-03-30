@@ -52,7 +52,9 @@ gem 'sidekiq'
 # Use ActiveModel has_secure_password
 gem 'bcrypt-ruby', '~> 3.1.2'
 
-gem 'bootstrap_form'
+gem "pry"
+# for table print
+gem 'hirb', '~> 0.7.1'
 
 # Use unicorn as the app server
 # gem 'unicorn'
