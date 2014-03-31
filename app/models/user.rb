@@ -8,5 +8,6 @@ class User < ActiveRecord::Base
   has_many :portfolios
   has_secure_password
   validates :password, length: { minimum: 5}#, :confirmation => true
+  validates :name, presence: true
   
 end

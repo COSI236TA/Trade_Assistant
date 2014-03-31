@@ -12,7 +12,7 @@ User.destroy_all
 Rule.destroy_all
 Portfolio.destroy_all
 tickers = ["GOOG", "TSLA", "AAPL"]
-user = User.create(email: "a@b.c", password: "12345", password_confirmation: "12345")
+user = User.create(email: "a@b.c", name: "Alice", password: "12345", password_confirmation: "12345")
 
 #Create portfolios
 portfolio = user.portfolios.create(name: "high tech", description: "several high tect stocks")
