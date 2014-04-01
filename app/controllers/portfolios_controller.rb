@@ -44,6 +44,12 @@ class PortfoliosController< ApplicationController
     end
   end
 
+  #resopond to AJAX select_or_create
+  def select_or_create
+    
+  end
+
+
   # PATCH/PUT /portfolios/1
   # PATCH/PUT /portfolios/1.json
   def update

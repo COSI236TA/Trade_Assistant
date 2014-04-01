@@ -40,6 +40,8 @@ TradeAssistant::Application.routes.draw do
 
   get "ticker_auto_complete", to: 'rules#auto_complete'
 
+  get "select_or_create", to: 'portfolios#select_or_create'
+
 			  
   get "home/index"
   get "stocks/:sym", to: 'stocks#show_by_sym'
