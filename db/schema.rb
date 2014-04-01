@@ -13,6 +13,9 @@
 
 ActiveRecord::Schema.define(version: 20140330054903) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "portfolios", force: true do |t|
     t.string   "name"
     t.text     "description"
