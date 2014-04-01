@@ -47,10 +47,12 @@ ActiveRecord::Schema.define(version: 20140330054903) do
 
   create_table "rules", force: true do |t|
     t.integer  "property_id"
-    t.text     "rel"
+    t.string   "name"
+    t.text     "description"
+    t.string   "rel"
     t.float    "target"
-    t.text     "duration"
-    t.text     "activated"
+    t.string   "duration"
+    t.string   "activated"
     t.integer  "last_triggered"
     t.integer  "user_id"
     t.integer  "portfolio_id"
