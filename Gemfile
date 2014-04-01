@@ -1,10 +1,10 @@
 source 'https://rubygems.org'
 ruby '2.1.1'
 
-gem 'fancybox2-rails'
+#gem 'fancybox2-rails'
 #gem 'selenium-webdriver'
 #gem 'factory_girl_rails', '4.2.1'
-gem "spring", group: :development
+#gem "spring", group: :development
 #gem 'rspec-rails'
 #gem 'capybara'
 #gem "spring", group: :development
