@@ -4,6 +4,11 @@ require 'yahoo_stock'
 class StocksController < ApplicationController
   before_action :set_stock, only: [:show, :edit, :update, :destroy]
 
+  def get_stock_html   
+     @test = params[:test]
+  end
+
+
   # GET /stocks
   # GET /stocks.json
   def index

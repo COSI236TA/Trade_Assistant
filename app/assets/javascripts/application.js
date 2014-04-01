@@ -15,3 +15,4 @@
 //= require jquery_ujs
 //= require jquery.tokeninput
 //= require rule_input
+//= require fancybox

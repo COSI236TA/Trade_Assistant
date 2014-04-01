@@ -13,6 +13,7 @@
     <th>Last Triggered</th>
     <th>Description</th>
     <th>Activated</th>
+    <th>Stock Name</th>
   </thead>
   <tbody>
     <% if @my_rules != nil %>
@@ -21,13 +22,71 @@
       <td><%= rule.triggered? %></td>
       <td><%= rule.description %></td>
       <td><%= rule.activated? %></td>
+      <td> <a class="various fancybox.ajax" href="/stocks/get_stock_html?test=<%= rule.activated? %>">Ajax</a>
+    
+       <td> <a class = "iframe" onclick="get_stock_info()" >Google2</a>
+      </td>
       </tr>
       <% end %>
     <% end %>
   </tbody>
 </table>
+
+<body>
+
+<script>
+$(document).ready(function() {
+  $(".various").fancybox({
+    maxWidth  : 800,
+    maxHeight : 600,
+    fitToView : false,
+    width   : '70%',
+    height    : '70%',
+    autoSize  : false,
+    closeClick  : false,
+    openEffect  : 'none',
+    closeEffect : 'none',
+
+  });
+
+  $(".fancybox").fancybox({
+    helpers:  {
+        title:  null
+    }
+});
+});
+
+function get_stock_info(param){
+    
+    var test = "/stocks/get_stock_html" + "?test=yo";
+
+
+              $.fancybox({
+                      maxWidth  : 800,
+    maxHeight : 600,
+    fitToView : false,
+    width   : '70%',
+    height    : '70%',
+    autoSize  : false,
+    closeClick  : false,
+    openEffect  : 'none',
+    closeEffect : 'none',
+                  'href': test
+              });
+
+     return false;
+
+}
+
+</script>
+
+
+
+</body>
+
 </div>
 
 </div>
   </div>
 </div>
+
