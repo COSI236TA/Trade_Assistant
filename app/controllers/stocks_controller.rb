@@ -6,6 +6,9 @@ class StocksController < ApplicationController
 
   def get_stock_html   
      @test = params[:test]
+     
+     render :layout=>false
+
   end
 
 
