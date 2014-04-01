@@ -3,8 +3,8 @@ development:
   encoding: unicode
   database: deve
   pool: 5
-  username: postgresql
-  password: postgresql
+  username: 
+  password: 
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
@@ -14,8 +14,8 @@ test:
   encoding: unicode
   database: test
   pool: 5
-  username: postgresql
-  password: postgresql
+  username: 
+  password: 
 
 
 production:
@@ -23,7 +23,7 @@ production:
   encoding: unicode
   database: prod
   pool: 5
-  username: postgresql
-  password: postgresql
+  username: 
+  password: 
 
 
