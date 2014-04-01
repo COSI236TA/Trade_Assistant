@@ -38,4 +38,14 @@ class DataPool::DataPool
     return output.to_f
   end
 
+  def compare_target(s1, s2)
+    x1 = string_to_float(s1)
+    x2 = string_to_float(s2)
+    if x1 >= x2
+      return true
+    else
+      return false
+    end
+  end
+
 end
