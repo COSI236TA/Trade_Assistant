@@ -88,7 +88,7 @@ class RulesController < ApplicationController
   def select_portfolio
     @user = User.find(session[:user_id])
     @rule = @user.rules.build
-    @portfolio = @user.portfolios.map { |p| [p.name, p.id] }
+    @portfolios = @user.portfolios.map { |p| [p.name, p.id, p.description] }
     @properties = Property.all.map { |p| [p.d_name, p.id] }
     @rel = [["More than", "more"], ["Less than", "less"]]
 

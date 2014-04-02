@@ -1,20 +1,17 @@
-<div class= "row full_screen rule_form" id="portfolio" name="create_portfolio">
-  <h2 class="create-rule-section">Create Portfolio <small>Step 1 of 4</small>
+<div class= "row full_screen rule_form" id="portfolio" name="select_portfolio">
+  <h2 class="create-rule-section">Select Portfolio <small>Step 1 of 3</small>
     <a id="back-body" class="scroll-action back btn btn-default" role="button">Back</a>
   </h2>
   <div id = "portfolio_content" class ="col-md-4 col-md-offset-1 vcenter" name = "portfolio_content">
-    <label class="portfolio_label">Stocks</label>
-    <input class="form-control" id="portfolio_tickers" />
-    <span class="help-block">The ticker of the stock. Like "GOOG" for Google. If you are not sure about the exactly ticker, just enter the company name and we will search for you.</span>
-
-    <label class="portfolio_label">Name</label>
-    <input class="form-control" id="portfolio_name" />
-    <span class="help-block">The name of the portfolio.</span>
-
-    <label class="portfolio_label">Description</label>
-    <textarea class="form-control" id="portfolio_description" />
-    <span class="help-block">The description of the portfolio.</span>
-
+    <div class="list-group rule_list">
+      <% @portfolios.each do |portfolio| %>
+        <a href="#" class="list-group-item">
+          <h5 class="list-group-item-heading"><%= portfolio[0] %></h5>
+          <p class="list-group-item-heading"><%= portfolio[2] %></p>
+        </a>
+      <% end %>
+    </div>
+    <span class="help-block">Select the portfolio</span>
     <p class="btn btn-primary scroll-action hcenter" id="to-property">Next Step</p>
   </div>
 
