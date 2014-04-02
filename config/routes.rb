@@ -38,9 +38,11 @@ TradeAssistant::Application.routes.draw do
   get "create_rule", to: 'rules#new'
   post "create_rule", to: 'rules#create'
 
-  get "ticker_auto_complete", to: 'rules#auto_complete'
 
-  get "select_or_create", to: 'portfolios#select_or_create'
+  #AJAX requests
+  get "select_portfolio", to: 'rules#select_portfolio'
+  get "create_portfolio", to: 'rules#create_portfolio'
+  get "ticker_auto_complete", to: 'rules#auto_complete'
 
 			  
   get "home/index"

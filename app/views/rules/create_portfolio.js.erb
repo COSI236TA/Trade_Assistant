@@ -1,0 +1,4 @@
+if ($("#portfolio").length == 0) {
+  $("<%= escape_javascript(render 'create_portfolio') %>").appendTo("body"); 
+}
+scroll_to("portfolio");

@@ -1,0 +1,16 @@
+<%= form_for(@rule, remote: true, class: "form-group") do |f| %> 
+
+
+<div class= "row form-group full_screen" id="portfolio">
+  <h2 class="create-rule-section">Enter tickers <small>Step 1 of 4</small>
+  </h2>
+  <div class="col-xs-4 center-screen">
+    <%= text_field_tag :ticker, class: 'form-group', placeholder: 'Enter stock ticker' %>
+    <span class="help-block">Like "GOOG" for Google. If you are not sure about the ticker, just type in the company name, we will search for you.
+    </span>
+    <p class="btn btn-primary scroll-action center-btn" id="to-property">Next Step</p>
+  </div>
+</div>
+
+
+<% end %>
