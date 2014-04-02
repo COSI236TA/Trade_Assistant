@@ -8,10 +8,7 @@ body, html {
   height: 100%;
 }
 
-form {
-  height: 100%;
-  width: 100%;
-}
+
 
 h1.create-rule-title {
   position: relative;
@@ -31,11 +28,6 @@ div.full_screen {
   width: 100%;
 }
 
-div.center-screen {
-  top: 30%;
-  left: 35%;
-  font-family: Arial, sans-serif;
-}
 
 .intro {
   position: relative;
@@ -47,8 +39,8 @@ div.center-screen {
 }
 
 .back {
-  position:relative;
-  left: 50%
+  position: absolute;
+  right: 25%;
 }
 .center-btn {
   position: relative;
@@ -56,7 +48,6 @@ div.center-screen {
 }
 ul.token-input-list-facebook {
   width: 100%;
-  @extend .col-xs-4;
 }
 
 #rule_target {
@@ -81,5 +72,23 @@ ul.token-input-list-facebook {
   position: relative;
   left: 13%;
   top: 15%; 
+}
+
+.vcenter {
+  position: relative;
+  top: 20%;
+}
+.hcenter {
+  position: relative;
+  left: 35%;
+}
+
+.property_list {
+  height: 300px;
+  overflow: auto;
+}
+
+.text_center {
+  text-align: center;
 }
 

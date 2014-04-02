@@ -3,7 +3,7 @@ var portfolio = $("#portfolio");
 if (portfolio.length == 0) {
   $("<%= escape_javascript(render 'select_portfolio') %>").appendTo("body"); 
 } else if (portfolio.attr("name") != "select_portfolio") {
-  $("#new_rule").remove();
+  $(".rule_form").remove();
   $("<%= escape_javascript(render 'select_portfolio') %>").appendTo("body"); 
 }
 scroll_to("portfolio");

@@ -1,34 +1,47 @@
-<div class= "form-group full_screen" id="property">
-  <h2 class="create-rule-section">Select Property <small>Step 2 of 4</small>
+<div class= "row full_screen rule_form" id="property" name="select_property">
+  <h2 class="create-rule-section">Select Property <small>Step 2 of 3</small>
     <a id="back-portfolio" class="scroll-action back btn btn-default" role="button">Back</a>
   </h2>
-  <div class="col-xs-4 center-screen">
-    <%= rule_form.select(:property, options_for_select(@properties), {}, {class: "form-control"}) %>
-    <span class="help-block">Select the property you want to watch.</span>
-    <p class="btn btn-primary scroll-action center-btn" id="to-rel">Next Step</p>
+  <div id = "property_content" class ="col-md-4 col-md-offset-1 vcenter" name = "property_content">
+      <div class="list-group property_list">
+        <% @properties.each do |property|  %>
+            <a href="#" class="list-group-item"><%= property[0] %></a>
+        <% end %>
+      </div>
+      <span class="help-block">Select the property you want to associate with this rule</span>
+      <p class="btn btn-primary scroll-action hcenter" id="to-rel">Next Step</p>
+  </div>
+
+  <div id ="property_info" class = "col-md-4 col-md-offset-2 vcenter" name = "portfolio_info">
+  I'm placeholder!
   </div>
 </div>
 
-<div class= "form-group full_screen" id="rel">
-  <h2 class="create-rule-section">Set Relationship <small>Step 3 of 4</small>
+<div class= "row full_screen rule_form" id="target_rel" name="target_rel">
+  <h2 class="create-rule-section">Set Target <small>Step 3 of 3</small>
     <a id="back-property" class="scroll-action back btn btn-default" role="button">Back</a>
   </h2>
-  <div class="col-xs-4 center-screen">
-    <%= rule_form.select(:rel, options_for_select(@rel), {}, {class: "form-control"}) %>
-    <span class="help-block">Which relationship you want to see? More than the target or less than?</span>
-    <p class="btn btn-primary scroll-action center-btn" id="to-target">Next Step</p>
-  </div>
-</div>
 
-<div class= "form-group full_screen" id="target">
-  <h2 class="create-rule-section">Set Your Target <small>Step 4 of 4</small>
-    <a href="#" id="back-rel" class="scroll-action back btn btn-default" role="button">Back</a>
-  </h2>
-  <div class="col-xs-4 center-screen">
-      <%= rule_form.text_field :target , class: "form-control", placeholder: 'Enter a target value'%>
-    <span class="help-block">Set up your target value and it's all set!</span> 
-    <%= rule_form.submit 'Submit Rule', class: 'btn btn-success center-btn'%> 
-  </div>
-</div>            
+  <div class = "col-md-4 col-md-offset-1 vcenter" >
 
+    <div id = "rel" class="row">
+      <div class = "col-md-6 text_center" name = "rel_content">
+        <a href="#" class="list-group-item">More than</a>
+      </div>
+      <div class = "col-md-6 text_center" name = "rel_content">
+        <a href="#" class="list-group-item">Less than</a>
+      </div>
+    </div>
+    <span class="help-block">Set relationship you want to associate with the stocks info and the target</span>
+
+    <div id = "target" class="row">
+      <div class = "col-md-12" name = "rel_content">
+      <input id = "target_input" class="form-control" />
+      </div>
+    </div>
+
+    <span class="help-block">Set the target and relationship</span>
+    <p id="submit" class="btn btn-success scroll-action hcenter" id="to-property">Create Rule</p>
+  </div>
+</div> 
 
