@@ -44,20 +44,6 @@ class PortfoliosController< ApplicationController
     end
   end
 
-  #resopond to AJAX select or create portfolio
-  def select_portfolio
-    respond_to do |format|
-      format.js {}
-    end
-  end
-
-  def create_portfolio
-    @user = User.find(session[:user_id])
-    @rule = @user.rules.build
-    respond_to do |format|
-      format.js {}
-    end
-  end
 
 
   # PATCH/PUT /portfolios/1

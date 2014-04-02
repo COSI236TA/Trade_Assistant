@@ -17,12 +17,6 @@ class RulesController < ApplicationController
 
   # GET /rules/new
   def new
-    @user = User.find(session[:user_id])
-    @rule = @user.rules.build
-    @portfolio = @user.portfolios.map { |p| [p.name, p.id] }
-    @properties = Property.all.map { |p| [p.d_name, p.id] }
-    @rel = [["More than", "more"], ["Less than", "less"]]
-    respond_with @rule
   end
 
   # GET /rules/1/edit
@@ -89,6 +83,32 @@ class RulesController < ApplicationController
       format.json { render :json => result}
     end
   end
+
+    #resopond to AJAX select or create portfolio
+  def select_portfolio
+    @user = User.find(session[:user_id])
+    @rule = @user.rules.build
+    @portfolio = @user.portfolios.map { |p| [p.name, p.id] }
+    @properties = Property.all.map { |p| [p.d_name, p.id] }
+    @rel = [["More than", "more"], ["Less than", "less"]]
+
+    respond_to do |format|
+      format.js {}
+    end
+  end
+
+  def create_portfolio
+    @user = User.find(session[:user_id])
+    @rule = @user.rules.build
+    @portfolio = @user.portfolios.build
+    @properties = Property.all.map { |p| [p.d_name, p.id] }
+    @rel = [["More than", "more"], ["Less than", "less"]]
+
+    respond_to do |format|
+      format.js {}
+    end
+  end
+
 
   # DELETE /rules/1
   # DELETE /rules/1.json
