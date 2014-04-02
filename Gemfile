@@ -22,6 +22,7 @@ gem 'rails', '~> 4.0.1'
 # group :production do
 # gem 'pg', '0.15.1'
 # end
+
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3'
 
