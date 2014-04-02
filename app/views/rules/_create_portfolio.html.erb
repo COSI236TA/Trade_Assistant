@@ -1,7 +1,7 @@
 <%= form_for(@rule) do |rule_form| %> 
 
 
-<div class= "row form-group full_screen" id="portfolio">
+<div class= "row full_screen" id="portfolio" name="create_portfolio">
   <h2 class="create-rule-section">Create Portfolio <small>Step 1 of 4</small>
     <a id="back-body" class="scroll-action back btn btn-default" role="button">Back</a>
   </h2>
@@ -13,24 +13,7 @@
       <%= stock_field.text_field :ticker, class: 'form-control', placeholder: 'Enter stock tickers' %>
     <% end %>
     <span class="help-block">Like "GOOG" for Google. If you are not sure about the ticker, just type in the company name, we will search for you.</span>
-    <script>
-      $("#rule_portfolio_stocks_ticker").tokenInput(
-        "ticker_auto_complete", {
-          theme: "facebook",
-          propertyToSearch: "ticker",
-          hintText: "Type in company name or ticker",
-          tokenValue: "ticker",
-          preventDuplicates: "true",
-          minChars: 2,
-          resultsFormatter: function(item) {
-            return "<li>" + item.name + "(" + item.ticker + ")" + "</li>";
-          },
-          tokenFormatter: function(item) {
-            return "<li>" + item.ticker + "</li>";
-         }
-       }
-      );
-    </script>
+    <script src="assets/rule_create.js"></script>
     <%= portfolio_field.text_field :name, class: 'form-control', placeholder: "Enter the name of the portfolio" %>
     <%= portfolio_field.text_area :description, class: 'form-control', rows: "3", placeholder: "Enter the description of the portfolio" %>
 
