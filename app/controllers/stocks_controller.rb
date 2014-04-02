@@ -6,7 +6,10 @@ class StocksController < ApplicationController
 
   def get_stock_html   
      @test = params[:test]
-     
+     @stock = DataPool::DataPool.query("GOOG")
+     @ticker = @stock["ticker"]
+     @volume = @stock["volume"]
+
      render :layout=>false
 
   end

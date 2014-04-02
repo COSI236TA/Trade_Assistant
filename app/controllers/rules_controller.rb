@@ -10,6 +10,15 @@ class RulesController < ApplicationController
     @rules = Rule.all
   end
 
+  def get_rule_html   
+     @test = params[:test]
+     
+     render :layout=>false
+
+  end
+
+
+
   # GET /rules/1
   # GET /rules/1.json
   def show
