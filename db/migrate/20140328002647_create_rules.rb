@@ -8,6 +8,7 @@ class CreateRules < ActiveRecord::Migration
       t.float :target
       t.string :duration
       t.string :activated
+      t.string :notification_method
       t.integer :last_triggered
       t.belongs_to :user
       t.belongs_to :portfolio

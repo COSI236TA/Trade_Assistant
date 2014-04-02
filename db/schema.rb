@@ -53,6 +53,7 @@ ActiveRecord::Schema.define(version: 20140330054903) do
     t.float    "target"
     t.string   "duration"
     t.string   "activated"
+    t.string   "notification_method"
     t.integer  "last_triggered"
     t.integer  "user_id"
     t.integer  "portfolio_id"
