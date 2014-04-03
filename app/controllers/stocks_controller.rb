@@ -5,8 +5,8 @@ class StocksController < ApplicationController
   before_action :set_stock, only: [:show, :edit, :update, :destroy]
 
   def get_stock_html   
-     @test = params[:test]
-     @stock = DataPool::DataPool.query("GOOG")
+     @ticker = params[:ticker]
+     @stock = DataPool::DataPool.query(@ticker)
      @ticker = @stock["ticker"]
      @volume = @stock["volume"]
 
