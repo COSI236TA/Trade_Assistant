@@ -14,3 +14,7 @@
 # Ignore temporay files and system trashes
 *~
 *.DS_Store
+
+# Ignore archive files
+# *.zip
+# *.tar
