@@ -4,8 +4,7 @@
 <fieldset>
 <center>
 
-<h1>Welcome back to Trade Assistant!</h1>
-<h2>Please Log In</h2>
+
 
 <center>
 <% if flash[:alert] %>
@@ -22,9 +21,12 @@
 	
 <br>
 
-<div class="container">
+<div class="container col-md-offset-3 col-md-6">
   <div class="row">
     <div class="col-md-8 col-md-offset-2">
+
+    	<h1>Welcome back to Trade Assistant!</h1>
+			<h2>Please Log In</h2>
 
 	<div class="form-group">
 		<%= label_tag :email, 'Email:'%>
