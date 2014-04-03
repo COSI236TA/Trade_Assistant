@@ -38,7 +38,14 @@ TradeAssistant::Application.routes.draw do
   get "create_rule", to: 'rules#new'
   post "create_rule", to: 'rules#create'
 
+
+  #AJAX requests
+  get "select_portfolio", to: 'rules#select_portfolio'
+  get "create_portfolio", to: 'rules#create_portfolio'
   get "ticker_auto_complete", to: 'rules#auto_complete'
+  get "portfolio_info",   to: 'portfolios#portfolio_info'
+  get "property_info",    to: 'portfolios#property_info'
+  get "stock_info",       to: 'stocks#stock_info'
 
 			  
   get "home/index"
@@ -57,10 +64,6 @@ TradeAssistant::Application.routes.draw do
   # resources :stocks
 
   resources :rules 
-  #    collection do
-   ##   get 'indicator'
-  #    end
- # end
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

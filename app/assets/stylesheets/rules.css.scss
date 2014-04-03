@@ -8,10 +8,7 @@ body, html {
   height: 100%;
 }
 
-form {
-  height: 100%;
-  width: 100%;
-}
+
 
 h1.create-rule-title {
   position: relative;
@@ -26,28 +23,24 @@ h1.create-rule-title {
   font-family: Arial, sans-serif;
 }
 
-div.full-screen {
+div.full_screen {
   height: 100%;
   width: 100%;
 }
 
-div.center-screen {
-  top: 30%;
-  left: 35%;
-  font-family: Arial, sans-serif;
-}
 
-#intro {
+.intro {
   position: relative;
-  left: 25%;
-  top: 15%;
   font: bold;
-  font-size: 60px;
+  font-size: 24px;
+  top: 15%;
+  padding: 10%;
+  color: #428bca;
 }
 
 .back {
-  position:relative;
-  left: 50%
+  position: absolute;
+  right: 25%;
 }
 .center-btn {
   position: relative;
@@ -60,3 +53,51 @@ ul.token-input-list-facebook {
 #rule_target {
   width: 100%;
 }
+
+.portfolio {
+  width: 300px;
+  height: 200px;
+  cursor: pointer;
+  text-decoration: none;
+  text-align: center;
+}
+
+.portfolio:hover,
+.portfolio:focus,
+.portfolio.active {
+  border-color: #428bca;
+}
+
+.select_or_create {
+  position: relative;
+  left: 13%;
+  top: 15%; 
+}
+
+.vcenter {
+  position: relative;
+  top: 20%;
+}
+.hcenter {
+  position: relative;
+  left: 35%;
+}
+
+.rule_list {
+  height: 300px;
+  overflow: auto;
+}
+
+.ajax_info {
+  height: 350px;
+  overflow: auto;
+}
+
+.text_center {
+  text-align: center;
+}
+
+.list-group-item {
+  cursor: pointer;
+}
+
