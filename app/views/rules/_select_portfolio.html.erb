@@ -1,0 +1,24 @@
+<div class= "row full_screen rule_form" id="portfolio" name="select_portfolio">
+  <h2 class="create-rule-section">Select Portfolio <small>Step 1 of 3</small>
+    <a id="back-body" class="scroll-action back btn btn-default" role="button">Back</a>
+  </h2>
+  <div id = "portfolio_content" class ="col-md-4 col-md-offset-1 vcenter" name = "portfolio_content">
+    <div class="list-group rule_list">
+      <% @portfolios.each do |portfolio| %>
+        <a  class="portfolio_item list-group-item" pid = <%= portfolio[1].to_s %> >
+          <h5 class="list-group-item-heading"><%= portfolio[0] %></h5>
+          <p class="list-group-item-heading"><%= portfolio[2] %></p>
+        </a>
+      <% end %>
+    </div>
+    <span class="help-block">Select the portfolio</span>
+    <p class="btn btn-primary scroll-action hcenter" id="to-property">Next Step</p>
+  </div>
+
+  <div id ="portfolio_info" class = "col-md-4 col-md-offset-2 vcenter ajax_info" name = "portfolio_info">
+  </div>
+  <script src="assets/rule_input.js" />
+</div>
+
+<%= render 'form_create_rule' %>
+

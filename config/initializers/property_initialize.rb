@@ -51,5 +51,6 @@ if ActiveRecord::Base.connection.tables.include?('properties')
   Property.create(p_id: 21, q_name: "percent_change_from_200_day_moving_average", 
     d_name: "percentage change from 200-day moving average")
   Property.create(p_id: 22, q_name: "last_trade_time", d_name: "last trade time")
+  Property.create(p_id: 23, q_name: "last_trade_date", d_name: "last trade date")
 
 end

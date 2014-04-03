@@ -1,0 +1,9 @@
+var portfolio = $("#portfolio");
+
+if (portfolio.length == 0) {
+  $("<%= escape_javascript(render 'create_portfolio') %>").appendTo("body"); 
+} else if (portfolio.attr("name") != "create_portfolio") {
+  $(".rule_form").remove();
+  $("<%= escape_javascript(render 'create_portfolio') %>").appendTo("body"); 
+}
+scroll_to("portfolio");

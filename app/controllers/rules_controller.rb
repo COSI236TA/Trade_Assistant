@@ -28,12 +28,6 @@ class RulesController < ApplicationController
 
   # GET /rules/new
   def new
-    @user = User.find(session[:user_id])
-    @rule = @user.rules.build
-    @portfolio = @user.portfolios.map { |p| [p.name, p.id] }
-    @properties = Property.all.map { |p| [p.d_name, p.id] }
-    @rel = [["More than", "more"], ["Less than", "less"]]
-    respond_with @rule
   end
 
   # GET /rules/1/edit
@@ -47,23 +41,66 @@ class RulesController < ApplicationController
     @user = User.find(session[:user_id])
 
     #Get clean params
-    clean_params = rule_params
+    rule_clean_params = rule_params
+
+    #Get property
+    property = rule_clean_params[:property].to_s
+
+    #Get rel
+    rel = rule_clean_params[:rel]
+
+    #Get target
+    target = rule_clean_params[:target]
+
+    #Get portfolio params
+    portfolio_params = params[:portfolio]
+    portfolio = nil
+
+
+    #deal with create or select portfolio
+    if portfolio_params[:action] == "select"
+      #need to create the portfolio
+      portfolio_id = portfolio_params[:id].to_i
+      portfolio = @user.portfolios.find(portfolio_id)
+    elsif portfolio_params[:action] == "create"
+      #get the tickers from params
+      tickers = portfolio_params[:ticker].values.map { |i| i[:ticker] }
+      name = portfolio_params[:name]
+      description = portfolio_params[:description]
+
+      portfolio = @user.portfolios.create(name: name, description: description)
+
+      tickers.each do |ticker|
+        DataPool::DataUpdater.update ticker
+        stock = Stock.find_by(ticker: ticker)
+        portfolio.stocks << stock
+
+        puts portfolio.stocks
+      end
+    end
+
+    #create rule
 
     #Build params for create rule
     build_params = { 
-      :portfolio => Portfolio.find(clean_params[:portfolio]),
-      :property => Property.find(clean_params[:property]),
-      :rel => clean_params[:rel],
-      :target => clean_params[:target]
+      :portfolio => portfolio,
+      :property => Property.find(property),
+      :rel => rel,
+      :target => target 
     }
 
     @rule = @user.rules.create(build_params)
+    response = true
     if !@rule.valid?
-      format.html { redirect_to create_rule_path, notice: 'Rules are not successfully created .' }
+      response = false
     end
 
+    #Start the RuleEngine
     RuleEngine::RuleEngine.start
-    redirect_to dashboard_path
+
+    respond_to do |format|
+      format.json { render :json => {response: response } }
+    end
   end
 
   # PATCH/PUT /rules/1
@@ -101,6 +138,32 @@ class RulesController < ApplicationController
     end
   end
 
+    #resopond to AJAX select or create portfolio
+  def select_portfolio
+    @user = User.find(session[:user_id])
+    @rule = @user.rules.build
+    @portfolios = @user.portfolios.map { |p| [p.name, p.id, p.description] }
+    @properties = Property.all.map { |p| [p.d_name, p.id] }
+    @rel = [["More than", "more"], ["Less than", "less"]]
+
+    respond_to do |format|
+      format.js {}
+    end
+  end
+
+  def create_portfolio
+    @user = User.find(session[:user_id])
+    @rule = @user.rules.build
+    @portfolio = @user.portfolios.build
+    @properties = Property.all.map { |p| [p.d_name, p.id] }
+    @rel = [["More than", "more"], ["Less than", "less"]]
+
+    respond_to do |format|
+      format.js {}
+    end
+  end
+
+
   # DELETE /rules/1
   # DELETE /rules/1.json
   def destroy
@@ -120,7 +183,7 @@ class RulesController < ApplicationController
   # Never trust parameters from the scary internet, only allow the white list through.
   def rule_params
     #Map the number to the real property name
-    params.require(:rule).permit(:portfolio, :property, :rel, :target)
+    params.require(:rule).permit(:property, :rel, :target)
   end
 
 end
