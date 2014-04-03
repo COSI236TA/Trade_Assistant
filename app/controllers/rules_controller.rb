@@ -30,23 +30,44 @@ class RulesController < ApplicationController
     @user = User.find(session[:user_id])
 
     #Get clean params
-    clean_params = rule_params
+    rule_clean_params = rule_params
 
-    #Build params for create rule
-    build_params = { 
-      :portfolio => Portfolio.find(clean_params[:portfolio]),
-      :property => Property.find(clean_params[:property]),
-      :rel => clean_params[:rel],
-      :target => clean_params[:target]
-    }
+    #Get portfolio params
+    portfolio_params = params[:portfolio]
 
-    @rule = @user.rules.create(build_params)
-    if !@rule.valid?
-      format.html { redirect_to create_rule_path, notice: 'Rules are not successfully created .' }
+    if portfolio_params[:action] == "select"
+      #need to create the portfolio
+      puts "1"
+    elsif portfolio_params[:action] == "create"
+      #get the tickers from params
+      tickers = portfolio_params[:ticker].values.map { |i| i[:ticker] }
+      puts tickers
+
     end
 
-    RuleEngine::RuleEngine.start
-    redirect_to dashboard_path
+
+
+    #
+
+    #Build params for create rule
+    # build_params = { 
+    #   :portfolio => Portfolio.find(clean_params[:portfolio]),
+    #   :property => Property.find(clean_params[:property]),
+    #   :rel => clean_params[:rel],
+    #   :target => clean_params[:target]
+    # }
+
+    # @rule = @user.rules.create(build_params)
+    # if !@rule.valid?
+    #   format.html { redirect_to create_rule_path, notice: 'Rules are not successfully created .' }
+    # end
+
+    # RuleEngine::RuleEngine.start
+    # redirect_to dashboard_path
+
+    respond_to do |format|
+      format.json { render :json => {} }
+    end
   end
 
   # PATCH/PUT /rules/1
@@ -129,7 +150,7 @@ class RulesController < ApplicationController
   # Never trust parameters from the scary internet, only allow the white list through.
   def rule_params
     #Map the number to the real property name
-    params.require(:rule).permit(:portfolio, :property, :rel, :target)
+    params.require(:rule).permit(:property, :rel, :target)
   end
 
 end
