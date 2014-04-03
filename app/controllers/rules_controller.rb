@@ -10,6 +10,15 @@ class RulesController < ApplicationController
     @rules = Rule.all
   end
 
+  def get_rule_html   
+     @test = params[:test]
+     
+     render :layout=>false
+
+  end
+
+
+
   # GET /rules/1
   # GET /rules/1.json
   def show
@@ -95,7 +104,7 @@ class RulesController < ApplicationController
   def destroy
     @rule.destroy
     respond_to do |format|
-      format.html { redirect_to rules_url }
+      format.html { redirect_to dashboard_path }
       format.json { head :no_content }
     end
   end
