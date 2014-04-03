@@ -46,6 +46,8 @@ TradeAssistant::Application.routes.draw do
 
 			  
   get "home/index"
+  get "stocks/get_stock_html", to: 'stocks#get_stock_html'
+  get "rules/get_rule_html", to: 'rules#get_rule_html'
   get "stocks/:sym", to: 'stocks#show_by_sym'
   get "rule_query", to: 'rule_match_result#rule_query' 
 

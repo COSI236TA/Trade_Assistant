@@ -10,6 +10,17 @@ class RulesController < ApplicationController
     @rules = Rule.all
   end
 
+  def get_rule_html   
+     @rule_name = Rule.find(params[:id]).name
+     @rule_description = Rule.find(params[:id]).description
+     @rule_last_triggered = Rule.find(params[:id]).last_triggered
+     
+     render :layout=>false
+
+  end
+
+
+
   # GET /rules/1
   # GET /rules/1.json
   def show
@@ -158,7 +169,7 @@ class RulesController < ApplicationController
   def destroy
     @rule.destroy
     respond_to do |format|
-      format.html { redirect_to rules_url }
+      format.html { redirect_to dashboard_path }
       format.json { head :no_content }
     end
   end

@@ -15,3 +15,6 @@
 //= require jquery_ujs
 //= require jquery.tokeninput
 //= require turbolinks
+//= require fancybox
+//= require jquery-tablesorter
+//= require jquery.ui.all

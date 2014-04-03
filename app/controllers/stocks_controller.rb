@@ -4,6 +4,17 @@ require 'yahoo_stock'
 class StocksController < ApplicationController
   before_action :set_stock, only: [:show, :edit, :update, :destroy]
 
+  def get_stock_html   
+     @ticker = params[:ticker]
+     @stock = DataPool::DataPool.query(@ticker)
+     @ticker = @stock["ticker"]
+     @volume = @stock["volume"]
+
+     render :layout=>false
+
+  end
+
+
   # GET /stocks
   # GET /stocks.json
   def index
