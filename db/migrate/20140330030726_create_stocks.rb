@@ -31,6 +31,7 @@ class CreateStocks < ActiveRecord::Migration
 
       #time stamps
       t.string :last_trade_time
+      t.string :last_trade_date
 
       t.timestamps
     end

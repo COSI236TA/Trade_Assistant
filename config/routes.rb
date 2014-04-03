@@ -43,8 +43,9 @@ TradeAssistant::Application.routes.draw do
   get "select_portfolio", to: 'rules#select_portfolio'
   get "create_portfolio", to: 'rules#create_portfolio'
   get "ticker_auto_complete", to: 'rules#auto_complete'
-  get "portfolio_info",   to: 'portfolio#portfolio_info'
-  get "property_info",    to: 'portfolio#property_info'
+  get "portfolio_info",   to: 'portfolios#portfolio_info'
+  get "property_info",    to: 'portfolios#property_info'
+  get "stock_info",       to: 'stocks#stock_info'
 
 			  
   get "home/index"
