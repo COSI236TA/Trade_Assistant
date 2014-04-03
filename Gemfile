@@ -1,6 +1,9 @@
 source 'https://rubygems.org'
 ruby '2.1.1'
 
+gem 'jquery-ui-rails'
+gem 'jquery-ui-themes'
+gem 'jquery-ui-form'
 gem 'jquery-tablesorter'
 gem 'fancybox2-rails'
 #gem 'selenium-webdriver'

@@ -11,8 +11,8 @@
  *= require_self
  *= require_tree .
  *= require fancybox
- 
- 
+ *= require jquery-tablesorter/theme.blue
+ *= require jquery.ui.all
  */
 
 @import 'bootstrap';

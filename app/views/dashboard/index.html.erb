@@ -10,19 +10,17 @@
 <p><%= link_to "Create New Rule", create_rule_path, :class => "btn btn-default" %></p>
 
 
-
 <table class="table table-hover table-bordered table-condensed tablesorter" id = "myTable"> 
 
   <thead>
     <th>Rule Name</th>
     <th>Stock Name</th>
     <th>Last Triggered</th>
-    <th>Description</th>
+    <th><center>Description</center></th>
     <th>Activated</th>
     <th>Delete</th>
   </thead>
   <tbody>
-        <p><a class="various" data-fancybox-type="iframe" href="/stocks/get_stock_html?test=1">Test</a></p>
     <% if @my_rules != nil %>
       <% @my_rules.each do |rule| %>
       <tr>
@@ -45,7 +43,16 @@
 <script>
 $(document).ready(function() {
 
-  $("table#myTable").tablesorter(); 
+  
+
+
+  $("table#myTable").tablesorter({
+         theme : 'blue'
+
+
+  });
+
+
 
   $(".various").fancybox({
     maxWidth  : 800,
@@ -60,34 +67,9 @@ $(document).ready(function() {
 
   });
 
-  $(".fancybox").fancybox({
-    helpers:  {
-        title:  null
-    }
-});
+
 });
 
-function get_stock_info(param){
-    
-    var test = "/stocks/get_stock_html" + "?test=yo";
-
-
-              $.fancybox({
-                      maxWidth  : 800,
-    maxHeight : 600,
-    fitToView : false,
-    width   : '70%',
-    height    : '70%',
-    autoSize  : false,
-    closeClick  : false,
-    openEffect  : 'none',
-    closeEffect : 'none',
-                  'href': test
-              });
-
-     return false;
-
-}
 
 </script>
 
