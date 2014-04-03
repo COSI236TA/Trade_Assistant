@@ -32,41 +32,63 @@ class RulesController < ApplicationController
     #Get clean params
     rule_clean_params = rule_params
 
+    #Get property
+    property = rule_clean_params[:property].to_s
+
+    #Get rel
+    rel = rule_clean_params[:rel]
+
+    #Get target
+    target = rule_clean_params[:target]
+
     #Get portfolio params
     portfolio_params = params[:portfolio]
+    portfolio = nil
 
+
+    #deal with create or select portfolio
     if portfolio_params[:action] == "select"
       #need to create the portfolio
-      puts "1"
+      portfolio_id = portfolio_params[:id].to_i
+      portfolio = @user.portfolios.find(portfolio_id)
     elsif portfolio_params[:action] == "create"
       #get the tickers from params
       tickers = portfolio_params[:ticker].values.map { |i| i[:ticker] }
-      puts tickers
+      name = portfolio_params[:name]
+      description = portfolio_params[:description]
 
+      portfolio = @user.portfolios.create(name: name, description: description)
+
+      tickers.each do |ticker|
+        DataPool::DataUpdater.update ticker
+        stock = Stock.find_by(ticker: ticker)
+        portfolio.stocks << stock
+
+        puts portfolio.stocks
+      end
     end
 
-
-
-    #
+    #create rule
 
     #Build params for create rule
-    # build_params = { 
-    #   :portfolio => Portfolio.find(clean_params[:portfolio]),
-    #   :property => Property.find(clean_params[:property]),
-    #   :rel => clean_params[:rel],
-    #   :target => clean_params[:target]
-    # }
+    build_params = { 
+      :portfolio => portfolio,
+      :property => Property.find(property),
+      :rel => rel,
+      :target => target 
+    }
 
-    # @rule = @user.rules.create(build_params)
-    # if !@rule.valid?
-    #   format.html { redirect_to create_rule_path, notice: 'Rules are not successfully created .' }
-    # end
+    @rule = @user.rules.create(build_params)
+    response = true
+    if !@rule.valid?
+      response = false
+    end
 
-    # RuleEngine::RuleEngine.start
-    # redirect_to dashboard_path
+    #Start the RuleEngine
+    RuleEngine::RuleEngine.start
 
     respond_to do |format|
-      format.json { render :json => {} }
+      format.json { render :json => {response: response } }
     end
   end
 
