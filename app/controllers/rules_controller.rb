@@ -11,7 +11,9 @@ class RulesController < ApplicationController
   end
 
   def get_rule_html   
-     @test = params[:test]
+     @rule_name = Rule.find(params[:id]).name
+     @rule_description = Rule.find(params[:id]).description
+     @rule_last_triggered = Rule.find(params[:id]).last_triggered
      
      render :layout=>false
 

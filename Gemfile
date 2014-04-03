@@ -17,17 +17,17 @@ gem 'fancybox2-rails'
 gem 'rails', '~> 4.0.1'
 
 
-gem 'rails_12factor'
-group :development, :test do
-gem 'pg', '0.15.1'
-end
+# gem 'rails_12factor'
+# group :development, :test do
+# gem 'pg', '0.15.1'
+# end
 
-group :production do
-gem 'pg', '0.15.1'
-end
+# group :production do
+# gem 'pg', '0.15.1'
+# end
 
 # Use sqlite3 as the database for Active Record
-#gem 'sqlite3'
+gem 'sqlite3'
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
