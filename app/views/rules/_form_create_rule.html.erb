@@ -5,7 +5,9 @@
   <div id = "property_list" active="0" class ="col-md-4 col-md-offset-1 vcenter" name = "property_content">
       <div class="list-group rule_list">
         <% @properties.each do |property|  %>
-            <a class="property_item list-group-item"><%= property[0] %></a>
+            <a class="property_item list-group-item" pid = <%= property[1].to_s %>>
+              <%= property[0] %>
+            </a>
         <% end %>
       </div>
       <span class="help-block">Select the property you want to associate with this rule</span>
@@ -26,10 +28,10 @@
 
     <div id = "rel" class="row">
       <div class = "col-md-6 text_center" name = "rel_content">
-        <a href="#" class="list-group-item">More than</a>
+        <a href="#" class="list-group-item rel_item" value = "more" >More than</a>
       </div>
       <div class = "col-md-6 text_center" name = "rel_content">
-        <a href="#" class="list-group-item">Less than</a>
+        <a href="#" class="list-group-item rel_item" value = "less" >Less than</a>
       </div>
     </div>
     <span class="help-block">Set relationship you want to associate with the stocks info and the target</span>
