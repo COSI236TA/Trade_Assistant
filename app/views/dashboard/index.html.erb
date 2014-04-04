@@ -1,4 +1,5 @@
 
+
 <div class="dashboard">
 
   <div class="container">
@@ -55,9 +56,7 @@ $(document).ready(function() {
 
 
   $(".various").fancybox({
-        beforeShow: function() {
-        this.wrap.draggable();
-    },
+    title: 'Test',
     maxWidth  : 800,
     maxHeight : 600,
     fitToView : false,
@@ -73,6 +72,10 @@ $(document).ready(function() {
 
 });
 
+
+$(window).bind('page:change', function() {
+    $.fancybox.init();
+});
 
 </script>
 

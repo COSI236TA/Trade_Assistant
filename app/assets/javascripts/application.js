@@ -12,8 +12,9 @@
 //
 //= require_directory .
 //= require jquery
+//= require jquery.turbolinks
 //= require jquery_ujs
 //= require jquery.tokeninput
 //= require fancybox
 //= require jquery-tablesorter
-//= require jquery.ui.all
+//= require turbolinks
