@@ -11,7 +11,7 @@
 <p><%= link_to "Create New Rule", create_rule_path, :class => "btn btn-default" %></p>
 
 
-<table class="table table-hover table-bordered table-condensed table-striped table-condensed tablesorter" id = "myTable"> 
+<table class="table table-hover table-bordered table-condensed table-striped tablesorter" id = "myTable"> 
 
   <thead>
     <th>Rule Name</th>
@@ -56,6 +56,12 @@ $(document).ready(function() {
 
 
   $(".various").fancybox({
+    helpers : {
+            title : {
+                type: 'outside',
+                position : 'top',
+            }
+        },
     title: 'Test',
     maxWidth  : 800,
     maxHeight : 600,
@@ -72,10 +78,6 @@ $(document).ready(function() {
 
 });
 
-
-$(window).bind('page:change', function() {
-    $.fancybox.init();
-});
 
 </script>
 

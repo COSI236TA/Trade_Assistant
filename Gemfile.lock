@@ -54,9 +54,6 @@ GEM
       railties (>= 3.1.0, < 5.0)
     hike (1.2.3)
     hirb (0.7.1)
-    httparty (0.13.0)
-      json (~> 1.8)
-      multi_xml (>= 0.5.2)
     i18n (0.6.9)
     jbuilder (1.5.3)
       activesupport (>= 3.0.0)
@@ -69,13 +66,6 @@ GEM
     jquery-turbolinks (2.0.2)
       railties (>= 3.1.0)
       turbolinks
-    jquery-ui-form (0.2.8)
-      jquery-ui-form
-      rails (>= 3.1.0)
-    jquery-ui-rails (4.2.0)
-      railties (>= 3.2.16)
-    jquery-ui-themes (0.0.11)
-      httparty
     json (1.8.1)
     mail (2.5.4)
       mime-types (~> 1.16)
@@ -84,7 +74,6 @@ GEM
     mime-types (1.25.1)
     minitest (4.7.5)
     multi_json (1.9.2)
-    multi_xml (0.5.5)
     nas-yahoo_stock (1.0.8)
       builder (>= 2.1.2)
     pg (0.15.1)
@@ -176,9 +165,6 @@ DEPENDENCIES
   jquery-rails
   jquery-tablesorter
   jquery-turbolinks
-  jquery-ui-form
-  jquery-ui-rails
-  jquery-ui-themes
   nas-yahoo_stock (~> 1.0.8)
   pg (= 0.15.1)
   pry

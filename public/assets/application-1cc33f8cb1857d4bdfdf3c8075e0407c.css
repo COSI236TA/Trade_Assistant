@@ -8365,6 +8365,7 @@ ul.token-input-list-facebook {
 	position: relative;
 	text-shadow: none;
 	z-index: 8050;
+   text-align: center;
 }
 
 .fancybox-opened .fancybox-title {
