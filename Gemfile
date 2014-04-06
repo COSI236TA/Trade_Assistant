@@ -1,6 +1,7 @@
 source 'https://rubygems.org'
 #ruby '2.0.0'
 
+gem 'highstock-rails'
 #gem 'jquery-ui-rails'
 #gem 'jquery-ui-themes'
 #gem 'jquery-ui-form'

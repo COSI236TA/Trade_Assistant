@@ -1,29 +1,51 @@
 <%= stylesheet_link_tag 'bootstrap' %>
 
+<h3> <%= @portfolio_name %> </h3>
 
-<h2> <%= @portfolio_name %> </h2>
-<hr>
+<hr style="padding:0px; margin: 0px;">
 
 <p><b>Description</b></p>
 <p style="background-color:#e3e3e3;"><%= @portfolio_description %></p>
-<p><b> Portfolio Stocks </b> </p>
+<p><b>Stocks </b> </p>
+<p style="background-color:#e3e3e3;">  	<% @portfolio_stocks.each do |stock| %>
+ 		<%= stock.ticker %>
+ 	<% end %> </p>
+<hr>
+
+<div id="container" style="height: 400px; min-width: 310px"></div>
+
+<script>
+
+$(document).ready(function() {
+	
+  	$('#container').highcharts({
+    
+        chart: {
+            marginRight: 50
+        },
+        
+        series: [{
+            data: [29.9, 71.5, 106.4, 129.2, 144.0, 176.0, 135.6, 148.5, 216.4, 194.1, 95.6, {
+                dataLabels: {
+                    enabled: true,
+                    align: 'left',
+                    style: {
+                        fontWeight: 'bold'
+                    },
+                    x: 3,
+                    verticalAlign: 'middle',
+                    overflow: true,
+                    crop: false
+                },
+                y: 54.4
+            }]
+        }]
+    
+    });
+
+});
 
 
-<table class="table table-hover table-bordered table-condensed table-striped">
-	<thead>
-    <th>Rule</th>
-    <th>Portfolio</th>
-    <th>Last Triggered</th>
-    <th><center>Description</center></th>
-    <th>Activated</th>
-    <th>Delete</th>
-  </thead>
-  <tbody>
-  	<% @portfolio_stocks.each do |stock| %>
-  	 <tr>
-	<td><%= stock.ticker %> </td>
-	</tr>
-<% end %>
-</tbody>
- </table>
-  	
+
+
+</script>

@@ -5,11 +5,9 @@ class PortfoliosController< ApplicationController
 
      portfolio = Portfolio.find(params[:portfolio_id])
 
-     @portfolio_name = portfolio.name
+     @portfolio_name = portfolio.name.gsub(/\b\w/){ $&.upcase } #Makes each first char upper case
      @portfolio_description = portfolio.description
      @portfolio_stocks = portfolio.stocks
-
-     render :layout=>false
 
   end
 

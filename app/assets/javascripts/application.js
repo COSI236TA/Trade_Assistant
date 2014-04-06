@@ -18,3 +18,5 @@
 //= require fancybox
 //= require jquery-tablesorter
 //= require turbolinks
+//= require highstock
+//= require highstock/highcharts-more
