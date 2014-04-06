@@ -1,0 +1,29 @@
+<%= stylesheet_link_tag 'bootstrap' %>
+
+
+<h2> <%= @portfolio_name %> </h2>
+<hr>
+
+<p><b>Description</b></p>
+<p style="background-color:#e3e3e3;"><%= @portfolio_description %></p>
+<p><b> Portfolio Stocks </b> </p>
+
+
+<table class="table table-hover table-bordered table-condensed table-striped">
+	<thead>
+    <th>Rule</th>
+    <th>Portfolio</th>
+    <th>Last Triggered</th>
+    <th><center>Description</center></th>
+    <th>Activated</th>
+    <th>Delete</th>
+  </thead>
+  <tbody>
+  	<% @portfolio_stocks.each do |stock| %>
+  	 <tr>
+	<td><%= stock.ticker %> </td>
+	</tr>
+<% end %>
+</tbody>
+ </table>
+  	
