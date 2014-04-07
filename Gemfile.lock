@@ -52,7 +52,7 @@ GEM
     execjs (2.0.2)
     fancybox2-rails (0.2.8)
       railties (>= 3.1.0, < 5.0)
-    highstock-rails (1.3.10)
+    highcharts-rails (3.0.10)
       railties (>= 3.1)
     hike (1.2.3)
     hirb (0.7.1)
@@ -162,7 +162,7 @@ DEPENDENCIES
   bootstrap_forms (~> 2.0.0)
   coffee-rails (~> 4.0.0)
   fancybox2-rails
-  highstock-rails
+  highcharts-rails (~> 3.0.0)
   hirb (~> 0.7.1)
   jbuilder (~> 1.2)
   jquery-rails

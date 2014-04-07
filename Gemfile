@@ -2,7 +2,6 @@ source 'https://rubygems.org'
 #ruby '2.0.0'
 
 gem "highcharts-rails", "~> 3.0.0"
-gem 'highstock-rails'
 #gem 'jquery-ui-rails'
 #gem 'jquery-ui-themes'
 #gem 'jquery-ui-form'
@@ -48,10 +47,10 @@ gem 'coffee-rails', '~> 4.0.0'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
-#gem 'jquery-turbolinks'
+gem 'jquery-turbolinks'
 
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
-#gem 'turbolinks'
+gem 'turbolinks'
 
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 1.2'

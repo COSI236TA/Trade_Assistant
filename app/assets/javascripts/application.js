@@ -16,5 +16,6 @@
 //= require jquery.tokeninput
 //= require fancybox
 //= require jquery-tablesorter
-//= require highstock
-//= require highstock/highcharts-more
+//= require turbolinks
+//= require highcharts
+//= require highcharts/highcharts-more
