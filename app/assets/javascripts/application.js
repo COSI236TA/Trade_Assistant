@@ -20,7 +20,3 @@
 //= require turbolinks
 //= require highstock
 //= require highstock/highcharts-more
-//= require highcharts/modules/canvas-tools
-//= require highcharts/modules/data
-//= require highcharts/modules/exporting
-//= require highcharts/themes/gray
