@@ -48,8 +48,39 @@
 $(document).ready(function() {
 
 	alert("TEST");
-	
-   $('#container').highcharts({
+   
+
+
+  $("table#myTable").tablesorter({
+         theme : 'blue'
+
+
+  });
+
+
+
+  $(".various").fancybox({
+    helpers : {
+            title : {
+                type: 'outside',
+                position : 'top',
+            }
+        },
+    title: 'Test',
+    maxWidth  : 1200,
+    maxHeight : 800,
+    fitToView : false,
+    width   : '70%',
+    height    : '70%',
+    autoSize  : false,
+    closeClick  : false,
+    openEffect  : 'none',
+    closeEffect : 'none',
+
+  });
+
+
+$('#container').highcharts({
             title: {
                 text: 'Monthly Average Temperature',
                 x: -20 //center
@@ -95,35 +126,6 @@ $(document).ready(function() {
                 data: [3.9, 4.2, 5.7, 8.5, 11.9, 15.2, 17.0, 16.6, 14.2, 10.3, 6.6, 4.8]
             }]
         });
-
-
-  $("table#myTable").tablesorter({
-         theme : 'blue'
-
-
-  });
-
-
-
-  $(".various").fancybox({
-    helpers : {
-            title : {
-                type: 'outside',
-                position : 'top',
-            }
-        },
-    title: 'Test',
-    maxWidth  : 1200,
-    maxHeight : 800,
-    fitToView : false,
-    width   : '70%',
-    height    : '70%',
-    autoSize  : false,
-    closeClick  : false,
-    openEffect  : 'none',
-    closeEffect : 'none',
-
-  });
 
 
 });
