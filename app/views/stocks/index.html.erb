@@ -1,2 +1,19 @@
-<h1>Stocks#index</h1>
-<p>Find me in app/views/stocks/index.html.erb</p>
+<h1>Stocks List</h1>
+<table class="table">
+  <thead>
+    <tr>
+      <th>Ticker</th>
+      <th>Price</th>
+      <th>Last Updated Time</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @stocks.each do |stock| %>
+    <tr>
+      <td><%= stock.ticker %></td>
+      <td><%= stock.last_trade_price_only %></td>
+      <td><%= stock.updated_at %></td>
+    </tr>
+  </tbody>
+
+<% end %>
