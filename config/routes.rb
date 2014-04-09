@@ -1,4 +1,6 @@
 TradeAssistant::Application.routes.draw do
+  get "stocks/index"
+  get "stocks/show"
   root to: 'home#index'          
   
   #get "users/settings"
