@@ -18,7 +18,7 @@
 
 <% @portfolio_stocks.each do |stock| %>
 
-<%= div_for stock, :class => stock.ticker %>
+<%= tag("p", :class => stock.ticker) %>
 <% store << stock.ticker %>
 
 <% count = count + 1 %>
