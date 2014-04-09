@@ -51,6 +51,11 @@ include SessionsHelper
   # PATCH/PUT /users/1.json
   def update
     @user = User.find_by_email(get_email)
+    p "*******************************************"
+    p "*******************************************"
+    p "*******************************************"
+    p "*******************************************"
+    p user_params
     respond_to do |format|
       if @user.update(user_params)
         format.html { redirect_to settings_path, notice: 'Account was successfully updated.' }
@@ -81,7 +86,7 @@ include SessionsHelper
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
-      params.require(:user).permit(:email, :name, :password, :password_confirmation)
+      params.require(:user).permit(:email, :name, :password, :password_confirmation, :notification)
     end
 
     

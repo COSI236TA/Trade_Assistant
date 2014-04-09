@@ -35,3 +35,104 @@
 <br>
 
 <%= link_to 'New Rule', new_rule_path %>
+
+
+<table>
+  <thead>
+    <tr>
+      <th>Ticker</th>
+      <th>Property</th>
+      <th>Relation</th>
+      <th>Target</th>
+      <th>Target Type</th>
+      <th>Activated</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @rules.each do |rule| %>
+      <tr>
+        <td><%= rule.ticker%></td>
+        <td><%= rule.property%></td>
+        <td><%= rule.rel%></td>
+        <td><%= rule.target%></td>
+        <td><%= rule.target_type%></td>
+        <td><%= rule.activated%></td>
+        <td><%= link_to 'Show', rule %></td>
+        <td><%= link_to 'Edit', edit_rule_path(rule) %></td>
+        <td><%= link_to 'Destroy', rule, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+
+
+<table>
+  <thead>
+    <tr>
+      <th>Ticker</th>
+      <th>Property</th>
+      <th>Relation</th>
+      <th>Target</th>
+      <th>Target Type</th>
+      <th>Activated</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @rules.each do |rule| %>
+      <tr>
+        <td><%= rule.ticker%></td>
+        <td><%= rule.property%></td>
+        <td><%= rule.rel%></td>
+        <td><%= rule.target%></td>
+        <td><%= rule.target_type%></td>
+        <td><%= rule.activated%></td>
+        <td><%= link_to 'Show', rule %></td>
+        <td><%= link_to 'Edit', edit_rule_path(rule) %></td>
+        <td><%= link_to 'Destroy', rule, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+
+
+<table>
+  <thead>
+    <tr>
+      <th>Ticker</th>
+      <th>Property</th>
+      <th>Relation</th>
+      <th>Target</th>
+      <th>Target Type</th>
+      <th>Activated</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @rules.each do |rule| %>
+      <tr>
+        <td><%= rule.ticker%></td>
+        <td><%= rule.property%></td>
+        <td><%= rule.rel%></td>
+        <td><%= rule.target%></td>
+        <td><%= rule.target_type%></td>
+        <td><%= rule.activated%></td>
+        <td><%= link_to 'Show', rule %></td>
+        <td><%= link_to 'Edit', edit_rule_path(rule) %></td>
+        <td><%= link_to 'Destroy', rule, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

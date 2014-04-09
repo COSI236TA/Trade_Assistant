@@ -1,9 +1,11 @@
 source 'https://rubygems.org'
-ruby '2.0.0'
+#ruby '2.0.0'
 
-gem 'jquery-ui-rails'
-gem 'jquery-ui-themes'
-gem 'jquery-ui-form'
+gem 'highstock-rails'
+gem "highcharts-rails", "~> 3.0.0"
+#gem 'jquery-ui-rails'
+#gem 'jquery-ui-themes'
+#gem 'jquery-ui-form'
 gem 'jquery-tablesorter'
 gem 'fancybox2-rails'
 #gem 'selenium-webdriver'
@@ -17,17 +19,17 @@ gem 'fancybox2-rails'
 gem 'rails', '~> 4.0.1'
 
 
-# gem 'rails_12factor'
-# group :development, :test do
-# gem 'pg', '0.15.1'
-# end
+gem 'rails_12factor'
+group :development, :test do
+gem 'pg', '0.15.1'
+end
 
-# group :production do
-# gem 'pg', '0.15.1'
-# end
+group :production do
+gem 'pg', '0.15.1'
+end
 
 # Use sqlite3 as the database for Active Record
-gem 'sqlite3'
+#gem 'sqlite3'
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
@@ -46,6 +48,7 @@ gem 'coffee-rails', '~> 4.0.0'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
+gem 'jquery-turbolinks'
 
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 gem 'turbolinks'

@@ -35,6 +35,14 @@
     <%= f.label :password_confirmation, 'Password confirmation' %><br />
     <%= f.password_field :password_confirmation, class: 'form-control', placeholder: 'Verify your password' %>
   </div>
+    <div>
+    <%= f.label :notification, 'Select Notification Preference' %><br>
+    <%= f.label :notification, 'email' %> 
+    <%= f.radio_button :notification, 'email', :checked => (get_notification == 'email') %>
+    <%= f.label :notification, 'twitter' %> 
+    <%= f.radio_button :notification, 'twitter', :checked =>  (get_notification == 'twitter') %>
+  </div>
+  
   <span class="help-block">Thank you for registration.</span>
   <div class="col-md-4 col-md-offset-4">
     <%= f.submit 'Sign Up', class: 'btn btn-success'%>
