@@ -25,6 +25,8 @@ TradeAssistant::Application.routes.draw do
   match "register" => "users#create", :via => "post", :as => :users
   resources :users, :except => ['create']
 
+  #expose portfolios
+  resources :portfolios
   #match "users" => "users#index", :via => "get"
 
   get "sessions/new"
@@ -63,7 +65,7 @@ TradeAssistant::Application.routes.draw do
   resources :markets
 
   #Stocks in db would not be accessed directly
-  # resources :stocks
+  resources :stocks
 
   resources :rules 
 
