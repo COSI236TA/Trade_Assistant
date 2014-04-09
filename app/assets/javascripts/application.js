@@ -12,6 +12,7 @@
 //
 //= require_directory .
 //= require jquery
+//= require jquery.turbolinks
 //= require jquery_ujs
 //= require jquery.tokeninput
 //= require fancybox
@@ -19,5 +20,3 @@
 //= require turbolinks
 //= require highcharts
 //= require highcharts/highcharts-more
-
-//= require bootstrap

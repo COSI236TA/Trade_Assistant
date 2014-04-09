@@ -9,7 +9,7 @@ class PortfoliosController< ApplicationController
      @portfolio_description = portfolio.description
      @portfolio_stocks = portfolio.stocks
 
-     render :layout=>false
+     render :layout=> "portfolios"
 
   end
 
