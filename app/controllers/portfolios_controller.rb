@@ -9,6 +9,8 @@ class PortfoliosController< ApplicationController
      @portfolio_description = portfolio.description
      @portfolio_stocks = portfolio.stocks
 
+     render :layout=>false
+
   end
 
   # GET /portfolios

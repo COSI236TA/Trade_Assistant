@@ -19,3 +19,5 @@
 //= require turbolinks
 //= require highcharts
 //= require highcharts/highcharts-more
+
+//= require bootstrap
