@@ -11,10 +11,12 @@ class RulesController < ApplicationController
   end
 
   def get_rule_html   
-     @rule_name = Rule.find(params[:id]).name
-     @rule_description = Rule.find(params[:id]).description
-     @rule_last_triggered = Rule.find(params[:id]).last_triggered
-     
+
+     current_rule = Rule.find(params[:rule_id])
+     @rule_name = current_rule.name
+     @rule_description = current_rule.description
+     @rule_last_triggered = current_rule.last_triggered
+     @portfolio_name = current_rule.portfolio.name
      render :layout=>false
 
   end
