@@ -12,6 +12,13 @@
  	<% end %> </p>
 <hr>
 
+
+<% @portfolio_stocks.each do |stock| %>
+
+<%= stock.ticker %>
+    <% end %>
+
+
 <div id="container" style="height: 300px; max-width: 410px"></div>
 
 <script>
@@ -19,29 +26,31 @@
 
 $(document).ready(function() {
 
-  	$('#container').highcharts({
+
+
+    $.getJSON('/portfolios/get_stock_json', function(data) {
     
-        chart: {
-            marginRight: 50
-        },
-        
-        series: [{
-            data: [29.9, 71.5, 106.4, 129.2, 144.0, 176.0, 135.6, 148.5, 216.4, 194.1, 95.6, {
-                dataLabels: {
-                    enabled: true,
-                    align: 'left',
-                    style: {
-                        fontWeight: 'bold'
-                    },
-                    x: 3,
-                    verticalAlign: 'middle',
-                    overflow: true,
-                    crop: false
-                },
-                y: 54.4
+        // Create the chart
+        $('#container').highcharts('StockChart', {
+            
+
+            rangeSelector : {
+                selected : 1,
+                inputEnabled: $('#container').width() > 480
+            },
+
+            title : {
+                text : 'AAPL Stock Price'
+            },
+            
+            series : [{
+                name : 'AAPL',
+                data : data,
+                tooltip: {
+                    valueDecimals: 2
+                }
             }]
-        }]
-    
+        });
     });
 
 });

@@ -12,11 +12,12 @@
 //
 //= require_directory .
 //= require jquery
-//= require jquery.turbolinks
 //= require jquery_ujs
 //= require jquery.tokeninput
 //= require fancybox
 //= require jquery-tablesorter
-//= require highcharts
-//= require highcharts/highcharts-more
 //= require turbolinks
+//= require highstock
+//= require highcharts/highcharts-more
+
+//= require bootstrap

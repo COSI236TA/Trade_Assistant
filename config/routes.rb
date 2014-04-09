@@ -50,6 +50,7 @@ TradeAssistant::Application.routes.draw do
 
 			  
   get "home/index"
+  get "portfolios/get_stock_json", to: 'portfolios#get_stock_json'
   get "portfolios/get_portfolio_html", to: 'portfolios#get_portfolio_html'
   get "rules/get_rule_html", to: 'rules#get_rule_html'
   get "stocks/:sym", to: 'stocks#show_by_sym'
