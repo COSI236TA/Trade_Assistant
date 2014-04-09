@@ -13,34 +13,58 @@
 <hr>
 
 
+<% count = 1 %>
+<% store = Array.new() %>
+
 <% @portfolio_stocks.each do |stock| %>
 
-<%= stock.ticker %>
-    <% end %>
+<%= div_for stock, :class => stock.ticker %>
+<% store << stock.ticker %>
 
+<% count = count + 1 %>
 
-<div id="container" style="height: 300px; max-width: 410px"></div>
+<% end %>
+
 
 <script>
 
 
 $(document).ready(function() {
 
-
-
-    $.getJSON('/portfolios/get_stock_json', function(data) {
     
+    var b = new Array();
+    b = <%= raw store.to_json %>;
+
+    var a = <%= count %>;
+
+
+    for(var x=1;x<a;x++){
+
+
+    var stock_track = "." + b[x-1];
+
+
+    $(stock_track).animate({height: "300px", width: "410px"});
+
+
+    $.ajax({
+        type: 'GET',
+        url: "/portfolios/get_stock_json?ticker=" + b[x-1] ,
+        dataType: 'json',
+        async: false,
+        success: function(data){
+
         // Create the chart
-        $('#container').highcharts('StockChart', {
+        $(stock_track).highcharts('StockChart', {
             
 
             rangeSelector : {
                 selected : 1,
-                inputEnabled: $('#container').width() > 480
+                inputEnabled: $(stock_track).width() > 480
             },
 
             title : {
-                text : 'AAPL Stock Price'
+                text : b[x-1] + ' Stock Price'
             },
             
             series : [{
@@ -51,7 +75,11 @@ $(document).ready(function() {
                 }
             }]
         });
+        }
     });
+
+
+    }
 
 });
 

@@ -4,8 +4,7 @@ require 'yahoo_stock'
   def get_stock_json
 
 
-
-    history = YahooStock::History.new(:stock_symbol => 'yhoo', :start_date => Date.today-366, :end_date => Date.today-1).results(:to_array).output
+    history = YahooStock::History.new(:stock_symbol => params[:ticker], :start_date => Date.today-366, :end_date => Date.today-1).results(:to_array).output
     stock_dates_with_closing = Array.new
 
     history.each do |date|
@@ -16,6 +15,8 @@ require 'yahoo_stock'
 
     stock_dates_with_closing = stock_dates_with_closing.sort_by{|x,y|x}
     
+
+
     render :json => stock_dates_with_closing.to_json
 
   end
