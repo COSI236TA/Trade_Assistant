@@ -8,7 +8,11 @@ require_relative 'base_rule'
 class RuleEngine::RuleEngine
   def self.start
     #Update all stock information
-    DataPool::DataUpdater.update_all
+    begin
+      DataPool::DataUpdater.update_all
+    rescue 
+      puts "update datapool fail."
+    end
     Rule.find_each do |rule|
       #portfolio of the rule
       portfolio = rule.portfolio
@@ -33,7 +37,7 @@ class RuleEngine::RuleEngine
         aggregated += stock.attributes[property].to_f
       end
 
-      puts aggregated
+      # puts aggregated
 
       #To see whether the average is met
       final = false

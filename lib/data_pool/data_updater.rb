@@ -31,7 +31,7 @@ class DataPool::DataUpdater
   # }
   PARAM_MAPPING = Property.select(:q_name).map {|property| property.q_name.to_sym}
   def self.update_per_ticker ticker, quote
-    puts PARAM_MAPPING
+    # puts PARAM_MAPPING
     stock_data = Stock.find_by(ticker: ticker)
     if stock_data != nil
       update = {:ticker => ticker}
@@ -54,7 +54,12 @@ class DataPool::DataUpdater
   def self.update_all
     stocks = Stock.select("ticker").distinct
     symbols = stocks.map { |stock| stock.ticker.to_s }
-    quotes = YahooStock::Quote.new(:stock_symbols => symbols, :read_parameters => PARAM_MAPPING).results(:to_hash).output
+    begin 
+      quotes = YahooStock::Quote.new(:stock_symbols => symbols, :read_parameters => PARAM_MAPPING).results(:to_hash).output
+    rescue Exception => e
+      puts "caught exception #{e}!"
+    end
+
     info = [symbols, quotes].transpose
 
     info.each do |entry|
@@ -65,8 +70,12 @@ class DataPool::DataUpdater
   end
 
   def self.update ticker
-    quotes = YahooStock::Quote.new(:stock_symbols => ticker, :read_parameters => PARAM_MAPPING).results(:to_hash).output
-    quote = quotes[0]
+    begin
+      quotes = YahooStock::Quote.new(:stock_symbols => ticker, :read_parameters => PARAM_MAPPING).results(:to_hash).output
+      quote = quotes[0]
+    rescue => e
+      puts "caught exception #{e}!"
+    end
     update_per_ticker ticker, quote
   end
 
