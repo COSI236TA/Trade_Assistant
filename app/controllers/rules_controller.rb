@@ -10,16 +10,7 @@ class RulesController < ApplicationController
     @rules = Rule.all
   end
 
-  def get_rule_html   
 
-     current_rule = Rule.find(params[:rule_id])
-     @rule_name = current_rule.name
-     @rule_description = current_rule.description
-     @rule_last_triggered = current_rule.last_triggered
-     @portfolio_name = current_rule.portfolio.name
-     render :layout=>false
-
-  end
 
 
 
