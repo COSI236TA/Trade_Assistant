@@ -1,41 +1,45 @@
 
+
 <h3> <%= @portfolio_name %> </h3>
 
-<hr style="padding:0px; margin: 0px;background-color: black;height: 1px;">
 
-<p><b>Description</b></p>
-<p>
+<table class="table table-hover table-bordered table-condensed table-striped">
+
+<thead>
+    <th width = "250"> <b>Description</b> </th>
+    <th width = "250"> <b>Stocks</b> </th>
+    <th width = "250"> <b>Rules</b> </th>
+</thead>
+
+  <tbody>
+  <tr>
+  <td width = "250">
     <span style="background-color:#e3e3e3;">
         <%= @portfolio_description %>
     </span>
-</p>
 
-<hr style="padding:0px; margin: 0px;">
+    </td>
 
-<p><b>Stocks </b> </p>
-
-<p>
+   <td width = "250">
     <span style="background-color:#e3e3e3;">    
         <% @portfolio_stocks.each do |stock| %>
  		     <%= stock.ticker %>
         <br>
  	    <% end %>
     </span>
- </p>
+    </td>
 
-<hr style="padding:0px; margin: 0px;">
-
-<p><b> Rules </b></p>
-<p>
+    <td width = "250">
     <span style="background-color:#e3e3e3;">
         <% @portfolio_rules.each do |rule| %>
             <%= rule.name %>
         <br>
         <% end %>
     </span>
-</p>
-<hr style="padding:0px; margin: 0px;">
-
+    </td>
+    </tr>
+    </tbody>
+</table>
 
 <% count = 1 %>
 <% store = Array.new() %>
