@@ -57,7 +57,7 @@
 
 <% @stock_ticker_array.each do |ticker| %>
 
-<%= tag("p", :id => ticker, :class => "stock") %>
+<%= tag("p", :id => ticker, :class => "stock" ) %>
 
 <% end %>
 
@@ -83,8 +83,6 @@ $(document).ready(function() {
 
 function change_div(test){
 
-    $("#" + test).animate({height: "300px", width: "800px"});
-
     $.ajax({
         type: 'GET',
         url: "/iframe/get_stock_json?ticker=" + test ,
@@ -94,7 +92,11 @@ function change_div(test){
         // Create the chart
         $("#" + test).highcharts('StockChart', {
             
+            chart: {
+                height : 300,
+                width : 800
 
+            },
             rangeSelector : {
                 selected : 1,
                 inputEnabled: $("#" + test).width() > 480
