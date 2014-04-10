@@ -139,7 +139,7 @@ class RulesController < ApplicationController
     @user = User.find(session[:user_id])
     @rule = @user.rules.build
     @portfolios = @user.portfolios.map { |p| [p.name, p.id, p.description] }
-    @properties = Property.all.map { |p| [p.d_name, p.id] }
+    @properties = get_properties
     @rel = [["More than", "more"], ["Less than", "less"]]
 
     respond_to do |format|
@@ -151,7 +151,7 @@ class RulesController < ApplicationController
     @user = User.find(session[:user_id])
     @rule = @user.rules.build
     @portfolio = @user.portfolios.build
-    @properties = Property.all.map { |p| [p.d_name, p.id] }
+    @properties = get_properties
     @rel = [["More than", "more"], ["Less than", "less"]]
 
     respond_to do |format|
@@ -159,6 +159,9 @@ class RulesController < ApplicationController
     end
   end
 
+  def get_properties
+    return Property.all.slice(0, 21).map { |p| [p.d_name, p.id] }
+  end
 
   # DELETE /rules/1
   # DELETE /rules/1.json
