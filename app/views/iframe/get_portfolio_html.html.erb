@@ -41,15 +41,25 @@
     </tbody>
 </table>
 
-<% count = 1 %>
+<br>
+
+<p style="padding-left:3em;"><b>Filter Graph </b></p> 
+
+<select onchange="option_change()" id="options">
+    <option value="all">Show all stock graphs</option>
+    <% @portfolio_stocks.each do |stock| %>
+    <option value=<%= stock.ticker %>><%= stock.ticker %></option>
+    <% end %>
+</select>
+
+<br>
+
 <% store = Array.new() %>
 
 <% @portfolio_stocks.each do |stock| %>
 
-<%= tag("p", :class => stock.ticker) %>
+<%= tag("p", :id => stock.ticker, :class => "stock") %>
 <% store << stock.ticker %>
-
-<% count = count + 1 %>
 
 <% end %>
 
@@ -60,39 +70,40 @@
 $(document).ready(function() {
 
     
-    var b = new Array();
-    b = <%= raw store.to_json %>;
-
-    var a = <%= count %>;
+    var b = <%= raw store.to_json %>;
 
 
-    for(var x=1;x<a;x++){
+    for(var x=0;x < b.length;x++){
 
 
-    var stock_track = "." + b[x-1];
+    change_div(b[x]);
 
 
-    $(stock_track).animate({height: "300px", width: "410px"});
+    }
 
+});
+
+function change_div(test){
+
+    $("#" + test).animate({height: "300px", width: "410px"});
 
     $.ajax({
         type: 'GET',
-        url: "/iframe/get_stock_json?ticker=" + b[x-1] ,
+        url: "/iframe/get_stock_json?ticker=" + test ,
         dataType: 'json',
-        async: false,
         success: function(data){
 
         // Create the chart
-        $(stock_track).highcharts('StockChart', {
+        $("#" + test).highcharts('StockChart', {
             
 
             rangeSelector : {
                 selected : 1,
-                inputEnabled: $(stock_track).width() > 480
+                inputEnabled: $("#" + test).width() > 480
             },
 
             title : {
-                text : b[x-1] + ' Stock Price'
+                text : test + ' Stock Price'
             },
             
             series : [{
@@ -107,10 +118,37 @@ $(document).ready(function() {
     });
 
 
+};
+
+
+function option_change(){
+
+    var option = document.getElementById("options").value;
+    var b = <%= raw store.to_json %>;
+
+
+    if(option != "all"){
+        for(var x=0;x < b.length;x++){
+
+            document.getElementById(b[x]).style.display =  "none";
+
+        }
+
+         document.getElementById(option).style.display =  "block";
+
     }
 
-});
+    else{
 
+        for(var x=0;x < b.length;x++){
+
+           document.getElementById(b[x]).style.display =  "block";
+        }
+
+    }
+
+
+}
 
 
 
