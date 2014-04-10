@@ -32,7 +32,6 @@
     <%= f.radio_button :notification, 'email', :checked => (get_notification == 'email') %>
     <%= f.label :notification, 'twitter' %> 
     <%= f.radio_button :notification, 'twitter', :checked =>  (get_notification == 'twitter') %>
-
   </div>
   <div class="actions">
     <%= f.submit 'Submit Info', class: 'btn btn-success'%>

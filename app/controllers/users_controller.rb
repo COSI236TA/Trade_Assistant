@@ -36,8 +36,9 @@ include SessionsHelper
 
     respond_to do |format|
       if @user.save
-        format.html { redirect_to dashboard_path, notice: "user #{@user.email} was successfully created." }
+        format.html { redirect_to dashboard_path}#, notice: "user #{@user.email} was successfully created." }
         session[:user_id] = @user.id
+
         format.json { render action: 'show', status: :created, location: @user }
       else
         #format.html {redirect_to register_path, error: "?????????????????"}
@@ -51,11 +52,6 @@ include SessionsHelper
   # PATCH/PUT /users/1.json
   def update
     @user = User.find_by_email(get_email)
-    p "*******************************************"
-    p "*******************************************"
-    p "*******************************************"
-    p "*******************************************"
-    p user_params
     respond_to do |format|
       if @user.update(user_params)
         format.html { redirect_to settings_path, notice: 'Account was successfully updated.' }

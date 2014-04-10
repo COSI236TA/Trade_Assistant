@@ -54,12 +54,10 @@
 
 <br>
 
-<% store = Array.new() %>
 
-<% @portfolio_stocks.each do |stock| %>
+<% @stock_ticker_array.each do |ticker| %>
 
-<%= tag("p", :id => stock.ticker, :class => "stock") %>
-<% store << stock.ticker %>
+<%= tag("p", :id => ticker, :class => "stock") %>
 
 <% end %>
 
@@ -70,7 +68,7 @@
 $(document).ready(function() {
 
     
-    var b = <%= raw store.to_json %>;
+    var b = <%= raw @stock_ticker_array.to_json %>;
 
 
     for(var x=0;x < b.length;x++){
@@ -85,7 +83,7 @@ $(document).ready(function() {
 
 function change_div(test){
 
-    $("#" + test).animate({height: "300px", width: "410px"});
+    $("#" + test).animate({height: "300px", width: "800px"});
 
     $.ajax({
         type: 'GET',
@@ -124,7 +122,7 @@ function change_div(test){
 function option_change(){
 
     var option = document.getElementById("options").value;
-    var b = <%= raw store.to_json %>;
+    var b = <%= raw @stock_ticker_array.to_json %>;
 
 
     if(option != "all"){
