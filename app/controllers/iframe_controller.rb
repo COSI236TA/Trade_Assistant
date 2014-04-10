@@ -33,6 +33,13 @@ require 'yahoo_stock'
      @portfolio_stocks = portfolio.stocks
      @portfolio_rules = portfolio.rules
 
+     @stock_ticker_array = Array.new
+     @portfolio_stocks.each do |stock|
+
+     @stock_ticker_array << stock.ticker
+
+     end
+ 
      render :layout=> "iframe_portfolio"
 
   end
