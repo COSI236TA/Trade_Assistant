@@ -11,7 +11,7 @@
       <tbody>
         <% @portfolios.each do |portfolio| %>
         <tr>
-          <td><%= portfolio.name %></td>
+          <td><a class="various" data-fancybox-type="iframe" href="/iframe/get_portfolio_html?portfolio_id=<%= portfolio.id %>"><%= portfolio.name %></a>
           <td><%= portfolio.description %></td>
         </tr>
         <% end %>
@@ -19,3 +19,17 @@
     </table>
   </div>
 </div>
+
+<script>
+  $(".various").fancybox({
+ 
+    fitToView : false,
+    width   : '90%',
+    height    : '80%',
+    autoSize  : false,
+    closeClick  : false,
+    openEffect  : 'none',
+    closeEffect : 'none',
+
+  });
+</script>
