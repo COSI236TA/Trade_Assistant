@@ -11,31 +11,38 @@
 <body>
 
 
-	<center>
 	<b>Name</b>
 	<br>
 	<%= @rule_name %>
 	<br>
+	<hr style="padding:0px; margin: 0px;">
 	<b>Description</b> 
 	<br>
-	<%= @rule_description %>
-	<br>
+	<p>
+		<span style="background-color:#e3e3e3;">
+			<%= @rule_description %>
+		</span>
+	</p>
+	<hr style="padding:0px; margin: 0px;">
 	<b>Last Triggered</b> 
-	<br>
-	<%= @rule_last_triggered  %>
-	<br>
-	<b>Portfolio Name</b> 
-	<br>
-	<%= @portfolio_name  %>
-	<br>
 
-	</center>
+	<p>
+		<span style="background-color:#e3e3e3;">
+			<%= @rule_last_triggered  %>
+		</span>
+	</p>
+	<br>
+	<hr style="padding:0px; margin: 0px;">
+	<b>Portfolio Name</b> 
+	<p>
+		<span style="background-color:#e3e3e3;">
+			<%= @portfolio_name  %>
+		</span>
+	</p>
+	<hr style="padding:0px; margin: 0px;">
 
 
 </body>
 </html>
-
-
-<%= @test %>
 
 
