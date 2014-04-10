@@ -31,6 +31,7 @@ require 'yahoo_stock'
      @portfolio_name = portfolio.name.gsub(/\b\w/){ $&.upcase } #Makes each first char upper case
      @portfolio_description = portfolio.description
      @portfolio_stocks = portfolio.stocks
+     @portfolio_rules = portfolio.rules
 
      render :layout=> "iframe_portfolio"
 
@@ -44,7 +45,8 @@ require 'yahoo_stock'
      @rule_description = current_rule.description
      @rule_last_triggered = current_rule.last_triggered
      @portfolio_name = current_rule.portfolio.name
-     render :layout=>false
+
+     render :layout=> "iframe_rule"
 
   end
 

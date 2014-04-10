@@ -1,15 +1,40 @@
 
 <h3> <%= @portfolio_name %> </h3>
 
-<hr style="padding:0px; margin: 0px;">
+<hr style="padding:0px; margin: 0px;background-color: black;height: 1px;">
 
 <p><b>Description</b></p>
-<p style="background-color:#e3e3e3;"><%= @portfolio_description %></p>
+<p>
+    <span style="background-color:#e3e3e3;">
+        <%= @portfolio_description %>
+    </span>
+</p>
+
+<hr style="padding:0px; margin: 0px;">
+
 <p><b>Stocks </b> </p>
-<p style="background-color:#e3e3e3;">  	<% @portfolio_stocks.each do |stock| %>
- 		<%= stock.ticker %>
- 	<% end %> </p>
-<hr>
+
+<p>
+    <span style="background-color:#e3e3e3;">    
+        <% @portfolio_stocks.each do |stock| %>
+ 		     <%= stock.ticker %>
+        <br>
+ 	    <% end %>
+    </span>
+ </p>
+
+<hr style="padding:0px; margin: 0px;">
+
+<p><b> Rules </b></p>
+<p>
+    <span style="background-color:#e3e3e3;">
+        <% @portfolio_rules.each do |rule| %>
+            <%= rule.name %>
+        <br>
+        <% end %>
+    </span>
+</p>
+<hr style="padding:0px; margin: 0px;">
 
 
 <% count = 1 %>
