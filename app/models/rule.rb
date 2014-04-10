@@ -21,12 +21,12 @@ class Rule < ActiveRecord::Base
     true
   end
 
-  def description
+  def self.get_description portfolio, property, rel, target
     property_d_name = property.d_name
     if property_d_name.include?("percent")
-      "Let me know if #{portfolio}'s #{property_d_name} is #{rel} than #{target}%"
+      "Watch #{portfolio}'s average #{property_d_name} is #{rel} than #{target}%"
     else
-      "Let me know if #{portfolio}'s #{property_d_name} is #{rel} than #{target}"
+      "Watch #{portfolio}'s average #{property_d_name} is #{rel} than #{target}"
     end
   end
 end

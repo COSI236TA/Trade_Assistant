@@ -23,8 +23,6 @@ tickers.each do |ticker|
   portfolio.stocks << Stock.find_by(ticker: ticker)
 end
 
-user.rules.create(portfolio: portfolio, property: Property.find(7), rel: "more", target: "1", name: "Test Rule 0",
-  notification_method: "email: a@b.c")
-user.rules.create(portfolio: portfolio, property: Property.find(7), rel: "less", target: "1", name: "Test Rule 1",
-  notification_method: "email: a@b.c")
+user.rules.create(portfolio: portfolio, property: Property.find(7), rel: "more", target: "1", name: "high tech 1", description: "watch high tech")
+user.rules.create(portfolio: portfolio, property: Property.find(7), rel: "less", target: "1", name: "high tech 2", description: "watch high tech")
 puts "Seed done"

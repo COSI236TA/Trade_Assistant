@@ -32,16 +32,16 @@ if ActiveRecord::Base.connection.tables.include?('properties')
   Property.create(p_id: 7, q_name: "change_in_percent", d_name: "daily change percentage")
   Property.create(p_id: 8, q_name: "day_low", d_name: "day low")
   Property.create(p_id: 9, q_name: "day_high", d_name: "day high")
-  Property.create(p_id: 10, q_name: "fifty_two_week_low", d_name: "the lowest price in past 52 weeks")
-  Property.create(p_id: 11, q_name: "fifty_two_week_high", d_name: "the highest price in past 52 weeks")
+  Property.create(p_id: 10, q_name: "fifty_two_week_low", d_name: "lowest price in past 52 weeks")
+  Property.create(p_id: 11, q_name: "fifty_two_week_high", d_name: "highest price in past 52 weeks")
   Property.create(p_id: 12, q_name: "change_from_52_week_low", 
-    d_name: "the change of price compared to the lowest in past 52 weeks")
+    d_name: "change of price compared to the lowest in past 52 weeks")
   Property.create(p_id: 13, q_name: "change_from_52_week_high", 
-    d_name: "the change of price compared to the highest in past 52 weeks")
+    d_name: "change of price compared to the highest in past 52 weeks")
   Property.create(p_id: 14, q_name: "percent_change_from_52_week_low", 
-    d_name: "the percentage change of price compared to the lowest in past 52 weeks")
+    d_name: "percentage change of price compared to the lowest in past 52 weeks")
   Property.create(p_id: 15, q_name: "percent_change_from_52_week_high", 
-    d_name: "the percentage change of price compared to the highest in past 52 weeks")
+    d_name: "percentage change of price compared to the highest in past 52 weeks")
   Property.create(p_id: 16, q_name: "fifty_day_moving_average", d_name: "50-day moving average")
   Property.create(p_id: 17, q_name: "two_hundred_day_moving_average", d_name: "200-day moving average")
   Property.create(p_id: 18, q_name: "change_from_50_day_moving_average", d_name: "change from 50-day moving average")
