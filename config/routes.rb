@@ -1,5 +1,8 @@
 TradeAssistant::Application.routes.draw do
 
+  get "iframe/get_portfolio_html"
+  get "iframe/get_rule_html"
+  get "iframe/get_stock_json"
   root to: 'home#index'          
   
   #get "users/settings"
@@ -26,6 +29,7 @@ TradeAssistant::Application.routes.draw do
   resources :users, :except => ['create']
 
   #expose portfolios
+  
   resources :portfolios
   #match "users" => "users#index", :via => "get"
 
@@ -51,12 +55,18 @@ TradeAssistant::Application.routes.draw do
   get "stock_info",       to: 'stocks#stock_info'
 
 			  
+
+
   get "home/index"
+  
+  #Get IFrame content through ajax
   get "portfolios/get_stock_json", to: 'portfolios#get_stock_json'
   get "portfolios/get_portfolio_html", to: 'portfolios#get_portfolio_html'
   get "rules/get_rule_html", to: 'rules#get_rule_html'
   get "stocks/:sym", to: 'stocks#show_by_sym'
   get "rule_query", to: 'rule_match_result#rule_query' 
+
+
 
 
 
