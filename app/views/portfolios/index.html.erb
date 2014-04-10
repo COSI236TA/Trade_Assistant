@@ -1,0 +1,17 @@
+<h1>Portfolio Lists</h1>
+<table class="table">
+  <thead>
+    <tr>
+      <th>Portfolio Name</th>
+      <th>Portfolio Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @portfolios.each do |portfolio| %>
+    <tr>
+      <td><%= portfolio.name %></td>
+      <td><%= portfolio.description %></td>
+    </tr>
+  </tbody>
+
+<% end %>
