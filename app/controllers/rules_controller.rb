@@ -75,11 +75,14 @@ class RulesController < ApplicationController
     #create rule
 
     #Build params for create rule
+    real_property = Property.find(property)
     build_params = { 
       :portfolio => portfolio,
-      :property => Property.find(property),
+      :property => real_property,
       :rel => rel,
-      :target => target 
+      :target => target, 
+      :name => "#{portfolio.name} #{portfolio.rules.size+1}",
+      :description => Rule.get_description(portfolio, real_property, rel, target)
     }
 
     @rule = @user.rules.create(build_params)
