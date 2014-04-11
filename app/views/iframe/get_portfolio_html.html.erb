@@ -1,27 +1,27 @@
 
 
-<h3> <%= @portfolio_name %> </h3>
+<center> <h3> Portfolio name: <%= @portfolio_name %> </h3> </center>
 
 
 <table class="table table-hover table-bordered table-condensed table-striped">
 
 <thead>
-    <th width = "250"> <b>Description</b> </th>
-    <th width = "250"> <b>Stocks</b> </th>
-    <th width = "250"> <b>Rules</b> </th>
+    <th> <b>Description</b> </th>
+    <th> <b>Stocks</b> </th>
+    <th> <b>Rules</b> </th>
 </thead>
 
   <tbody>
   <tr>
-  <td width = "250">
-    <span style="background-color:#e3e3e3;">
+  <td>
+    <span>
         <%= @portfolio_description %>
     </span>
 
     </td>
 
-   <td width = "250">
-    <span style="background-color:#e3e3e3;">    
+   <td>
+    <span>    
         <% @portfolio_stocks.each do |stock| %>
  		     <%= stock.ticker %>
         <br>
@@ -29,8 +29,8 @@
     </span>
     </td>
 
-    <td width = "250">
-    <span style="background-color:#e3e3e3;">
+    <td>
+    <span>
         <% @portfolio_rules.each do |rule| %>
             <%= rule.name %>
         <br>
@@ -43,13 +43,15 @@
 
 <br>
 
-<p style="padding-left:3em;"><b>Filter Graph </b></p> 
+<p class = "filter_text"><b>Filter Graph </b></p> 
 
-<select onchange="option_change()" id="options">
+<select onchange="option_on_change_chart(<%= @stock_ticker_array.to_json %>)" id="options">
     <option value="all">Show all stock graphs</option>
+
     <% @portfolio_stocks.each do |stock| %>
     <option value=<%= stock.ticker %>><%= stock.ticker %></option>
     <% end %>
+
 </select>
 
 <br>
@@ -66,7 +68,6 @@
 
 
 $(document).ready(function() {
-
 
     var stocks_tickers = <%= raw @stock_ticker_array.to_json %>;
 
@@ -89,36 +90,6 @@ $(document).ready(function() {
 
 });
 
-
-
-function option_change(){
-
-    var option = document.getElementById("options").value;
-    var stocks_tickers = <%= raw @stock_ticker_array.to_json %>;
-
-
-    if(option != "all"){
-        for(var x=0;x < stocks_tickers.length;x++){
-
-            document.getElementById(stocks_tickers[x]).style.display =  "none";
-
-        }
-
-         document.getElementById(option).style.display =  "block";
-
-    }
-
-    else{
-
-        for(var x=0;x < stocks_tickers.length;x++){
-
-           document.getElementById(stocks_tickers[x]).style.display =  "block";
-        }
-
-    }
-
-
-}
 
 
 

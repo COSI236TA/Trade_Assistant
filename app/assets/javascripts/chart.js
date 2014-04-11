@@ -3,10 +3,11 @@
 
 function create_stock_chart(ticker, ticker_data){
 
+          //check if the element with id ticker exists or not
 					if ($("#" + ticker).length == 0) {
-  						alert("Element " + ticker + " does not exist...");
+  						alert("Element with id " + ticker + " does not exist...");
 					}
-
+          else{
 	                $("#" + ticker).highcharts('StockChart', {
                     
                     chart: {
@@ -31,12 +32,48 @@ function create_stock_chart(ticker, ticker_data){
                         }
                     }]
                 });
+          }
 
 }
 
+//Hides the charts based on the option value. 
+//Used in the get_portfolio_html.html.erb
+function option_on_change_chart(stock_tickers_array){
+
+    //get option value
+    var option = document.getElementById("options").value;
+    //array of stock tickers
+
+    //if an option, not all, is selected then show that certain graph
+    if(option != "all"){
+        for(var x=0;x < stock_tickers_array.length;x++){
+
+            //hides the chart
+            document.getElementById(stock_tickers_array[x]).style.display =  "none";
+
+        }
+         //makes chart visible
+         document.getElementById(option).style.display =  "block";
+
+    }
+
+    else{
+        for(var x=0;x < stock_tickers_array.length;x++){
+           //makes char visible
+           document.getElementById(stock_tickers_array[x]).style.display =  "block";
+        }
+
+    }
+
+
+}
+
+
+
+//creates a live chart, taking input as element's(div) id
 function create_live_chart(container_id){
 
-	Highcharts.setOptions({
+  Highcharts.setOptions({
     global : {
       useUTC : false
     }

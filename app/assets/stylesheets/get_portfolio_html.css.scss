@@ -1,0 +1,25 @@
+// Place all the styles related to the portfolio controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+//table
+th {
+	width: 250px;
+}
+
+td{
+	width: 250px;
+}
+
+//makes text wrap color light gray
+span{
+
+	background-color:#e3e3e3;
+}
+
+//makes filter graph text centered to dropbox show graphs
+.filter_text{
+	
+	padding-left:3em;
+
+}

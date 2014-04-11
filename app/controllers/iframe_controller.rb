@@ -51,6 +51,7 @@ require 'yahoo_stock'
      end
 
 
+     #use of twitter
      client = Twitter::REST::Client.new do |config|
       config.consumer_key        = "07MR13DREG5LnUuiFqgXJTTDl"
       config.consumer_secret     = "p3tR0GXc9o0AKWEwOPHWmV5wedlaIv6iNx7UBcg4ZzYP0KcmaQ"
