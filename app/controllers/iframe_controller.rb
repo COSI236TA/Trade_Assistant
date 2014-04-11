@@ -6,20 +6,25 @@ require 'yahoo_stock'
   def get_stock_json
 
 
-    history = YahooStock::History.new(:stock_symbol => params[:ticker], :start_date => Date.today-366, :end_date => Date.today-1).results(:to_array).output
-    stock_dates_with_closing = Array.new
+    all_stock_dates_closing = Array.new
 
-    history.each do |date|
+    params[:tickers].each do |ticker|
       
-      stock_dates_with_closing << [Date.strptime(date[0], '%Y-%m-%d').to_time.to_i * 1000,date[4].to_f]
+      history = YahooStock::History.new(:stock_symbol => ticker, :start_date => Date.today-366, :end_date => Date.today-1).results(:to_array).output
+      stock_dates_with_closing = Array.new
+
+      history.each do |date|
+        
+        stock_dates_with_closing << [Date.strptime(date[0], '%Y-%m-%d').to_time.to_i * 1000,date[4].to_f]
+
+      end
+
+      stock_dates_with_closing = stock_dates_with_closing.sort_by{|x,y|x}
+      all_stock_dates_closing << stock_dates_with_closing
 
     end
 
-    stock_dates_with_closing = stock_dates_with_closing.sort_by{|x,y|x}
-    
-
-
-    render :json => stock_dates_with_closing.to_json
+    render :json =>  all_stock_dates_closing
 
   end
 
