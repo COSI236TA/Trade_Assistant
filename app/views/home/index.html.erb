@@ -3,6 +3,18 @@
       <h1>Trading made easy!</h1>
       <p><a href="register" class="btn btn-success btn-lg">Get TradeAssistant For Free</a></p>
       <a href="#learn" class="smoothScroll">Find out more<a>
+      <div id='content'>
+      <table cellpadding "10" cellspacing="10">
+      <thead>
+      <th style="padding:25px;">
+      <div id="container" style="height: 300px;width: 600px;"></div>
+      </th>
+      <th style="padding:25px;">
+      <div id="container2" style="height: 300px;width: 600px;"></div>
+      </th>
+      </thead>
+      </table>
+      </div>
     </div>
 
     <div class="container marketing">
@@ -84,3 +96,18 @@
 
     </div><!-- /.container -->
 
+
+<script>
+
+$(document).ready(function(){
+
+
+  create_live_chart("container");
+  create_live_chart("container2");
+
+});
+
+
+
+
+</script>

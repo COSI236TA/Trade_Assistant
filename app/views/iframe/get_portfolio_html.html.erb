@@ -67,70 +67,40 @@
 
 $(document).ready(function() {
 
-    
-    var b = <%= raw @stock_ticker_array.to_json %>;
 
-
-    for(var x=0;x < b.length;x++){
-
-
-    change_div(b[x]);
-
-
-    }
-
-});
-
-function change_div(test){
+    var stocks_tickers = <%= raw @stock_ticker_array.to_json %>;
 
     $.ajax({
         type: 'GET',
-        url: "/iframe/get_stock_json?ticker=" + test ,
+        url: "/iframe/get_stock_json",
+        data: {tickers: stocks_tickers},
         dataType: 'json',
         success: function(data){
 
-        // Create the chart
-        $("#" + test).highcharts('StockChart', {
-            
-            chart: {
-                height : 300,
-                width : 800
+            for(var x=0;x < data.length;x++){
 
-            },
-            rangeSelector : {
-                selected : 1,
-                inputEnabled: $("#" + test).width() > 480
-            },
+                create_stock_chart(stocks_tickers[x], data[x]);
 
-            title : {
-                text : test + ' Stock Price'
-            },
-            
-            series : [{
-                name : 'TEST',
-                data : data,
-                tooltip: {
-                    valueDecimals: 2
-                }
-            }]
-        });
+   
+            }
+
         }
     });
 
+});
 
-};
 
 
 function option_change(){
 
     var option = document.getElementById("options").value;
-    var b = <%= raw @stock_ticker_array.to_json %>;
+    var stocks_tickers = <%= raw @stock_ticker_array.to_json %>;
 
 
     if(option != "all"){
-        for(var x=0;x < b.length;x++){
+        for(var x=0;x < stocks_tickers.length;x++){
 
-            document.getElementById(b[x]).style.display =  "none";
+            document.getElementById(stocks_tickers[x]).style.display =  "none";
 
         }
 
@@ -140,9 +110,9 @@ function option_change(){
 
     else{
 
-        for(var x=0;x < b.length;x++){
+        for(var x=0;x < stocks_tickers.length;x++){
 
-           document.getElementById(b[x]).style.display =  "block";
+           document.getElementById(stocks_tickers[x]).style.display =  "block";
         }
 
     }

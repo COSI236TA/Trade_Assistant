@@ -1,8 +1,9 @@
 source 'https://rubygems.org'
 #ruby '2.0.0'
 
+gem 'twitter'
 gem 'highstock-rails'
-gem "highcharts-rails", "~> 3.0.0"
+#gem "highcharts-rails", "~> 3.0.0"
 #gem 'jquery-ui-rails'
 #gem 'jquery-ui-themes'
 #gem 'jquery-ui-form'
