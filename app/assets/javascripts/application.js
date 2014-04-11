@@ -19,7 +19,7 @@
 //= require jquery-tablesorter
 
 //= require highstock
-//= require highcharts/highcharts-more
+// require highcharts/highcharts-more
 //= require bootstrap
 
 

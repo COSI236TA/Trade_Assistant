@@ -67,7 +67,7 @@
 
 $(document).ready(function() {
 
-    
+
     var stocks_tickers = <%= raw @stock_ticker_array.to_json %>;
 
     $.ajax({
@@ -79,31 +79,9 @@ $(document).ready(function() {
 
             for(var x=0;x < data.length;x++){
 
-                // Create the chart
-                $("#" + stocks_tickers[x]).highcharts('StockChart', {
-                    
-                    chart: {
-                        height : 300,
-                        width : 800
+                create_stock_chart(stocks_tickers[x], data[x]);
 
-                    },
-                    rangeSelector : {
-                        selected : 1,
-                        inputEnabled: $("#" + stocks_tickers[x]).width() > 480
-                    },
-
-                    title : {
-                        text : stocks_tickers[x] + ' Stock Price'
-                    },
-                    
-                    series : [{
-                        name : 'Price',
-                        data : data[x],
-                        tooltip: {
-                            valueDecimals: 2
-                        }
-                    }]
-                });
+   
             }
 
         }
