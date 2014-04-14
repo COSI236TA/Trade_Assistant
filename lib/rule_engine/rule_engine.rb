@@ -47,13 +47,28 @@ class RuleEngine::RuleEngine
         final = aggregated / stocks.size <= target
       end
 
+
       #If true, we the rule has been triggered, add it to database
       if final
-        history = RuleHistory.new(rule: rule,
-                                  amt: aggregated/stocks.size,
-                                  triggered_time: Time.now)
-        if history.save
-          rule.last_triggered = history.id
+        #Get the most recent history
+        most_recent = rule.recent_history
+        content = {rule: rule, amt: aggregated/stocks.size, triggered_time: Time.now}
+
+        if most_recent == nil 
+          #If no most recent history, create one
+          most_recent = RuleHistory.new(content)
+        else
+          #if its last triggered time is within 10 minutes, we don't create new entry, just update the exsited one
+          if Time.now - most_recent.triggered_time < 600
+            most_recent.update(content)
+          else
+            most_recent = RuleHistory.new(content)
+          end 
+        end
+        if !most_recent.save
+          puts "rule history save unsuccessfully"
+        else
+          rule.last_triggered = most_recent.id
           rule.save
         end
       end
