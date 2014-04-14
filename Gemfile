@@ -66,7 +66,8 @@ end
 gem "nas-yahoo_stock", "~> 1.0.8"
 
 #Background job management
-gem 'sidekiq'
+# gem 'sidekiq'
+gem 'sucker_punch', '~> 1.0'
 
 # Use ActiveModel has_secure_password
 gem 'bcrypt-ruby', '~> 3.1.2'
