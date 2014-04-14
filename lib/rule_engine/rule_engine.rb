@@ -37,7 +37,6 @@ class RuleEngine::RuleEngine
         aggregated += stock.attributes[property].to_f
       end
 
-      # puts aggregated
 
       #To see whether the average is met
       final = false
@@ -65,6 +64,8 @@ class RuleEngine::RuleEngine
             most_recent = RuleHistory.new(content)
           end 
         end
+
+        #if cannot save the history record sucessuflly, put the message
         if !most_recent.save
           puts "rule history save unsuccessfully"
         else
