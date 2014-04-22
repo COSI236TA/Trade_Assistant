@@ -9,11 +9,17 @@ TradeAssistant::Application.routes.draw do
   get "iframe/get_stock_json"
 
 
-  #portolio listing request, it can deal with iframe and normal page uniformly
-  #it should have two paramters in the url: type and portfoli_id
+  #portolio content request, it can deal with iframe and normal page uniformly
+  #it should have two parameters in the url: type and portfoli_id
   #if type is iframe, the page will be rendered in iframe layout
   #if type is page, it will be rendered in normal application layout
   get "/portfolios/get_portfolio" => "portfolios#get_portfolio"
+
+  #rule content request, it can deal with iframe and normal page uniformly
+  #it should have two parameters in the url: type and rule_id
+  #if type is iframe, the page will be rendered in iframe layout
+  #otherwise, it will be rendered in normal application layout
+  get "/rules/get_rule" => "rules#get_rule"
 
   #users
   post '/settings', :to => 'users#update'

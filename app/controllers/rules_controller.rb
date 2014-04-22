@@ -99,6 +99,28 @@ class RulesController < ApplicationController
     end
   end
 
+  #show content of a rule
+  #it can show rule page content with different layout
+  def get_rule   
+
+     current_rule = Rule.find(params[:rule_id])
+
+     #rule information
+     @rule_name = current_rule.name
+     @rule_description = current_rule.description
+     @rule_last_triggered = current_rule.last_triggered
+
+     #portfolio information
+     @portfolio_name = current_rule.portfolio.name
+
+     if params[:type] == "iframe"
+       render :layout=> "iframe_rule"
+     else
+       render :layout=> "application"
+     end
+
+
+  end
   # PATCH/PUT /rules/1
   # PATCH/PUT /rules/1.json
   def update
