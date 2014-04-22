@@ -1,0 +1,125 @@
+
+
+<h3> <%= @portfolio_name %> </h3>
+
+
+<table class="table table-hover table-bordered table-condensed table-striped">
+
+<thead>
+    <th width = "250"> <b>Description</b> </th>
+    <th width = "250"> <b>Stocks</b> </th>
+    <th width = "250"> <b>Rules</b> </th>
+</thead>
+
+  <tbody>
+  <tr>
+  <td width = "250">
+    <span style="background-color:#e3e3e3;">
+        <%= @portfolio_description %>
+    </span>
+
+    </td>
+
+   <td width = "250">
+    <span style="background-color:#e3e3e3;">    
+        <% @portfolio_stocks.each do |stock| %>
+ 		     <%= stock.ticker %>
+        <br>
+ 	    <% end %>
+    </span>
+    </td>
+
+    <td width = "250">
+    <span style="background-color:#e3e3e3;">
+        <% @portfolio_rules.each do |rule| %>
+            <%= rule.name %>
+        <br>
+        <% end %>
+    </span>
+    </td>
+    </tr>
+    </tbody>
+</table>
+
+<br>
+
+<p style="padding-left:3em;"><b>Filter Graph </b></p> 
+
+<select onchange="option_change()" id="options">
+    <option value="all">Show all stock graphs</option>
+    <% @portfolio_stocks.each do |stock| %>
+    <option value=<%= stock.ticker %>><%= stock.ticker %></option>
+    <% end %>
+</select>
+
+<br>
+
+
+<% @stock_ticker_array.each do |ticker| %>
+
+<%= tag("p", :id => ticker, :class => "stock" ) %>
+
+<% end %>
+
+
+<script>
+
+
+$(document).ready(function() {
+
+
+    var stocks_tickers = <%= raw @stock_ticker_array.to_json %>;
+
+    $.ajax({
+        type: 'GET',
+        url: "/iframe/get_stock_json",
+        data: {tickers: stocks_tickers},
+        dataType: 'json',
+        success: function(data){
+
+            for(var x=0;x < data.length;x++){
+
+                create_stock_chart(stocks_tickers[x], data[x]);
+
+   
+            }
+
+        }
+    });
+
+});
+
+
+
+function option_change(){
+
+    var option = document.getElementById("options").value;
+    var stocks_tickers = <%= raw @stock_ticker_array.to_json %>;
+
+
+    if(option != "all"){
+        for(var x=0;x < stocks_tickers.length;x++){
+
+            document.getElementById(stocks_tickers[x]).style.display =  "none";
+
+        }
+
+         document.getElementById(option).style.display =  "block";
+
+    }
+
+    else{
+
+        for(var x=0;x < stocks_tickers.length;x++){
+
+           document.getElementById(stocks_tickers[x]).style.display =  "block";
+        }
+
+    }
+
+
+}
+
+
+
+</script>
