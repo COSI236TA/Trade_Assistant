@@ -12,7 +12,7 @@
       <tbody>
         <% @stocks.each do |stock| %>
           <tr>
-            <td><%= stock.ticker %></td>
+            <td><a class="various" data-fancybox-type="iframe" href="/stocks/<%= stock.ticker %>?type=iframe"><%= stock.name %></a></td>
             <td><%= stock.last_trade_price_only %></td>
             <td><%= stock.updated_at %></td>
           </tr>
@@ -22,3 +22,16 @@
   </div>
 </div>
 
+<script>
+  $(".various").fancybox({
+ 
+    fitToView : false,
+    width   : '90%',
+    height    : '80%',
+    autoSize  : false,
+    closeClick  : false,
+    openEffect  : 'none',
+    closeEffect : 'none',
+
+  });
+</script>

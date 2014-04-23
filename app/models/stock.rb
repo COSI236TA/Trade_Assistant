@@ -8,4 +8,8 @@ class Stock < ActiveRecord::Base
         errors.add(:ticker, "Invalid ticker")
       end
     end
+
+    def name
+      STOCK_LIST[ticker]
+    end
 end

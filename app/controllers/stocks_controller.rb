@@ -22,6 +22,11 @@ class StocksController < ApplicationController
   # GET /stocks/1
   # GET /stocks/1.json
   def show
+    if (params[:type] == "iframe") 
+      render layout: "iframe_portfolio"
+    else
+      render layout: "application"
+    end
   end
 
   def show_by_sym 
@@ -79,7 +84,8 @@ class StocksController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_stock
-      @stock = Stock.find(params[:id])
+      DataPool::DataPool.query(params[:id])
+      @stock = Stock.find_by(ticker: params[:id]) 
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
