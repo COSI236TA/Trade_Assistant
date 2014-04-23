@@ -101,9 +101,8 @@ class RulesController < ApplicationController
      current_rule = Rule.find(params[:rule_id])
 
      #rule information
-     @rule_name = current_rule.name
-     @rule_description = current_rule.description
-     @rule_last_triggered = current_rule.last_triggered
+     @rule = current_rule
+     # @rule_last_triggered = current_rule.last_triggered
 
      #portfolio information
      @portfolio = current_rule.portfolio

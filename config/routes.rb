@@ -54,12 +54,12 @@ TradeAssistant::Application.routes.draw do
     get 'dashboard' => :new
   end
 
-  #Create new rule
+  # Create new rule
   get "create_rule", to: 'rules#new'
   post "create_rule", to: 'rules#create'
 
-  #resource rules and add collection actions
-  resource :rules do
+  # resources rules and add collection actions
+  resources :rules do
     collection do
       #rule content request, it can deal with iframe and normal page uniformly
       #it should have two parameters in the url: type and rule_id
@@ -70,7 +70,7 @@ TradeAssistant::Application.routes.draw do
   end
 
   #resource portfolios and add collection actions
-  resource :portfolios do
+  resources :portfolios do
     collection do
       #portolio content request, it can deal with iframe and normal page uniformly
       #it should have two parameters in the url: type and portfoli_id
