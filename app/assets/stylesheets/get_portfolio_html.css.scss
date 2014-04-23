@@ -3,12 +3,23 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 //table
+
+.table{
+	width: 800px;
+	align:center;
+	margin-left: auto;
+	margin-right: auto;
+}  
+
+
 th {
-	width: 250px;
+	width: 100px;
+	text-align:center;
 }
 
 td{
-	width: 250px;
+	width: 100px;
+	text-align:center;
 }
 
 //makes text wrap color light gray
@@ -22,4 +33,8 @@ span{
 	
 	padding-left:3em;
 
+}
+
+h3{
+	text-align:center;
 }

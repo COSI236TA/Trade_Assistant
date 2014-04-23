@@ -8,7 +8,7 @@ function create_stock_chart(ticker, ticker_data){
   						alert("Element with id " + ticker + " does not exist...");
 					}
           else{
-	                $("#" + ticker).highcharts('StockChart', {
+	            var chart = $("#" + ticker).highcharts('StockChart', {
                     
                     chart: {
                         height : 300,

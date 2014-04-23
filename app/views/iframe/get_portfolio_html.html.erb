@@ -1,6 +1,6 @@
 
 
-<center> <h3> Portfolio name: <%= @portfolio_name %> </h3> </center>
+<h3> Portfolio name: <%= @portfolio_name %> </h3>
 
 
 <table class="table table-hover table-bordered table-condensed table-striped">
@@ -68,13 +68,15 @@
 
 
 $(document).ready(function() {
+    
+    
 
     var stocks_tickers = <%= raw @stock_ticker_array.to_json %>;
 
     $.ajax({
         type: 'GET',
         url: "/iframe/get_stock_json",
-        data: {tickers: stocks_tickers},
+        data: {tickers: stocks_tickers, layout: "custom"},
         dataType: 'json',
         success: function(data){
 

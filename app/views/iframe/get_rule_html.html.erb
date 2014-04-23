@@ -12,32 +12,41 @@
 
 
 
-	<h3><%= @rule_name %></h3>
-	<hr>
-	<b>Description</b> 
-	<br>
-	<p>
-		<span>
-			<%= @rule_description %>
-		</span>
-	</p>
-	<hr>
-	<b>Last Triggered</b> 
+	<h3> Rule name : <%= @rule_name %> <%= button_to  "Edit", edit_rule_path(@rule_id), method: :get %></h3>
 
-	<p>
-		<span>
-			<%= @rule_last_triggered  %>
-		</span>
-	</p>
-	<br>
 	<hr>
-	<b>Portfolio Name</b> 
-	<p>
-		<span>
-			<%= @portfolio_name  %>
-		</span>
-	</p>
-	<hr>
+
+<table class="table table-bordered table-condensed" >
+	<thead>
+	    <th> <b>Description</b> </th>
+	    <th> <b>Last Triggered</b> </th>
+	    <th> <b>Portfolio Name</b> </th>
+	</thead>
+
+	 <tbody>
+	 	 <tr>
+		 	 <td>
+		 	 	<span>
+					<%= @rule_description %>
+				</span>
+		 	 </td>
+		 	 <td>
+		 	 	<span>
+					<%= @rule_last_triggered  %>
+				</span>
+			</td>
+			<td>
+				<span>
+					<a href="/iframe/get_portfolio_html?portfolio_id=<%= @portfolio_id %>" target="_blank"><%= @portfolio_name%></a>
+				</span>
+			</td>
+		</tr>
+	</tbody>
+
+</table>
+
+
+
 
 
 </body>
