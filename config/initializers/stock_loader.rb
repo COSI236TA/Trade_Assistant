@@ -8,7 +8,7 @@ def load_stocks
 
   stock_list = {}
   CSV.foreach(file, :col_sep => "|") do |row|
-    stock_list[row[0]] = row[1].split('-')[0]
+    stock_list[row[0]] = row[1].split('-')[0].strip
   end
   return stock_list
 end
