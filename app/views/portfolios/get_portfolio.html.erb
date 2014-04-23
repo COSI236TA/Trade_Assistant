@@ -32,7 +32,7 @@
     <td width = "250">
     <span style="background-color:#e3e3e3;">
         <% @portfolio_rules.each do |rule| %>
-            <%= rule.name %>
+            <%= link_to(rule.name, "/rules/get_rule?type=page&rule_id=" + rule.id.to_s, :target => "_blank") %>
         <br>
         <% end %>
     </span>

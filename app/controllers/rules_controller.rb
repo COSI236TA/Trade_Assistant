@@ -111,7 +111,7 @@ class RulesController < ApplicationController
      @rule_last_triggered = current_rule.last_triggered
 
      #portfolio information
-     @portfolio_name = current_rule.portfolio.name
+     @portfolio = current_rule.portfolio
 
      if params[:type] == "iframe"
        render :layout=> "iframe_rule"
