@@ -1,4 +1,4 @@
-<%= form_for(@rule) do |f| %>
+<%= form_for(@rule, class: "hidden") do |f| %>
 
   <% if @rule.errors.any? %>
     <div id="error_explanation">
@@ -11,6 +11,7 @@
       </ul>
     </div>
   <% end %>
+
     <div class="field" >
       <%= f.label :name %>
       <%= f.text_field :name %>
@@ -22,13 +23,27 @@
     <div>
 
     <div class="field" >
+      <%= f.label :portfolio %>
+      <%  if @rule.portfolio != nil %>
+      <%=   f.select(:portfolio, options_for_select(@portfolios, selected: @rule.portfolio.id)) %>
+      <%  else %>
+      <%=   f.select(:portfolio, options_for_select(@portfolios)) %>
+      <% end %>
+    </div>
+
+    <div class="field" >
       <%= f.label :property %>
-      <%= f.text_field :property %>
+      <%  if @rule.property != nil %>
+      <%=   f.select(:property, options_for_select(@properties, selected: @rule.property.p_id)) %>
+      <%  else %>
+      <%=   f.select(:property, options_for_select(@properties)) %>
+      <%  end %>
+
     </div>
 
     <div class="field" >
       <%= f.label :rel %>
-      <%= f.text_field :rel %>
+      <%= f.select(:rel, options_for_select([["More than", "more"], ["Less than", "less"]], selected: @rule.rel)) %>
     </div>
 
     <div class="field" >
@@ -38,7 +53,7 @@
 
     <div class="field" >
       <%= f.label :activated %>
-      <%= f.text_field :activated %>
+      <%= f.select(:activated, options_for_select([["On", "on"], ["Off", "off"]], selected: @rule.activated)) %>
     </div>
 
     <div class="field" >

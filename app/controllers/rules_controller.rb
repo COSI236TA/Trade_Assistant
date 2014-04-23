@@ -1,6 +1,9 @@
 require 'json'
 
 class RulesController < ApplicationController
+  include RulesHelper
+  include PortfoliosHelper
+
   before_action :set_rule, only: [:show, :edit, :update, :destroy]
   respond_to :html, :xml, :json
   # GET /rules
@@ -16,10 +19,18 @@ class RulesController < ApplicationController
 
   # GET /rules/new
   def new
+    @user = User.find(session[:user_id])
+    @rule = @user.rules.build
+    @properties = get_properties
+    @portfolios = get_portfolios.map { |p| [p[0], p[1]] }
+    respond_with @rule
   end
 
   # GET /rules/1/edit
   def edit
+    @user = User.find(session[:user_id])
+    @properties = get_properties
+    @portfolios = get_portfolios.map { |p| [p[0], p[1]] }
   end
 
   # POST /rules
@@ -119,8 +130,11 @@ class RulesController < ApplicationController
   # PATCH/PUT /rules/1.json
   def update
     respond_to do |format|
-      if @rule.update(rule_params)
-        format.html { redirect_to @rule, notice: 'Rule was successfully updated.' }
+      clean_params = rule_params
+      clean_params[:portfolio] = Portfolio.find(clean_params[:portfolio])
+      clean_params[:property] = Property.find(clean_params[:property])
+      if @rule.update(clean_params)
+        format.html { redirect_to dashboard_path, notice: 'Rule was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }
@@ -148,7 +162,7 @@ class RulesController < ApplicationController
   # Never trust parameters from the scary internet, only allow the white list through.
   def rule_params
     #Map the number to the real property name
-    params.require(:rule).permit(:property, :rel, :target)
+    params.require(:rule).permit(:property, :rel, :target, :portfolio)
   end
 
 end

@@ -1,5 +1,6 @@
 class AjaxController < ApplicationController
   include RulesHelper
+  include PortfoliosHelper
   #returns data as json request for each stock ticker
   def get_stock_history
 
@@ -53,7 +54,7 @@ class AjaxController < ApplicationController
   def select_portfolio
     @user = User.find(session[:user_id])
     @rule = @user.rules.build
-    @portfolios = @user.portfolios.map { |p| [p.name, p.id, p.description] }
+    @portfolios = get_portfolios
     @properties = get_properties
     @rel = [["More than", "more"], ["Less than", "less"]]
 
