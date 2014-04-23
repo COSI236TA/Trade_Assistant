@@ -11,18 +11,7 @@ class StocksController < ApplicationController
      @volume = @stock["volume"]
 
      render :layout=>false
-
   end
-
-  def stock_info
-    ticker = params[:ticker]
-    result = DataPool::DataPool.query ticker
-
-    respond_to do |format|
-      format.json { render :json => result  }
-    end
-  end
-
 
   # GET /stocks
   # GET /stocks.json

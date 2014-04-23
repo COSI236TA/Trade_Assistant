@@ -1,7 +1,6 @@
 require 'json'
 
 class RulesController < ApplicationController
-  PROPERTY_MAP = {'1' => 'price', '2' => 'volume', '3' => 'marketcap', '4' => 'div', '5' => 'yld', '6' => 'p/e'}
   before_action :set_rule, only: [:show, :edit, :update, :destroy]
   respond_to :html, :xml, :json
   # GET /rules
@@ -9,10 +8,6 @@ class RulesController < ApplicationController
   def index
     @rules = Rule.all
   end
-
-
-
-
 
   # GET /rules/1
   # GET /rules/1.json
@@ -133,56 +128,6 @@ class RulesController < ApplicationController
         format.json { render json: @rule.errors, status: :unprocessable_entity }
       end
     end
-  end
-
-  def auto_complete
-    #ignore cases
-    s = params[:q].downcase
-    result = []
-    stock_list = STOCK_LIST
-    id = 0;
-    stock_list.each do |ticker, name|
-      #ignore cases
-      dticker = ticker.downcase
-      dname = name.downcase
-      if dticker.include?(s) or dname.include?(s)
-        result << { "id" => id, "ticker" => ticker, "name" => name}
-      end
-      id += 1
-      break if result.size >= 10
-    end
-    respond_to do |format|
-      format.json { render :json => result}
-    end
-  end
-
-    #resopond to AJAX select or create portfolio
-  def select_portfolio
-    @user = User.find(session[:user_id])
-    @rule = @user.rules.build
-    @portfolios = @user.portfolios.map { |p| [p.name, p.id, p.description] }
-    @properties = get_properties
-    @rel = [["More than", "more"], ["Less than", "less"]]
-
-    respond_to do |format|
-      format.js {}
-    end
-  end
-
-  def create_portfolio
-    @user = User.find(session[:user_id])
-    @rule = @user.rules.build
-    @portfolio = @user.portfolios.build
-    @properties = get_properties
-    @rel = [["More than", "more"], ["Less than", "less"]]
-
-    respond_to do |format|
-      format.js {}
-    end
-  end
-
-  def get_properties
-    return Property.all.slice(0, 21).map { |p| [p.d_name, p.id] }
   end
 
   # DELETE /rules/1

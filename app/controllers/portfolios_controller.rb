@@ -63,20 +63,7 @@ class PortfoliosController< ApplicationController
     end
   end
 
-  def portfolio_info
-    pid = params[:pid].to_i
 
-    portfolio = Portfolio.find(pid)
-
-    stocks = portfolio.stocks.map do |s| 
-      { ticker: s.ticker, name: STOCK_LIST[s.ticker], stock_data: DataPool::DataPool.query(s.ticker) }
-    end
-    puts stocks
-
-    respond_to do |format|
-      format.json { render :json => stocks }
-    end
-  end
 
   #get portfolio page and display it in iframe
   #lightbox portfolio page
@@ -112,7 +99,7 @@ class PortfoliosController< ApplicationController
       p client.search("GOOGLE", :count => 100).first.id
   
     if params[:type] == "iframe" 
-      render :layout=> "iframe_portfolio"
+      render :layout => "iframe_portfolio"
     elsif params[:type] == "page"
       render :layout => "application"
     end

@@ -1,0 +1,52 @@
+<div class= "row full_screen rule_form" id="property" name="select_property">
+  <h2 class="create-rule-section">Select Property <small>Step 2 of 3</small>
+    <a id="back-portfolio" class="scroll-action back btn btn-default" role="button">Back</a>
+  </h2>
+  <div id = "property_list" active="0" class ="col-md-4 col-md-offset-1 vcenter" name = "property_content">
+      <div class="list-group rule_list">
+        <% @properties.each do |property|  %>
+            <a class="property_item list-group-item" pid = <%= property[1].to_s %>>
+              <%= property[0] %>
+            </a>
+        <% end %>
+      </div>
+      <span class="help-block">Select the property you want to associate with this rule</span>
+      <p class="btn btn-primary scroll-action hcenter" id="to-rel">Next Step</p>
+  </div>
+
+  <div id ="property_info" class = "col-md-4 col-md-offset-2 vcenter" name = "portfolio_info">
+  I'm placeholder!
+  </div>
+</div>
+
+<div class= "row full_screen rule_form" id="target_rel" name="target_rel">
+  <h2 class="create-rule-section">Set Target <small>Step 3 of 3</small>
+    <a id="back-property" class="scroll-action back btn btn-default" role="button">Back</a>
+  </h2>
+
+  <div class = "col-md-4 col-md-offset-1 vcenter" >
+
+    <div id = "rel" class="row">
+      <div class = "col-md-6 text_center" name = "rel_content">
+        <a class="list-group-item rel_item" value = "more" >More than</a>
+      </div>
+      <div class = "col-md-6 text_center" name = "rel_content">
+        <a class="list-group-item rel_item" value = "less" >Less than</a>
+      </div>
+    </div>
+    <span class="help-block">Set relationship you want to associate with the stocks info and the target</span>
+
+    <div class="row">
+      <div class = "col-md-12" name = "rel_content">
+          <div class="left-inner-addon" id = "target">
+            <i class="icon-usd" id="unit"></i>
+            <input id = "target_input" class="form-control" placeholder="" />
+          </div>
+      </div>
+    </div>
+
+    <span class="help-block">Set the target and relationship</span>
+    <p id="submit" class="btn btn-success hcenter" >Create Rule</p>
+  </div>
+</div> 
+

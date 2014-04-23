@@ -72,7 +72,7 @@ $(document).ready(function() {
 
     $.ajax({
         type: 'GET',
-        url: "/iframe/get_stock_json",
+        url: "/get_stock_history",
         data: {tickers: stocks_tickers},
         dataType: 'json',
         success: function(data){
