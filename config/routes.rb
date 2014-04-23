@@ -3,24 +3,6 @@ TradeAssistant::Application.routes.draw do
   #root
   root to: 'home#index'          
 
-  #iframe request
-  # get "iframe/get_portfolio_html"
-  get "iframe/get_rule_html"
-  get "iframe/get_stock_json"
-
-
-  #portolio content request, it can deal with iframe and normal page uniformly
-  #it should have two parameters in the url: type and portfoli_id
-  #if type is iframe, the page will be rendered in iframe layout
-  #if type is page, it will be rendered in normal application layout
-  get "/portfolios/get_portfolio" => "portfolios#get_portfolio"
-
-  #rule content request, it can deal with iframe and normal page uniformly
-  #it should have two parameters in the url: type and rule_id
-  #if type is iframe, the page will be rendered in iframe layout
-  #otherwise, it will be rendered in normal application layout
-  get "/rules/get_rule" => "rules#get_rule"
-
   #users
   post '/settings', :to => 'users#update'
   get '/settings', :to => 'users#edit'
@@ -33,6 +15,17 @@ TradeAssistant::Application.routes.draw do
     get 'login' => :new
     post 'login' => :create
     delete 'login' => :destroy
+  end
+
+  #all ajax requests are gonna dealt by ajax controller
+  controller :ajax do
+    get 'ticker_auto_complete'
+    get 'portfolio_info'
+    get 'property_info'
+    get 'stock_info'
+    get 'select_portfolio'
+    get 'create_portfolio'
+    get 'get_stock_history'
   end
 
   #home
@@ -61,42 +54,46 @@ TradeAssistant::Application.routes.draw do
     get 'dashboard' => :new
   end
 
-  #Create new rule
+  # Create new rule
   get "create_rule", to: 'rules#new'
   post "create_rule", to: 'rules#create'
 
+  # resources rules and add collection actions
+  resources :rules do
+    collection do
+      #rule content request, it can deal with iframe and normal page uniformly
+      #it should have two parameters in the url: type and rule_id
+      #if type is iframe, the page will be rendered in iframe layout
+      #otherwise, it will be rendered in normal application layout
+      get "get_rule"
+    end
+  end
 
-  #AJAX requests
-  get "select_portfolio", to: 'rules#select_portfolio'
-  get "create_portfolio", to: 'rules#create_portfolio'
-  get "ticker_auto_complete", to: 'rules#auto_complete'
-  get "portfolio_info",   to: 'portfolios#portfolio_info'
-  get "property_info",    to: 'portfolios#property_info'
-  get "stock_info",       to: 'stocks#stock_info'
-
-			  
-
+  #resource portfolios and add collection actions
+  resources :portfolios do
+    collection do
+      #portolio content request, it can deal with iframe and normal page uniformly
+      #it should have two parameters in the url: type and portfoli_id
+      #if type is iframe, the page will be rendered in iframe layout
+      #if type is page, it will be rendered in normal application layout
+      get "get_portfolio"
+    end
+  end
 
   get "home/index"
   
+  ######################No longer use the following###############################
   #Get IFrame content through ajax
-  get "portfolios/get_stock_json", to: 'portfolios#get_stock_json'
-  get "portfolios/get_portfolio_html", to: 'portfolios#get_portfolio_html'
-  get "rules/get_rule_html", to: 'rules#get_rule_html'
-  get "stocks/:sym", to: 'stocks#show_by_sym'
-  get "rule_query", to: 'rule_match_result#rule_query' 
+  # get "portfolios/get_stock_json", to: 'portfolios#get_stock_json'
+  # get "portfolios/get_portfolio_html", to: 'portfolios#get_portfolio_html'
+  # get "rules/get_rule_html", to: 'rules#get_rule_html'
+  # get "stocks/:sym", to: 'stocks#show_by_sym'
+  # get "rule_query", to: 'rule_match_result#rule_query' 
 
-
-
-
-
-  #resources :indicators
 
   resources :markets
 
   #Stocks in db would not be accessed directly
   resources :stocks
-
-  resources :rules 
 
 end

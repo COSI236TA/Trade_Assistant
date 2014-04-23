@@ -1,2 +1,23 @@
-<h1>Stocks#show</h1>
-<p>Find me in app/views/stocks/show.html.erb</p>
+<h1><%= @stock.name %></h1>
+<div class="stock_chart" id= <%= @stock.ticker %> >
+</div> 
+<script>
+
+
+$(document).ready(function() {
+
+
+    var stocks_tickers = [$(".stock_chart")[0].id];
+
+    $.ajax({
+        type: 'GET',
+        url: "/get_stock_history",
+        data: {tickers: stocks_tickers},
+        dataType: 'json',
+        success: function(data){
+          create_stock_chart(stocks_tickers[0], data[0]);
+        }
+    });
+
+});
+</script>

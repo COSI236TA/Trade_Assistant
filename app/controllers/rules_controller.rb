@@ -1,7 +1,9 @@
 require 'json'
 
 class RulesController < ApplicationController
-  PROPERTY_MAP = {'1' => 'price', '2' => 'volume', '3' => 'marketcap', '4' => 'div', '5' => 'yld', '6' => 'p/e'}
+  include RulesHelper
+  include PortfoliosHelper
+
   before_action :set_rule, only: [:show, :edit, :update, :destroy]
   respond_to :html, :xml, :json
   # GET /rules
@@ -10,10 +12,6 @@ class RulesController < ApplicationController
     @rules = Rule.all
   end
 
-
-
-
-
   # GET /rules/1
   # GET /rules/1.json
   def show
@@ -21,10 +19,18 @@ class RulesController < ApplicationController
 
   # GET /rules/new
   def new
+    @user = User.find(session[:user_id])
+    @rule = @user.rules.build
+    @properties = get_properties
+    @portfolios = get_portfolios.map { |p| [p[0], p[1]] }
+    respond_with @rule
   end
 
   # GET /rules/1/edit
   def edit
+    @user = User.find(session[:user_id])
+    @properties = get_properties
+    @portfolios = get_portfolios.map { |p| [p[0], p[1]] }
   end
 
   # POST /rules
@@ -106,12 +112,11 @@ class RulesController < ApplicationController
      current_rule = Rule.find(params[:rule_id])
 
      #rule information
-     @rule_name = current_rule.name
-     @rule_description = current_rule.description
-     @rule_last_triggered = current_rule.last_triggered
+     @rule = current_rule
+     # @rule_last_triggered = current_rule.last_triggered
 
      #portfolio information
-     @portfolio_name = current_rule.portfolio.name
+     @portfolio = current_rule.portfolio
 
      if params[:type] == "iframe"
        render :layout=> "iframe_rule"
@@ -125,64 +130,17 @@ class RulesController < ApplicationController
   # PATCH/PUT /rules/1.json
   def update
     respond_to do |format|
-      if @rule.update(rule_params)
-        format.html { redirect_to @rule, notice: 'Rule was successfully updated.' }
+      clean_params = rule_params
+      clean_params[:portfolio] = Portfolio.find(clean_params[:portfolio])
+      clean_params[:property] = Property.find(clean_params[:property])
+      if @rule.update(clean_params)
+        format.html { redirect_to dashboard_path, notice: 'Rule was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }
         format.json { render json: @rule.errors, status: :unprocessable_entity }
       end
     end
-  end
-
-  def auto_complete
-    #ignore cases
-    s = params[:q].downcase
-    result = []
-    stock_list = STOCK_LIST
-    id = 0;
-    stock_list.each do |ticker, name|
-      #ignore cases
-      dticker = ticker.downcase
-      dname = name.downcase
-      if dticker.include?(s) or dname.include?(s)
-        result << { "id" => id, "ticker" => ticker, "name" => name}
-      end
-      id += 1
-      break if result.size >= 10
-    end
-    respond_to do |format|
-      format.json { render :json => result}
-    end
-  end
-
-    #resopond to AJAX select or create portfolio
-  def select_portfolio
-    @user = User.find(session[:user_id])
-    @rule = @user.rules.build
-    @portfolios = @user.portfolios.map { |p| [p.name, p.id, p.description] }
-    @properties = get_properties
-    @rel = [["More than", "more"], ["Less than", "less"]]
-
-    respond_to do |format|
-      format.js {}
-    end
-  end
-
-  def create_portfolio
-    @user = User.find(session[:user_id])
-    @rule = @user.rules.build
-    @portfolio = @user.portfolios.build
-    @properties = get_properties
-    @rel = [["More than", "more"], ["Less than", "less"]]
-
-    respond_to do |format|
-      format.js {}
-    end
-  end
-
-  def get_properties
-    return Property.all.slice(0, 21).map { |p| [p.d_name, p.id] }
   end
 
   # DELETE /rules/1
@@ -204,7 +162,7 @@ class RulesController < ApplicationController
   # Never trust parameters from the scary internet, only allow the white list through.
   def rule_params
     #Map the number to the real property name
-    params.require(:rule).permit(:property, :rel, :target)
+    params.require(:rule).permit(:property, :rel, :target, :portfolio)
   end
 
 end
