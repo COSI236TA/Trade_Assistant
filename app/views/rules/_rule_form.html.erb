@@ -1,0 +1,68 @@
+<%= form_for(@rule, class: "hidden") do |f| %>
+
+  <% if @rule.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@rule.errors.count, "error") %> prohibited this rule from being saved:</h2>
+
+      <ul>
+      <% @rule.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li> 
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+    <div class="field" >
+      <%= f.label :name %>
+      <%= f.text_field :name %>
+    </div>
+
+    <div class="field" >
+      <%= f.label :description %>
+      <%= f.text_field :description %>
+    <div>
+
+    <div class="field" >
+      <%= f.label :portfolio %>
+      <%  if @rule.portfolio != nil %>
+      <%=   f.select(:portfolio, options_for_select(@portfolios, selected: @rule.portfolio.id)) %>
+      <%  else %>
+      <%=   f.select(:portfolio, options_for_select(@portfolios)) %>
+      <% end %>
+    </div>
+
+    <div class="field" >
+      <%= f.label :property %>
+      <%  if @rule.property != nil %>
+      <%=   f.select(:property, options_for_select(@properties, selected: @rule.property.p_id)) %>
+      <%  else %>
+      <%=   f.select(:property, options_for_select(@properties)) %>
+      <%  end %>
+
+    </div>
+
+    <div class="field" >
+      <%= f.label :rel %>
+      <%= f.select(:rel, options_for_select([["More than", "more"], ["Less than", "less"]], selected: @rule.rel)) %>
+    </div>
+
+    <div class="field" >
+      <%= f.label :target %>
+      <%= f.text_field :target %>
+    </div>
+
+    <div class="field" >
+      <%= f.label :activated %>
+      <%= f.select(:activated, options_for_select([["On", "on"], ["Off", "off"]], selected: @rule.activated)) %>
+    </div>
+
+    <div class="field" >
+      <%= f.label :notification_method %>
+      <%= f.text_field :notification_method %>
+    </div>
+
+    <div class="actions">
+      <%= f.submit %>
+    </div>
+    
+<% end %>

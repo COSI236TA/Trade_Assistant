@@ -11,7 +11,7 @@
       <tbody>
         <% @portfolios.each do |portfolio| %>
         <tr>
-          <td><a class="various" data-fancybox-type="iframe" href="/iframe/get_portfolio_html?portfolio_id=<%= portfolio.id %>"><%= portfolio.name %></a>
+          <td><a class="various" data-fancybox-type="iframe" href="/portfolios/get_portfolio?type=iframe&portfolio_id=<%= portfolio.id %>"><%= portfolio.name %></a>
           <td><%= portfolio.description %></td>
         </tr>
         <% end %>

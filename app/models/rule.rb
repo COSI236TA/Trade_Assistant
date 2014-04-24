@@ -29,4 +29,14 @@ class Rule < ActiveRecord::Base
       "Watch #{portfolio}'s average #{property_d_name} is #{rel} than #{target}"
     end
   end
+
+  #return the most recent history. If none, return nil.
+  def recent_history
+    if last_triggered == nil
+      return nil
+    else 
+      history = RuleHistory.find(last_triggered)
+      return history
+    end
+  end
 end

@@ -10,7 +10,6 @@
 // Read Sprockets README (https://github.com/sstephenson/sprockets#sprockets-directives) for details
 // about supported directives.
 //
-//= require_directory .
 //= require jquery
 //= require jquery.turbolinks
 //= require jquery_ujs
@@ -22,6 +21,7 @@
 // require highcharts/highcharts-more
 //= require bootstrap
 
+//= require_directory .
 
 
 //= require turbolinks

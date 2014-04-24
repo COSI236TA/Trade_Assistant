@@ -21,7 +21,6 @@
     <th>Last Triggered</th>
     <th>Description</th>
     <th>Activated</th>
-    <th>Delete</th>
   </thead>
   <tbody>
     <% if @my_rules != nil %>
@@ -29,11 +28,11 @@
       <tr>
       <td><a class="various" data-fancybox-type="iframe" href="/iframe/get_rule_html?rule_id=<%= rule.id %>"><%= rule.name %></a></td>
       <td><a class="various" data-fancybox-type="iframe" href="/iframe/get_portfolio_html?portfolio_id=<%= rule.portfolio.id %>&layout=custom"><%= rule.portfolio.name %></a>
+      
       </td>
       <td><%= rule.triggered? %></td>
       <td><%= rule.description %></td>
       <td><%= rule.activated? %></td>
-      <td><%= link_to "Delete", rule_path(:id=>rule.id), :method=>:delete %>
       </td>
       </tr>
       <% end %>
@@ -83,4 +82,5 @@ $(document).ready(function() {
 </div>
   </div>
 </div>
+
 
