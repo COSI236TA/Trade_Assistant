@@ -21,12 +21,24 @@
     </td>
 
    <td width = "250">
-    <span style="background-color:#e3e3e3;">    
+  
         <% @portfolio_stocks.each do |stock| %>
- 		     <%= stock.ticker %>
+           <span style="background-color:#e3e3e3;">  
+ 		     <%= stock.ticker %> 
+                  </span> 
+                  <br>
+            <% if @ratings_hash[stock.ticker] = 'Good' %>
+            <% <span style="background-color:#e3e3e3;"> %>
+            <% elsif @ratings_hash[stock.ticker] = 'Bad' %>
+            <% <span style="background-color:#680000;"> %>
+            <% else <span style = ""> %>
+            <% end %>
+
+             <%= 'Twitter rating - ' + @ratings_hash[stock.ticker] %>
+             </span>
         <br>
  	    <% end %>
-    </span>
+
     </td>
 
     <td width = "250">
