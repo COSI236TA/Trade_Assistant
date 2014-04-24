@@ -8,9 +8,9 @@
 
 puts "Seeding"
 
-User.destroy_all
-Rule.destroy_all
-Portfolio.destroy_all
+# User.destroy_all
+# Rule.destroy_all
+# Portfolio.destroy_all
 tickers = ["GOOG", "TSLA", "AAPL"]
 user = User.create(email: "a@b.c", name: "Alice", password: "12345", password_confirmation: "12345", notification: "email")
 
