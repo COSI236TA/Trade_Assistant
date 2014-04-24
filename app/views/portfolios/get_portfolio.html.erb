@@ -13,20 +13,30 @@
 
   <tbody>
   <tr>
-  <td width = "250">
+    <td width = "250">
     <span style="background-color:#e3e3e3;">
         <%= @portfolio_description %>
     </span>
 
     </td>
 
-   <td width = "250">
-    <span style="background-color:#e3e3e3;">    
-        <% @portfolio_stocks.each do |stock| %>
- 		     <%= stock.ticker %>
+    <td width = "250">
+         <% @portfolio_stocks.each do |stock| %>
+           <span style="background-color:#e3e3e3;">  
+             <%= stock.ticker %> 
+                  </span> 
+                  <br>
+            <% if @ratings_hash[stock.ticker] == 'Good' %>
+            <%= tag("span", :style => "background-color:#66CC00;") %>
+            <% elsif @ratings_hash[stock.ticker] == 'Bad' %>
+               <%= tag("span", :style => "background-color:#C00000;") %>
+            <% end %>
+
+             <%= 'Twitter rating - ' + @ratings_hash[stock.ticker] %>
+             </span>
         <br>
- 	    <% end %>
-    </span>
+        <% end %>
+
     </td>
 
     <td width = "250">
