@@ -1,54 +1,32 @@
 
-<<<<<<< HEAD:app/views/iframe/get_rule_html.html.erb
-<!DOCTYPE html>
-<html>
-<head>
-	<meta charset="utf-8">
-    <meta name="Description" content="Your Title">
-    <meta name="author" content="CoffeeCup Software, Inc.">
-    <meta name="Copyright" content="Copyright (c) 2010 CoffeeCup, all rights reserved.">
-	<title>Your Title</title>
-</head>
-<body>
+	<h3><%= @rule.name %></h3>
+	<%= link_to "Edit Rule", edit_rule_path(id: @rule.id), class: "btn btn_primary", target: "_blank" %>
+	<hr style="padding:0px; margin: 0px;">
+	<b>Description</b> 
+	<br>
+	<p>
+		<span style="background-color:#e3e3e3;">
+			<%= @rule.description %>
+		</span>
+	</p>
+	<hr style="padding:0px; margin: 0px;">
+	<b>Last Triggered</b> 
 
+	<p>
+		<span style="background-color:#e3e3e3;">
+			<%= @rule.last_triggered %>
+		</span>
+	</p>
+	<br>
+	<hr style="padding:0px; margin: 0px;">
+	<b>Portfolio Name</b> 
+	<p>
+		<span style="background-color:#e3e3e3;">
+			<%= link_to @portfolio.name, "/portfolios/get_portfolio?type=page&portfolio_id=" + @portfolio.id.to_s, target: "_blank" %>
+		</span>
+	</p>
+	<hr style="padding:0px; margin: 0px;">
 
-
-	<h3> Rule name : <%= @rule_name %> <%= button_to  "Edit", edit_rule_path(@rule_id), method: :get %></h3>
-
-	<hr>
-
-<table class="table table-bordered table-condensed" >
-	<thead>
-	    <th> <b>Description</b> </th>
-	    <th> <b>Last Triggered</b> </th>
-	    <th> <b>Portfolio Name</b> </th>
-	</thead>
-
-	 <tbody>
-	 	 <tr>
-		 	 <td>
-		 	 	<span>
-					<%= @rule_description %>
-				</span>
-		 	 </td>
-		 	 <td>
-		 	 	<span>
-					<%= @rule_last_triggered  %>
-				</span>
-			</td>
-			<td>
-				<span>
-					<a href="/iframe/get_portfolio_html?portfolio_id=<%= @portfolio_id %>" target="_blank"><%= @portfolio_name%></a>
-				</span>
-			</td>
-		</tr>
-	</tbody>
-
-</table>
-
-
-</body>
-</html>
 
 
 

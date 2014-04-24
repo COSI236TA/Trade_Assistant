@@ -16,13 +16,13 @@ user = User.create(email: "a@b.c", name: "Alice", password: "12345", password_co
 
 #Create portfolios
 portfolio = user.portfolios.create(name: "high tech", description: "several high tect stocks")
-portfolio2 = user.portfolios.create(name: "low food", description: "some food stocks")
+
 
 tickers.each do |ticker|
   DataPool::DataUpdater.update ticker
   portfolio.stocks << Stock.find_by(ticker: ticker)
 end
 
-user.rules.create(portfolio: portfolio, property: Property.find(7), rel: "more", target: "1", name: "high tech 1", description: "watch high tech stocks test based on rules")
-user.rules.create(portfolio: portfolio2, property: Property.find(7), rel: "less", target: "1", name: "food track", description: "watch food stocks")
+user.rules.create(portfolio: portfolio, property: Property.find(7), rel: "more", target: "1", name: "high tech 1", description: "watch high tech")
+user.rules.create(portfolio: portfolio, property: Property.find(7), rel: "less", target: "1", name: "high tech 2", description: "watch high tech")
 puts "Seed done"

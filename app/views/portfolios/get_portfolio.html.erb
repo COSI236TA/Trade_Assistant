@@ -1,47 +1,36 @@
 
 
-<h3> Portfolio name: <%= @portfolio_name %> </h3>
+<h3> <%= @portfolio_name %> </h3>
 
 
 <table class="table table-hover table-bordered table-condensed table-striped">
 
 <thead>
-    <th> <b>Description</b> </th>
-    <th> <b>Stocks</b> </th>
-    <th> <b>Rules</b> </th>
+    <th width = "250"> <b>Description</b> </th>
+    <th width = "250"> <b>Stocks</b> </th>
+    <th width = "250"> <b>Rules</b> </th>
 </thead>
 
   <tbody>
   <tr>
-  <td>
-    <span>
+  <td width = "250">
+    <span style="background-color:#e3e3e3;">
         <%= @portfolio_description %>
     </span>
 
     </td>
 
-   <td>
+   <td width = "250">
+    <span style="background-color:#e3e3e3;">    
         <% @portfolio_stocks.each do |stock| %>
-           <span style="background-color:#e3e3e3;">  
- 		     <%= stock.ticker %> 
-                  </span> 
-                  <br>
-            <% if @ratings_hash[stock.ticker] = 'Good' %>
-            <% <span style="background-color:#e3e3e3;"> %>
-            <% elsif @ratings_hash[stock.ticker] = 'Bad' %>
-            <% <span style="background-color:#680000;"> %>
-            <% else <span style = ""> %>
-            <% end %>
-
-             <%= 'Twitter rating - ' + @ratings_hash[stock.ticker] %>
-             </span>
+ 		     <%= stock.ticker %>
         <br>
  	    <% end %>
-
+    </span>
     </td>
 
-    <td>
-    <span>
+    <td width = "250">
+    <span style="background-color:#e3e3e3;">
         <% @portfolio_rules.each do |rule| %>
             <%= link_to(rule.name, "/rules/get_rule?type=page&rule_id=" + rule.id.to_s, :target => "_blank") %>
         <br>
@@ -54,15 +43,13 @@
 
 <br>
 
-<p class = "filter_text"><b>Filter Graph </b></p> 
+<p style="padding-left:3em;"><b>Filter Graph </b></p> 
 
-<select onchange="option_on_change_chart(<%= @stock_ticker_array.to_json %>)" id="options">
+<select onchange="option_change()" id="options">
     <option value="all">Show all stock graphs</option>
-
     <% @portfolio_stocks.each do |stock| %>
     <option value=<%= stock.ticker %>><%= stock.ticker %></option>
     <% end %>
-
 </select>
 
 <br>
@@ -79,8 +66,7 @@
 
 
 $(document).ready(function() {
-    
-    
+
 
     var stocks_tickers = <%= raw @stock_ticker_array.to_json %>;
 
@@ -103,6 +89,36 @@ $(document).ready(function() {
 
 });
 
+
+
+function option_change(){
+
+    var option = document.getElementById("options").value;
+    var stocks_tickers = <%= raw @stock_ticker_array.to_json %>;
+
+
+    if(option != "all"){
+        for(var x=0;x < stocks_tickers.length;x++){
+
+            document.getElementById(stocks_tickers[x]).style.display =  "none";
+
+        }
+
+         document.getElementById(option).style.display =  "block";
+
+    }
+
+    else{
+
+        for(var x=0;x < stocks_tickers.length;x++){
+
+           document.getElementById(stocks_tickers[x]).style.display =  "block";
+        }
+
+    }
+
+
+}
 
 
 

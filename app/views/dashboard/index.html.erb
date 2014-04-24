@@ -19,16 +19,15 @@
     <th>Rule</th>
     <th>Portfolio</th>
     <th>Last Triggered</th>
-    <th>Description</th>
+    <th><center>Description</center></th>
     <th>Activated</th>
   </thead>
   <tbody>
     <% if @my_rules != nil %>
       <% @my_rules.each do |rule| %>
       <tr>
-      <td><a class="various" data-fancybox-type="iframe" href="/iframe/get_rule_html?rule_id=<%= rule.id %>"><%= rule.name %></a></td>
-      <td><a class="various" data-fancybox-type="iframe" href="/iframe/get_portfolio_html?portfolio_id=<%= rule.portfolio.id %>&layout=custom"><%= rule.portfolio.name %></a>
-      
+      <td><a class="various" data-fancybox-type="iframe" href="/rules/get_rule?type=iframe&rule_id=<%= rule.id %>"><%= rule.name %></a></td>
+      <td><a class="various" data-fancybox-type="iframe" href="/portfolios/get_portfolio?type=iframe&portfolio_id=<%= rule.portfolio.id %>"><%= rule.portfolio.name %></a>
       </td>
       <td><%= rule.triggered? %></td>
       <td><%= rule.description %></td>
@@ -82,5 +81,4 @@ $(document).ready(function() {
 </div>
   </div>
 </div>
-
 

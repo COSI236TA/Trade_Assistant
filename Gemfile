@@ -1,7 +1,6 @@
 source 'https://rubygems.org'
 #ruby '2.0.0'
 
-gem 'sentimental'
 gem 'twitter'
 gem 'highstock-rails'
 #gem "highcharts-rails", "~> 3.0.0"
