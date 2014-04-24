@@ -99,4 +99,13 @@ class AjaxController < ApplicationController
     end
   end
 
+  def get_property_description
+    property = Property.find_by(id: params[:property_id])
+    respond_to do |format|
+      if property != nil
+        format.json { render json: property} 
+      end
+    end
+  end
+
 end
