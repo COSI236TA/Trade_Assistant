@@ -129,6 +129,7 @@ GEM
     sdoc (0.4.0)
       json (~> 1.8)
       rdoc (~> 4.0, < 5.0)
+    sentimental (1.0.3)
     simple_oauth (0.2.0)
     slop (3.4.7)
     sprockets (2.11.0)
@@ -191,6 +192,7 @@ DEPENDENCIES
   rails_12factor
   sass-rails (~> 4.0.0)
   sdoc
+  sentimental
   sucker_punch (~> 1.0)
   turbolinks
   twitter

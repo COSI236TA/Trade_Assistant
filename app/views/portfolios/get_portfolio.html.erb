@@ -1,37 +1,47 @@
 
-
-<h3> <%= @portfolio_name %> </h3>
+<center> <h3> Portfolio name: <%= @portfolio_capa_name %> </h3> </center>
 
 
 <table class="table table-hover table-bordered table-condensed table-striped">
 
 <thead>
-    <th width = "250"> <b>Description</b> </th>
-    <th width = "250"> <b>Stocks</b> </th>
-    <th width = "250"> <b>Rules</b> </th>
+     <th> <b>Description</b> </th>
+     <th> <b>Stocks</b> </th>
+     <th> <b>Rules</b> </th>
 </thead>
 
   <tbody>
   <tr>
-  <td width = "250">
-    <span style="background-color:#e3e3e3;">
-        <%= @portfolio_description %>
-    </span>
+    <td>
+      <span class="gray">
+        <%= @portfolio.description %>
+      </span>
 
     </td>
 
-   <td width = "250">
-    <span style="background-color:#e3e3e3;">    
-        <% @portfolio_stocks.each do |stock| %>
- 		     <%= stock.ticker %>
+    <td>
+         <% @portfolio.stocks.each do |stock| %>
+            <span class = "gray">  
+             <%= stock.ticker %> 
+            </span> 
+                  <br>
+            <% if @ratings_hash[stock.ticker] == 'Good' %>
+            <%= tag("span", :class => "good") %>
+            <% elsif @ratings_hash[stock.ticker] == 'Bad' %>
+               <%= tag("span", :class => "bad") %>
+            <% end %>
+            <% if @ratings_hash[stock.ticker] != nil %>
+             <%= 'Twitter rating - ' + @ratings_hash[stock.ticker] %>
+             <% end %>
+             </span>
         <br>
- 	    <% end %>
-    </span>
+        <% end %>
+
     </td>
 
-    <td width = "250">
-    <span style="background-color:#e3e3e3;">
-        <% @portfolio_rules.each do |rule| %>
+        <td>
+      <span class="gray">
+        <% @portfolio.rules.each do |rule| %>
             <%= link_to(rule.name, "/rules/get_rule?type=page&rule_id=" + rule.id.to_s, :target => "_blank") %>
         <br>
         <% end %>
@@ -43,13 +53,16 @@
 
 <br>
 
-<p style="padding-left:3em;"><b>Filter Graph </b></p> 
+<p class = "filter_text"><b>Filter Graph </b></p> 
 
-<select onchange="option_change()" id="options">
+<select onchange="option_on_change_chart(<%= @stock_ticker_array.to_json %>)" id="options">
     <option value="all">Show all stock graphs</option>
-    <% @portfolio_stocks.each do |stock| %>
+
+    <% @portfolio.stocks.each do |stock| %>
     <option value=<%= stock.ticker %>><%= stock.ticker %></option>
+
     <% end %>
+
 </select>
 
 <br>
