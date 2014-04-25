@@ -2,4 +2,38 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+//table
+th{
+	width: 250px;
+}
 
+td{
+	width: 250px;
+}
+
+//makes text wrap color light gray, neutral
+span.gray{
+
+	background-color:#e3e3e3;
+}
+
+//makes text background color green
+span.good{
+	
+	background-color:#66CC00;
+}
+
+//makes text background color red
+span.bad{
+	
+	background-color:#C00000;
+}
+
+//makes filter graph text centered to dropbox show graphs
+.filter_text{
+	
+	padding-left:3em;
+
+}
+
+//added new css on top - Eddie

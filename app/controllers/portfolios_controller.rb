@@ -72,20 +72,18 @@ class PortfoliosController< ApplicationController
      portfolio = Portfolio.find(params[:portfolio_id])
 
      #portfolio information
-     @portfolio_name = portfolio.name.gsub(/\b\w/){ $&.upcase } #Makes each first char upper case
-     @portfolio_description = portfolio.description
-     @portfolio_stocks = portfolio.stocks
-     @portfolio_rules = portfolio.rules
+     @portfolio = portfolio
+     @portfolio_capa_name = first_char_cap(portfolio.name) #Makes each first char upper case
 
      #store each ticker into an array
      @stock_ticker_array = Array.new
-     @portfolio_stocks.each do |stock|
+     portfolio.stocks.each do |stock|
 
      @stock_ticker_array << stock.ticker
 
      end
 
-
+     #use of twitter
      client = Twitter::REST::Client.new do |config|
       config.consumer_key        = "07MR13DREG5LnUuiFqgXJTTDl"
       config.consumer_secret     = "p3tR0GXc9o0AKWEwOPHWmV5wedlaIv6iNx7UBcg4ZzYP0KcmaQ"
@@ -95,15 +93,66 @@ class PortfoliosController< ApplicationController
 
       p "********************************"
 
-      p client.search("GOOGLE", :count => 100).first.text
-      p client.search("GOOGLE", :count => 100).first.id
+
+      #save for testing
+       @ratings_hash = Hash.new
+    #   Sentimental.load_defaults
+    # #Sentimental.threshold = 0.1
+    #  analyzer = Sentimental.new #default score is 0
+    #  p (analyzer.get_score 'I kind of like ruby')
+    #  p (analyzer.get_score 'I kinda like ruby')
+    #  p (analyzer.get_score 'I like ruby')
   
+
+    #  @ratings_hash = Hash.new
+    #  @portfolio_stocks.each do |stock|
+
+    #  count = 0
+    #   client.search(stock.name, :count => 100).each do |tweet|
+    #     count = count + (analyzer.get_score tweet.text)
+    #   end
+
+    #   #p count
+
+    #   if(count > 0)
+    #     rating = 'Good'
+      
+    #   elsif(count < 0)
+    #     rating = 'Bad'
+    
+    #   else(count = 0)
+    #     rating = 'Neutral'
+      
+    #   end
+
+    #   p stock.ticker
+    #   p stock.name
+    #   p count
+
+    #   @ratings_hash[stock.ticker] = rating
+
+    #end
+
+      #p client.search("GOOGLE", :count => 100).first.id
+  
+
+
+
     if params[:type] == "iframe" 
       render :layout => "iframe_portfolio"
     elsif params[:type] == "page"
       render :layout => "application"
     end
   end
+
+    def first_char_cap(text)
+ 
+     text.gsub(/\b\w/){ $&.upcase }
+  
+   end
+
+
+
 
   # DELETE /portfolios/1
   # DELETE /portfolios/1.json

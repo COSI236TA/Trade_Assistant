@@ -3,6 +3,21 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 
+//make hr/horizontal line to have less spacing
+hr.nopadding{
+  padding:0px;
+  margin: 0px;
+}
+
+//sets background gray
+span.gray{
+  
+  background-color:#e3e3e3;
+}
+
+//added new css on top - Eddie
+
+
 body, html {
   height: 100%;
 }
