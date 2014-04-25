@@ -11,38 +11,34 @@
 
 
 
-	<h3> Rule name : <%= @rule_name %> <%= button_to  "Edit", edit_rule_path(@rule_id), method: :get %></h3>
+	<center><h3> <%= @rule.name %></h3></center>
+	<%= link_to "Edit Rule", edit_rule_path(id: @rule.id), class: "btn btn_primary", target: "_blank" %>
+	<hr class="nopadding">
+	<b>Description</b> 
+	<br>
+	<p>
+		<span class="gray">
+			<%= @rule.description %>
+		</span>
+	</p>
+	<hr class="nopadding">
+	<b>Last Triggered</b> 
 
-	<hr>
+	<p>
+		<span class="gray">
+			<%= @rule.last_triggered %>
+		</span>
+	</p>
+	<br>
+	<hr class="nopadding">
+	<b>Portfolio Name</b> 
+	<p>
+		<span class="gray">
+			<%= link_to @portfolio.name, "/portfolios/get_portfolio?type=page&portfolio_id=" + @portfolio.id.to_s, target: "_blank" %>
+		</span>
+	</p>
+	<hr class="nopadding">
 
-<table class="table table-bordered table-condensed" >
-	<thead>
-	    <th> <b>Description</b> </th>
-	    <th> <b>Last Triggered</b> </th>
-	    <th> <b>Portfolio Name</b> </th>
-	</thead>
-
-	 <tbody>
-	 	 <tr>
-		 	 <td>
-		 	 	<span>
-					<%= @rule_description %>
-				</span>
-		 	 </td>
-		 	 <td>
-		 	 	<span>
-					<%= @rule_last_triggered  %>
-				</span>
-			</td>
-			<td>
-				<span>
-					<%= link_to @portfolio.name, "/portfolios/get_portfolio?type=page&portfolio_id=" + @portfolio.id.to_s, target: "_blank" %>
-				</span>
-			</td>
-		</tr>
-	</tbody>
-
-</table>
 
 
 
