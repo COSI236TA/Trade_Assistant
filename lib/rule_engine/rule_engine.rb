@@ -14,6 +14,11 @@ class RuleEngine::RuleEngine
       puts "update datapool fail."
     end
     Rule.find_each do |rule|
+      #skip unactivated rules
+      if rule.activated == "false"
+        next
+      end
+
       #portfolio of the rule
       portfolio = rule.portfolio
 
@@ -62,7 +67,11 @@ class RuleEngine::RuleEngine
             most_recent.update(content)
           else
             most_recent = RuleHistory.new(content)
+            #send notification if necessary
           end 
+        end
+        if rule.notified_time == nil || Time.now - rule.notified_time >= 60 * 60 * 6 
+          send_notification(rule, property, stocks)
         end
 
         #if cannot save the history record sucessuflly, put the message
@@ -73,6 +82,16 @@ class RuleEngine::RuleEngine
           rule.save
         end
       end
+    end
+  end
+
+  def self.send_notification rule, property, stocks
+    rule.notified_time = Time.now
+    if rule.save
+      stocks = stocks.map{ |stock| { name: stock.name, property_name: property, property_info: stock.attributes[property].to_f} }
+      user = rule.user
+      mail = { rule: rule, user: user, stocks: stocks }
+      Jobs::EmailJob.new.async.perform(mail)
     end
   end
 end

@@ -26,4 +26,15 @@ TradeAssistant::Application.configure do
   # This option may cause significant delays in view rendering with a large
   # number of complex assets.
   config.assets.debug = true
+
+  #add mailer configuration 
+  config.action_mailer.smtp_settings = {
+    :address   => "smtp.mandrillapp.com",
+    :port      => 587, # ports 587 and 2525 are also supported with STARTTLS
+    :enable_starttls_auto => true, # detects and uses STARTTLS
+    :user_name => "w.b.hsiao@gmail.com",
+    :password  => "qIBtFwSJ9Hc7VdKLgZFn9w", # SMTP password is any valid API key
+    :authentication => 'login', # Mandrill supports 'plain' or 'login'
+    :domain => 'trade-assistant.herokuapp.com', # your domain to identify your server when connecting
+  }
 end

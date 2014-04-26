@@ -1,5 +1,8 @@
 require File.expand_path('../boot', __FILE__)
 
+
+#This is the environment configuration for the whole application in all enviroment.
+
 require 'rails/all'
 
 # Require the gems listed in Gemfile, including any gems
