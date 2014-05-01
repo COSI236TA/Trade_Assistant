@@ -1,0 +1,13 @@
+<div>
+  <h2>Hi <%= @user.name %>,</h2>
+    <p>Your rule <%= @rule.name %> is triggered! Here is the details: </p>
+    <h3>Rule Description</h3>
+    <p><%= @rule.description %></p>
+    <h3>Stock Info</h3>
+    <% @stocks.each do |stock| %>
+      <div class="stock_info" >
+        <p><%=  stock[:name]  %></p>
+        <p><%=  stock[:property_name] %>: <%= stock[:property_info] %></p>
+      </div>
+    <% end %>
+</div>
