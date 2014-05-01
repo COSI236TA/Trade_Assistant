@@ -19,25 +19,28 @@
 
     </td>
 
-    <td>
-         <% @portfolio.stocks.each do |stock| %>
-            <span class = "gray">  
-             <%= stock.ticker %> 
-            </span> 
-                  <br>
-            <% if @ratings_hash[stock.ticker] == 'Good' %>
-            <%= tag("span", :class => "good") %>
-            <% elsif @ratings_hash[stock.ticker] == 'Bad' %>
-               <%= tag("span", :class => "bad") %>
-            <% end %>
-            <% if @ratings_hash[stock.ticker] != nil %>
-             <%= 'Twitter rating - ' + @ratings_hash[stock.ticker] %>
-             <% end %>
-             </span>
-        <br>
-        <% end %>
 
-    </td>
+
+	<td>
+
+	<% @portfolio.stocks.each do |stock| %>
+		<%= stock.ticker %>
+		
+		<br>
+		<button type="button" onclick="get_rating('<%= stock.ticker %>')">Get Twitter Rating</button>
+
+		<%= image_tag("twitter-loader.gif", :id => "load_image_#{stock.ticker}", :class => "stock_loading" ) %>
+
+		<div id = "rating_text_<%= stock.ticker%>" class = "twitter_rating"></div>
+
+
+		<br>
+		<br>
+	<% end %>
+
+	</td>
+
+
 
         <td>
       <span class="gray">
@@ -66,22 +69,33 @@
 </select>
 
 <br>
+<br>
 
+<%= image_tag("twitter-loader.gif", :id => "load_image_all") %>
+
+<div id="show_all"></div>
 
 <% @stock_ticker_array.each do |ticker| %>
 
-<%= tag("p", :id => ticker, :class => "stock" ) %>
+<%= tag("p", :id => ticker, :class => "stock", :style => "display: none;" ) %>
 
 <% end %>
 
 
-<script>
+<br>
+<br>
 
+
+
+<script>
+	
 
 $(document).ready(function() {
 
 
     var stocks_tickers = <%= raw @stock_ticker_array.to_json %>;
+
+    create_stock_compare_chart(stocks_tickers)
 
     $.ajax({
         type: 'GET',
@@ -103,35 +117,6 @@ $(document).ready(function() {
 });
 
 
-
-function option_change(){
-
-    var option = document.getElementById("options").value;
-    var stocks_tickers = <%= raw @stock_ticker_array.to_json %>;
-
-
-    if(option != "all"){
-        for(var x=0;x < stocks_tickers.length;x++){
-
-            document.getElementById(stocks_tickers[x]).style.display =  "none";
-
-        }
-
-         document.getElementById(option).style.display =  "block";
-
-    }
-
-    else{
-
-        for(var x=0;x < stocks_tickers.length;x++){
-
-           document.getElementById(stocks_tickers[x]).style.display =  "block";
-        }
-
-    }
-
-
-}
 
 
 
