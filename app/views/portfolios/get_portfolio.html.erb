@@ -25,13 +25,13 @@
 
 	<% @portfolio.stocks.each do |stock| %>
 		<%= stock.ticker %>
-		<div id = "rating_text_<%= stock.ticker%>" class = "inline"></div>
+		
 		<br>
 		<button type="button" onclick="get_rating('<%= stock.ticker %>')">Get Twitter Rating</button>
 
-		<%= image_tag("twitter-loader.gif", :id => "load_image_#{stock.ticker}", :class => "stock_loading", :style => "display: none;" ) %>
+		<%= image_tag("twitter-loader.gif", :id => "load_image_#{stock.ticker}", :class => "stock_loading" ) %>
 
-
+		<div id = "rating_text_<%= stock.ticker%>" class = "twitter_rating"></div>
 
 
 		<br>
@@ -68,6 +68,11 @@
 
 </select>
 
+<br>
+<br>
+
+<%= image_tag("twitter-loader.gif", :id => "load_image_all") %>
+
 <div id="show_all"></div>
 
 <% @stock_ticker_array.each do |ticker| %>
@@ -83,39 +88,6 @@
 
 
 <script>
-
-
-function get_rating(stock_ticker){
-	document.getElementById("load_image_" + stock_ticker).style.display = "inline-block";
-
-    
-        $.ajax({
-        type: 'GET',
-        url: "/get_twitter_rating",
-        data: {stock: stock_ticker},
-        dataType: 'text',
-	        success: function(data){
-
-	            document.getElementById("load_image_" + stock_ticker).style.display = "none";
-	            document.getElementById("rating_text_" + stock_ticker).innerHTML = data;
-
-	            if(data == "Good"){
-	            	document.getElementById("rating_text_" + stock_ticker).style.backgroundColor = "#66CC00";
-	            }
-	            else if (data == "Bad"){
-					document.getElementById("rating_text_" + stock_ticker).style.backgroundColor = "#C00000";
-	            }
-	            else{
-
-	            	document.getElementById("rating_text_" + stock_ticker).style.backgroundColor = "#e3e3e3";
-
-	            }
-
-	        }
-   		});
-
-
-}
 	
 
 $(document).ready(function() {
@@ -124,7 +96,6 @@ $(document).ready(function() {
     var stocks_tickers = <%= raw @stock_ticker_array.to_json %>;
 
     create_stock_compare_chart(stocks_tickers)
-
 
     $.ajax({
         type: 'GET',

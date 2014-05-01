@@ -1,5 +1,29 @@
 
 
+
+function get_rating(stock_ticker){
+  //hides rating text and shows loader spinner
+  document.getElementById("rating_text_" + stock_ticker).style.display = "none";
+  document.getElementById("load_image_" + stock_ticker).style.display = "inline-block";
+
+    
+        $.ajax({
+        type: 'GET',
+        url: "/get_twitter_rating",
+        data: {stock: stock_ticker},
+        dataType: 'text',
+          success: function(data){
+              document.getElementById("load_image_" + stock_ticker).style.display = "none";
+              document.getElementById("rating_text_" + stock_ticker).style.display = "inline-block";
+              document.getElementById("rating_text_" + stock_ticker).innerHTML = data;
+
+
+          }
+      });
+
+
+}
+
 function create_stock_compare_chart(stocks_tickers){
 
 var seriesOptions = [],
@@ -15,9 +39,12 @@ var seriesOptions = [],
         dataType: 'json',
         success: function(data){
 
-        index = 0
+          document.getElementById("load_image_all").style.display = "none";
+
+          index = 0
           for(var x=0;x < data.length;x++){
 
+            //check if each stock has enough data returned
             if(data[x].length == 253){
              seriesOptions[index]={
               name: stocks_tickers[x],

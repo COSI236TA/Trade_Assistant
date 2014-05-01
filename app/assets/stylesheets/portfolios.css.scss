@@ -2,6 +2,17 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+.stock_loading{
+	display: none;
+}
+
+.twitter_rating{
+	//position:absolute;
+	//left: 410px;
+	display: inline;
+	background-color:#66CC00;
+}
+
 div.inline{
 	display: inline-block;
 }

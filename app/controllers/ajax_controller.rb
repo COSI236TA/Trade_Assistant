@@ -28,25 +28,37 @@ class AjaxController < ApplicationController
       #@ratings_hash = Hash.new
       #@portfolio_stocks.each do |stock|
 
-         count = 0
-
+         count_good_scores = 0
+         total_tweets = 0
 
          client.search(stock_name, :count => 100).each do |tweet|
-           count = count + (analyzer.get_score tweet.text)
+           #count = count + (analyzer.get_score tweet.text)
+           total_tweets = total_tweets + 1
+           if((analyzer.get_score tweet.text) > 0)
+
+              count_good_scores = count_good_scores + 1
+
+           end
+           #p analyzer.get_score tweet.text
          end
+         p count_good_scores
+         p total_tweets
+         percentage_good = (((count_good_scores * 1.0)/total_tweets) * 100).round(2)
+         p percentage_good
+         rating = percentage_good.to_s + "% Good"
 
-       p count
+       #p count
 
-         if(count > 0)
-           rating = 'Good'
+         #if(count > 0)
+          # rating = 'Good'
         
-         elsif(count < 0)
-           rating = 'Bad'
+         #elsif(count < 0)
+          # rating = 'Bad'
       
-         else(count = 0)
-           rating = 'Neutral'
+         #else(count = 0)
+         #  rating = 'Neutral'
         
-         end
+         #end
 
          p "HEY"
         p rating
