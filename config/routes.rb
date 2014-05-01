@@ -25,8 +25,9 @@ TradeAssistant::Application.routes.draw do
     get 'stock_info'
     get 'select_portfolio'
     get 'create_portfolio'
-    get 'get_stock_history'
     get 'get_property_description'
+    get 'get_stock_history'
+    get 'get_twitter_rating'
   end
 
   #home

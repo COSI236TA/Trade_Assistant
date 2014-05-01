@@ -1,3 +1,89 @@
+
+
+function create_stock_compare_chart(stocks_tickers){
+
+var seriesOptions = [],
+    yAxisOptions = [],
+    seriesCounter = 0,
+    names = stocks_tickers,
+    colors = Highcharts.getOptions().colors;
+
+       $.ajax({
+        type: 'GET',
+        url: "/get_stock_history",
+        data: {tickers: stocks_tickers},
+        dataType: 'json',
+        success: function(data){
+
+        index = 0
+          for(var x=0;x < data.length;x++){
+
+            if(data[x].length == 253){
+             seriesOptions[index]={
+              name: stocks_tickers[x],
+              data: data[x]
+             };
+             index = index + 1
+            }
+   
+         }
+
+           createChart();
+      
+    }
+
+  });
+
+  // create the chart when all data is loaded
+  function createChart() {
+
+    $('#show_all').highcharts('StockChart', {
+
+        chart: {
+            height : 300,
+            width : 800
+
+        },
+        rangeSelector: {
+        inputEnabled: $('#show_all').width() > 480,
+            selected: 4
+        },
+
+        yAxis: {
+          labels: {
+            formatter: function() {
+              return (this.value > 0 ? '+' : '') + this.value + '%';
+            }
+          },
+          plotLines: [{
+            value: 0,
+            width: 2,
+            color: 'silver'
+          }]
+        },
+        
+        plotOptions: {
+          series: {
+            compare: 'percent'
+          }
+        },
+        
+        tooltip: {
+          pointFormat: '<span style="color:{series.color}">{series.name}</span>: <b>{point.y}</b> ({point.change}%)<br/>',
+          valueDecimals: 2
+        },
+        
+        series: seriesOptions
+    });
+
+   
+  }
+
+
+
+}
+
+
 //Creates the highstock graph given a ticker and its data. Data format is [[x,y], [x2,y2]...].
 //It uses the ticker for the div id to change/add the graph.
 
@@ -8,6 +94,7 @@ function create_stock_chart(ticker, ticker_data){
               alert("Element with id " + ticker + " does not exist...");
           }
           else{
+                  
                   $("#" + ticker).highcharts('StockChart', {
                     
                     chart: {
@@ -48,20 +135,28 @@ function option_on_change_chart(stock_tickers_array){
     if(option != "all"){
         for(var x=0;x < stock_tickers_array.length;x++){
 
-            //hides the chart
-            document.getElementById(stock_tickers_array[x]).style.display =  "none";
+            //hides all chart
+            document.getElementById(stock_tickers_array[x]).style.display = "none";
 
         }
+
+         document.getElementById("show_all").style.display = "none";
          //makes chart visible
-         document.getElementById(option).style.display =  "block";
+         document.getElementById(option).style.display = "block";
 
     }
 
     else{
-        for(var x=0;x < stock_tickers_array.length;x++){
-           //makes char visible
-           document.getElementById(stock_tickers_array[x]).style.display =  "block";
+
+          for(var x=0;x < stock_tickers_array.length;x++){
+
+            //hides all chart
+            document.getElementById(stock_tickers_array[x]).style.display = "none";
+
         }
+           //makes chart visible
+           document.getElementById("show_all").style.display = "block";
+        
 
     }
 
