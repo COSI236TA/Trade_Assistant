@@ -2,6 +2,21 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+.stock_loading{
+	display: none;
+}
+
+.twitter_rating{
+	//position:absolute;
+	//left: 410px;
+	display: inline;
+	background-color:#66CC00;
+}
+
+div.inline{
+	display: inline-block;
+}
+
 //table
 th{
 	width: 250px;
@@ -12,19 +27,19 @@ td{
 }
 
 //makes text wrap color light gray, neutral
-span.gray{
+gray{
 
 	background-color:#e3e3e3;
 }
 
 //makes text background color green
-span.good{
+good{
 	
 	background-color:#66CC00;
 }
 
 //makes text background color red
-span.bad{
+bad{
 	
 	background-color:#C00000;
 }
