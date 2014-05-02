@@ -2,6 +2,7 @@
 
 
 function get_rating(stock_ticker){
+  
   //hides rating text and shows loader spinner
   document.getElementById("rating_text_" + stock_ticker).style.display = "none";
   document.getElementById("load_image_" + stock_ticker).style.display = "inline-block";
