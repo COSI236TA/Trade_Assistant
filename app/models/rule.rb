@@ -18,7 +18,11 @@ class Rule < ActiveRecord::Base
   end
 
   def activated?
-    true
+    if activated != "false" 
+      true
+    else
+      false
+    end
   end
 
   def self.get_description portfolio, property, rel, target
