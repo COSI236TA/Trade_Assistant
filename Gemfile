@@ -4,7 +4,7 @@ source 'https://rubygems.org'
 gem 'sentimental'
 gem 'twitter'
 gem 'highstock-rails'
-#gem "highcharts-rails", "~> 3.0.0"
+gem "highcharts-rails", "~> 3.0.0"
 #gem 'jquery-ui-rails'
 #gem 'jquery-ui-themes'
 #gem 'jquery-ui-form'

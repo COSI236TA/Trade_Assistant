@@ -4,7 +4,7 @@ class AjaxController < ApplicationController
 
   def get_twitter_rating
 
-     stock_name = params[:stock]
+     stock_ticker = params[:stock]
 
      #use of twitter
      client = Twitter::REST::Client.new do |config|
@@ -31,7 +31,7 @@ class AjaxController < ApplicationController
          count_good_scores = 0
          total_tweets = 0
 
-         client.search(stock_name, :count => 100).each do |tweet|
+         client.search(("$" + stock_ticker), :count => 100).each do |tweet|
            #count = count + (analyzer.get_score tweet.text)
            total_tweets = total_tweets + 1
            if((analyzer.get_score tweet.text) > 0)
@@ -41,12 +41,11 @@ class AjaxController < ApplicationController
            end
            #p analyzer.get_score tweet.text
          end
-         p count_good_scores
-         p total_tweets
+     
          percentage_good = (((count_good_scores * 1.0)/total_tweets) * 100).round(2)
-         p percentage_good
+         
          rating = percentage_good.to_s + "% Good"
-
+         p ("$" + stock_ticker)
        #p count
 
          #if(count > 0)
