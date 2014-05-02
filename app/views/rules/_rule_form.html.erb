@@ -1,3 +1,5 @@
+
+
 <%= form_for(@rule, class: "hidden") do |f| %>
 
   <% if @rule.errors.any? %>
@@ -12,57 +14,75 @@
     </div>
   <% end %>
 
-    <div class="field" >
+    <div class="field form-group" >
       <%= f.label :name %>
-      <%= f.text_field :name %>
+      <%= f.text_field :name , class:"form-control"%>
     </div>
 
-    <div class="field" >
+    <div class="field form-group" >
       <%= f.label :description %>
-      <%= f.text_field :description %>
+      <%= f.text_area :description, class:"form-control" %>
     <div>
 
-    <div class="field" >
+    <div class="field form-group" >
       <%= f.label :portfolio %>
       <%  if @rule.portfolio != nil %>
-      <%=   f.select(:portfolio, options_for_select(@portfolios, selected: @rule.portfolio.id)) %>
+      <%=   f.select(:portfolio, 
+                      options_for_select(@portfolios, selected: @rule.portfolio.id),
+                      {},
+                      {:class => "form-control"}) %>
       <%  else %>
-      <%=   f.select(:portfolio, options_for_select(@portfolios)) %>
+      <%=   f.select(:portfolio, 
+                      options_for_select(@portfolios), 
+                      {},
+                      {:class => "form-control"}) %>
       <% end %>
     </div>
 
-    <div class="field" >
+    <div class="field form-group" >
       <%= f.label :property %>
       <%  if @rule.property != nil %>
-      <%=   f.select(:property, options_for_select(@properties, selected: @rule.property.p_id)) %>
+      <%=   f.select(:property, 
+                      options_for_select(@properties, selected: @rule.property.p_id),
+                      {},
+                      {:class => "form-control"}) %>
       <%  else %>
-      <%=   f.select(:property, options_for_select(@properties)) %>
+      <%=   f.select(:property, 
+                      options_for_select(@properties),
+                      {},
+                      {:class => "form-control"}) %>
       <%  end %>
 
     </div>
 
-    <div class="field" >
+    <div class="field form-group" >
       <%= f.label :rel %>
-      <%= f.select(:rel, options_for_select([["More than", "more"], ["Less than", "less"]], selected: @rule.rel)) %>
+      <%= f.select(:rel, 
+                    options_for_select([["More than", "more"], ["Less than", "less"]], selected: @rule.rel),
+                    {},
+                    {:class => "form-control"}) %>
     </div>
 
-    <div class="field" >
+    <div class="field form-group" >
       <%= f.label :target %>
-      <%= f.text_field :target %>
+      <%= f.text_field :target, class:"form-control" %>
     </div>
 
-    <div class="field" >
+    <div class="field form-group" >
       <%= f.label :activated %>
-      <%= f.select(:activated, options_for_select([["On", "on"], ["Off", "off"]], selected: @rule.activated)) %>
+      <%= f.select(:activated, 
+                    options_for_select([["On", "true"], ["Off", "false"]], selected: @rule.activated.to_s),
+                    {},
+                    {:class => "form-control"}) %>
     </div>
 
-    <div class="field" >
+    <div class="field form-group" >
       <%= f.label :notification_method %>
-      <%= f.text_field :notification_method %>
+      <%= f.text_field :notification_method, class:"form-control" %>
     </div>
 
-    <div class="actions">
-      <%= f.submit %>
+    <div class="actions col-md-5 col-md-offset-4">
+      <%= f.submit class: "btn btn-success"%>
     </div>
     
 <% end %>

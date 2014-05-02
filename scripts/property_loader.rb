@@ -30,9 +30,9 @@ if ActiveRecord::Base.connection.tables.include?('properties')
   end
 
   properties = []
-  properties << {p_id: 1, q_name: "last_trade_price_only", d_name: "price", description: descriptions[1]}
+  properties << {p_id: 1, q_name: "last_trade_price_only", d_name: "Price", description: descriptions[1]}
   properties << {p_id: 2, q_name: "market_capitalization", 
-    d_name: "market capitalization", description: descriptions[2]}
+    d_name: "Market Capitalization", description: descriptions[2]}
   properties << {p_id: 3, q_name: "volume", d_name: "volume", description: descriptions[3]}
   properties << {p_id: 4, q_name: "earnings_per_share", 
     d_name: "earnings per share", description: descriptions[4]}
