@@ -50,63 +50,6 @@
 </div>
 
 
-<!-- <table class="table table-hover table-bordered table-condensed table-striped">
-
-<thead>
-     <th> <b>Description</b> </th>
-     <th> <b>Stocks</b> </th>
-     <th> <b>Rules</b> </th>
-</thead>
-
-  <tbody>
-  <tr>
-    <td>
-      <span class="gray">
-        <%= @portfolio.description %>
-      </span>
-
-    </td>
-
-
-
-	<td>
-
-	<% @portfolio.stocks.each do |stock| %>
-		<%= stock.ticker %>
-		
-		<br>
-		<button type="button" onclick="get_rating('<%= stock.ticker %>')">Get Twitter Rating</button>
-
-		<%= image_tag("twitter-loader.gif", :id => "load_image_#{stock.ticker}", :class => "stock_loading" ) %>
-
-		<div id = "rating_text_<%= stock.ticker%>" class = "twitter_rating"></div>
-
-
-		<br>
-		<br>
-	<% end %>
-
-	</td>
-  <td>
-      <span class="gray">
-        <% @portfolio.rules.each do |rule| %>
-            <%= link_to(rule.name, "/rules/get_rule?type=page&rule_id=" + rule.id.to_s, :target => "_blank") %>
-        <br>
-        <% end %>
-    </span>
-  </td>
-  </tr>
-    </tbody>
-</table> -->
-
-<br>
-
-
-<br>
-<br>
-
-
-
 <script>
 
 $(document).ready(function() {
@@ -114,7 +57,7 @@ $(document).ready(function() {
 
     var stocks_tickers = <%= raw @stock_ticker_array.to_json %>;
 
-    create_stock_compare_chart(stocks_tickers)
+    create_stock_compare_chart(stocks_tickers);
 
     $.ajax({
         type: 'GET',
