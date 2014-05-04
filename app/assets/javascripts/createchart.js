@@ -41,7 +41,7 @@ var seriesOptions = [],
 
           document.getElementById("load_image_all").style.display = "none";
 
-          index = 0
+          index = 0;
           for(var x=0;x < data.length;x++){
 
             //check if each stock has enough data returned
@@ -50,7 +50,7 @@ var seriesOptions = [],
               name: stocks_tickers[x],
               data: data[x]
              };
-             index = index + 1
+             index = index + 1;
             }
    
          }
