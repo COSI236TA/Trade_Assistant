@@ -1,48 +1,31 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<meta charset="utf-8">
-    <meta name="Description" content="Your Title">
-    <meta name="author" content="CoffeeCup Software, Inc.">
-    <meta name="Copyright" content="Copyright (c) 2010 CoffeeCup, all rights reserved.">
-	<title>Your Title</title>
-</head>
-<body>
-
-
-
-	<center><h3> <%= @rule.name %></h3></center>
-	<%= link_to "Edit Rule", edit_rule_path(id: @rule.id), class: "btn btn_primary", target: "_blank" %>
-	<hr class="nopadding">
-	<b>Description</b> 
-	<br>
+<div class="row">
+<div class="col-md-8 col-md-offset-2">
+	<center><h3>Rule: <%= @rule.name %> <small>Overview</small></h3></center>
+	<%= link_to "Edit Rule", edit_rule_path(id: @rule.id), class: "btn btn-primary", target: "_blank" %>
+	<hr >
+	<h4>Associated Portfolio</h4> 
 	<p>
-		<span class="gray">
-			<%= @rule.description %>
-		</span>
-	</p>
-	<hr class="nopadding">
-	<b>Last Triggered</b> 
-
-	<p>
-		<span class="gray">
-			<%= @rule.last_triggered %>
-		</span>
-	</p>
-	<br>
-	<hr class="nopadding">
-	<b>Portfolio Name</b> 
-	<p>
-		<span class="gray">
 			<%= link_to @portfolio.name, "/portfolios/get_portfolio?type=page&portfolio_id=" + @portfolio.id.to_s, target: "_blank" %>
-		</span>
 	</p>
-	<hr class="nopadding">
-
-
-
-
-
-
-</body>
-</html>
+	<hr >
+	<div>
+		<h4>Description</h4> 
+		<% if @rule.description != nil %>
+				<p><%= @rule.description %></p>
+		<% else  %>
+			  <p>No description</p>
+		<% end %>
+		<hr >
+	</div>
+	<div>
+		<b>Last Triggered</b> 
+			<% if @rule.recent_history != nil%>
+				<p>Triggered time: <%= 	@rule.recent_history.triggered_time %></p>
+				<p>The portfolio's average of the specified property was <%= 	"%.2f" %(@rule.recent_history.amt) %></p>
+			<% else %>
+				<p>Not triggered yet</p>
+			<% end %>
+		<hr>
+	</div>
+</div>
+</div>
