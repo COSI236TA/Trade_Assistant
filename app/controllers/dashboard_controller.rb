@@ -9,6 +9,10 @@ class DashboardController < ApplicationController
   end
 
   def index
+    x = request.env['omniauth.auth']
+    p "*************"
+    p x
+    p "*************"
     if user_logged_in?
       #commented out due to problems accessing dashboard
       @user = User.find(session[:user_id])

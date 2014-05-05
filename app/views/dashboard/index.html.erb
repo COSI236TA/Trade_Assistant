@@ -25,13 +25,25 @@
   <tbody>
     <% if @my_rules != nil %>
       <% @my_rules.each do |rule| %>
-      <tr>
-      <td><a class="various" data-fancybox-type="iframe" href="/rules/get_rule?type=iframe&rule_id=<%= rule.id %>"><%= rule.name %></a></td>
-      <td><a class="various" data-fancybox-type="iframe" href="/portfolios/get_portfolio?type=iframe&portfolio_id=<%= rule.portfolio.id %>"><%= rule.portfolio.name %></a>
+      <tr> 
+      
+      <!-- The reason style is used is because bootstrap overrides css for table -->
+
+      <% if ((raw rule.activated?) == "true") %>
+      <td style="background-color:#99FFFF"><a class="various fancybox.ajax" href="/rules/get_rule?type=iframe&rule_id=<%= rule.id %>"><%= rule.name %></a></td>
+      <td style="background-color:#99FFFF"><a class="various fancybox.ajax" href="/portfolios/get_portfolio?type=iframe&portfolio_id=<%= rule.portfolio.id %>"><%= rule.portfolio.name %></a>
       </td>
-      <td><%= rule.triggered? %></td>
-      <td><%= rule.description %></td>
-      <td><%= rule.activated? %></td>
+      <td style="background-color:#99FFFF"><%= rule.triggered? %></td>
+      <td style="background-color:#99FFFF"><%= rule.description %></td>
+      <td style="background-color:#99FFFF"><%= rule.activated? %></td>
+      <% else %>
+      <td style="background-color:#B53032"><a class="various" data-fancybox-type="iframe" href="/rules/get_rule?type=iframe&rule_id=<%= rule.id %>"><%= rule.name %></a></td>
+      <td style="background-color:#B53032"><a class="various" data-fancybox-type="iframe" href="/portfolios/get_portfolio?type=iframe&portfolio_id=<%= rule.portfolio.id %>"><%= rule.portfolio.name %></a>
+      </td>
+      <td style="background-color:#B53032"><%= rule.triggered? %></td>
+      <td style="background-color:#B53032"><%= rule.description %></td>
+      <td style="background-color:#B53032"><%= rule.activated? %></td>
+      <% end %>
       </td>
       </tr>
       <% end %>
@@ -62,6 +74,7 @@ $(document).ready(function() {
     closeClick  : false,
     openEffect  : 'none',
     closeEffect : 'none',
+
 
   });
 

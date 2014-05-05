@@ -91,6 +91,7 @@ class PortfoliosController< ApplicationController
 
 
     if params[:type] == "iframe" 
+      p "*******TRUEEEEEEEEEEEEE"
       render :layout => "iframe_portfolio"
     elsif params[:type] == "page"
       render :layout => "application"

@@ -43,7 +43,6 @@ function create_stock_compare_chart(stocks_tickers) {
       $("#load_image_all")[0].style.display = "none";
 
       var index = 0;
-      var min = findMin(data);
       for (var x = 0; x < data.length; x++) {
         //check if each stock has enough data returned
           seriesOptions[index] = {
@@ -60,15 +59,6 @@ function create_stock_compare_chart(stocks_tickers) {
 
   });
 
-  function findMin(arrayOfArrays) {
-    var min = 367;
-    for (var i = 0; i < arrayOfArrays.length; i++) {
-      if (min > arrayOfArrays[i].length) {
-        min = arrayOfArrays[i].length;
-      }
-    }
-    return min;
-  }
 
 
 
