@@ -1,5 +1,12 @@
 TradeAssistant::Application.routes.draw do
 
+  #
+
+
+  get '/test' => redirect('/auth/twitter')
+
+
+
   #root
   root to: 'home#index'          
 
@@ -28,7 +35,11 @@ TradeAssistant::Application.routes.draw do
     get 'get_property_description'
     get 'get_stock_history'
     get 'get_twitter_rating'
+    get 'close'
+    get 'have_auth'
   end
+
+    get '/auth/twitter/callback', to: 'ajax#close'
 
   #home
   get "home/about"

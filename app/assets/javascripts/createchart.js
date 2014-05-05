@@ -3,6 +3,19 @@
 
 function get_rating(stock_ticker){
   
+  var x;
+   $.ajax({
+        type: 'GET',
+        url: "/have_auth",
+        dataType: 'text',
+        async: false,
+        success: function(data){
+            x = data;
+
+        }
+    });
+   alert(x);
+  if(x != "false"){
   //hides rating text and shows loader spinner
   document.getElementById("rating_text_" + stock_ticker).style.display = "none";
   document.getElementById("load_image_" + stock_ticker).style.display = "inline-block";
@@ -22,7 +35,10 @@ function get_rating(stock_ticker){
           }
       });
 
-
+  }
+  else{
+    document.getElementById("twitter_log_message").style.backgroundColor ="#B00000";
+  }
 }
 
 function create_stock_compare_chart(stocks_tickers){
@@ -42,20 +58,31 @@ var seriesOptions = [],
 
           document.getElementById("load_image_all").style.display = "none";
 
-          index = 0
+          index = 0;
+          var count = [];
           for(var x=0;x < data.length;x++){
+            count[index] = data[x].length;
+            index = index + 1;
+          }
 
-            //check if each stock has enough data returned
-            if(data[x].length == 253){
-             seriesOptions[index]={
-              name: stocks_tickers[x],
-              data: data[x]
-             };
-             index = index + 1
+          count_length = mode(count);
+
+          index = 0;
+          if(count_length != null){
+            for(var x=0;x < data.length;x++){
+
+              //check if each stock has enough data returned
+              if(data[x].length == count_length){
+               seriesOptions[index]={
+                name: stocks_tickers[x],
+                data: data[x]
+               };
+               index = index + 1
+              }
+
+
             }
-   
-         }
-
+          }
            createChart();
       
     }
@@ -111,6 +138,27 @@ var seriesOptions = [],
 
 }
 
+function mode(array)
+{
+    if(array.length == 0)
+      return null;
+    var modeMap = {};
+    var maxEl = array[0], maxCount = 1;
+    for(var i = 0; i < array.length; i++)
+    {
+      var el = array[i];
+      if(modeMap[el] == null)
+        modeMap[el] = 1;
+      else
+        modeMap[el]++;  
+      if(modeMap[el] > maxCount)
+      {
+        maxEl = el;
+        maxCount = modeMap[el];
+      }
+    }
+    return maxEl;
+}
 
 //Creates the highstock graph given a ticker and its data. Data format is [[x,y], [x2,y2]...].
 //It uses the ticker for the div id to change/add the graph.
