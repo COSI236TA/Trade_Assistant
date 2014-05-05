@@ -84,7 +84,7 @@ class AjaxController < ApplicationController
     # check each stock
     params[:tickers].each do |ticker|
       
-      history = YahooStock::History.new(:stock_symbol => ticker, :start_date => Date.today-366, :end_date => Date.today-1).results(:to_array).output
+      history = YahooStock::History.new(:stock_symbol => ticker, :start_date => Date.today-368, :end_date => Date.today-1).results(:to_array).output
       stock_dates_with_closing = Array.new
 
       history.each do |date|
