@@ -165,7 +165,7 @@ class RulesController < ApplicationController
   # Never trust parameters from the scary internet, only allow the white list through.
   def rule_params
     #Map the number to the real property name
-    params.require(:rule).permit(:property, :rel, :target, :portfolio, :activated)
+    params.require(:rule).permit(:property, :rel, :target, :portfolio, :activated, :description)
   end
 
 end
