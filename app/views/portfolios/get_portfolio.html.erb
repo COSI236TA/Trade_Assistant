@@ -1,3 +1,4 @@
+<% if @portfolio != nil %>
 <div class="row">
 <div class="col-md-8 col-md-offset-2">
 <center> <h3> Portfolio: <%= @portfolio_capa_name %> <small>Overview</small></h3> </center>
@@ -50,7 +51,9 @@
         <%= link_to(rule.name, "/rules/get_rule?type=page&rule_id=" + rule.id.to_s, :target => "_blank", class: "btn btn-link") %>
     <% end %>
 </div>
-
+<div>
+  <%= button_to 'Destroy', @portfolio, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger"%>
+</div>
 
 <script>
 $(document).ready(function() {
@@ -82,3 +85,8 @@ $(document).ready(function() {
 </script>
 </div>
 </div>
+<% else %>
+<div>
+<p>Portfolio not exists</p>
+</div>
+<% end %>
