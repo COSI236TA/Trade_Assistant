@@ -1,101 +1,62 @@
+<div class="row">
+<div class="col-md-8 col-md-offset-2">
+<center> <h3> Portfolio: <%= @portfolio_capa_name %> <small>Overview</small></h3> </center>
 
-<center> <h3> Portfolio name: <%= @portfolio_capa_name %> </h3> </center>
+<div>
+  <h4>Description</h4>
+  <%= @portfolio.description %>
+  <hr />
+</div>
 
+<div>
+  <select onchange="option_on_change_chart(<%= @stock_ticker_array.to_json %>)" id="options">
+      <option value="all">All</option>
 
-<table class="table table-hover table-bordered table-condensed table-striped">
+      <% @portfolio.stocks.each do |stock| %>
+        <option value=<%= stock.ticker %>><%= stock.ticker %></option>
+      <% end %>
+  </select>
 
-<thead>
-     <th> <b>Description</b> </th>
-     <th> <b>Stocks</b> </th>
-     <th> <b>Rules</b> </th>
-</thead>
+  <%= image_tag("twitter-loader.gif", :id => "load_image_all") %>
 
-  <tbody>
-  <tr>
-    <td>
-      <span class="gray">
-        <%= @portfolio.description %>
-      </span>
+  <div id="show_all"></div>
 
-    </td>
+  <% @stock_ticker_array.each do |ticker| %>
 
+  <%= tag("p", :id => ticker, :class => "stock", :style => "display: none;" ) %>
 
-
-	<td>
-
-	<% @portfolio.stocks.each do |stock| %>
-		<%= stock.ticker %>
-		
-		<br>
-		<button type="button" onclick="get_rating('<%= stock.ticker %>')">Get Twitter Rating</button>
-
-		<%= image_tag("twitter-loader.gif", :id => "load_image_#{stock.ticker}", :class => "stock_loading" ) %>
-
-		<div id = "rating_text_<%= stock.ticker%>" class = "twitter_rating"></div>
+  <% end %>
+  <hr />
+</div>
 
 
-		<br>
-		<br>
-	<% end %>
+<div>
+  <h4>Stocks</h4>
+  <% @portfolio.stocks.each do |stock| %>
+    <p><%= stock.ticker %>
+    <button type="button" onclick="get_rating('<%= stock.ticker %>')" class="btn btn-info">Twitter Rating</button>
+    <%= image_tag("twitter-loader.gif", :id => "load_image_#{stock.ticker}", :class => "stock_loading" ) %>
+    <span id = "rating_text_<%= stock.ticker%>" class = "twitter_rating"></span>
+    </p>
+  <% end %>
+  <hr />
+</div>
 
-	</td>
-
-
-
-        <td>
-      <span class="gray">
-        <% @portfolio.rules.each do |rule| %>
-            <%= link_to(rule.name, "/rules/get_rule?type=page&rule_id=" + rule.id.to_s, :target => "_blank") %>
-        <br>
-        <% end %>
-    </span>
-    </td>
-    </tr>
-    </tbody>
-</table>
-
-<br>
-
-<p class = "filter_text"><b>Filter Graph </b></p> 
-
-<select onchange="option_on_change_chart(<%= @stock_ticker_array.to_json %>)" id="options">
-    <option value="all">Show all stock graphs</option>
-
-    <% @portfolio.stocks.each do |stock| %>
-    <option value=<%= stock.ticker %>><%= stock.ticker %></option>
-
+<div>
+  <h4>Associated Rules</h4>
+    <% @portfolio.rules.each do |rule| %>
+        <%= link_to(rule.name, "/rules/get_rule?type=page&rule_id=" + rule.id.to_s, :target => "_blank", class: "btn btn-link") %>
     <% end %>
-
-</select>
-
-<br>
-<br>
-
-<%= image_tag("twitter-loader.gif", :id => "load_image_all") %>
-
-<div id="show_all"></div>
-
-<% @stock_ticker_array.each do |ticker| %>
-
-<%= tag("p", :id => ticker, :class => "stock", :style => "display: none;" ) %>
-
-<% end %>
-
-
-<br>
-<br>
-
+</div>
 
 
 <script>
-	
-
 $(document).ready(function() {
 
 
     var stocks_tickers = <%= raw @stock_ticker_array.to_json %>;
 
-    create_stock_compare_chart(stocks_tickers)
+    create_stock_compare_chart(stocks_tickers);
 
     $.ajax({
         type: 'GET',
@@ -116,8 +77,6 @@ $(document).ready(function() {
 
 });
 
-
-
-
-
 </script>
+</div>
+</div>
