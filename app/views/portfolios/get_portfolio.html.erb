@@ -36,7 +36,7 @@
 <div>
   <h4>Stocks</h4>
   <% @portfolio.stocks.each do |stock| %>
-    <p><%= stock.ticker %>
+    <p><%= "#{stock.name}(#{stock.ticker})" %>
     <button type="button" onclick="get_rating('<%= stock.ticker %>')" class="btn btn-info">Twitter Rating</button>
     <%= image_tag("twitter-loader.gif", :id => "load_image_#{stock.ticker}", :class => "stock_loading" ) %>
     <span id = "rating_text_<%= stock.ticker%>" class = "twitter_rating"></span>
