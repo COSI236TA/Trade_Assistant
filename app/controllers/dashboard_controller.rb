@@ -1,13 +1,5 @@
 class DashboardController < ApplicationController
   include SessionsHelper
-
-  def new
-    # @my_rules = 
-  end
-
-  def create
-  end
-
   def index
     x = request.env['omniauth.auth']
     p "*************"
@@ -17,7 +9,7 @@ class DashboardController < ApplicationController
       #commented out due to problems accessing dashboard
       @user = User.find(session[:user_id])
       @user_name = @user.name
-      @my_rules = @user.rules.all
+      @my_rules = @user.rules.to_a
     else
       redirect_to login_path
     end

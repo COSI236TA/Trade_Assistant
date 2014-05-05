@@ -82,15 +82,15 @@ class RulesController < ApplicationController
 
     # #Build params for create rule
     # real_property = Property.find(property)
-    # build_params = { 
+    # build_params = {
     #   :portfolio => portfolio,
     #   :property => real_property,
     #   :rel => rel,
-    #   :target => target, 
+    #   :target => target,
     #   :name => "#{portfolio.name} #{portfolio.rules.size+1}",
     #   :description => Rule.get_description(portfolio, real_property, rel, target)
     # }
-    
+
     # prepare_parameters is in RuleHelper
     build_params = prepare_parameters
     @rule = @user.rules.create(build_params)
@@ -109,22 +109,23 @@ class RulesController < ApplicationController
 
   #show content of a rule
   #it can show rule page content with different layout
-  def get_rule   
+  def get_rule
 
-     current_rule = Rule.find(params[:rule_id])
+    current_rule = Rule.find_by(id: params[:rule_id])
 
-     #rule information
-     @rule = current_rule
-     # @rule_last_triggered = current_rule.last_triggered
+    #rule information
+    @rule = current_rule
+    # @rule_last_triggered = current_rule.last_triggered
+    if @rule != nil
+      #portfolio information
+      @portfolio = current_rule.portfolio
+    end
 
-     #portfolio information
-     @portfolio = current_rule.portfolio
-
-     if params[:type] == "iframe"
-       render :layout=> "iframe_rule"
-     else
-       render :layout=> "application"
-     end
+    if params[:type] == "iframe"
+      render :layout=> "iframe_rule"
+    else
+      render :layout=> "application"
+    end
 
 
   end

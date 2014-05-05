@@ -1,6 +1,6 @@
 class PortfoliosController< ApplicationController
+  before_action :set_portfolio, only: [:show, :edit, :update, :destroy]
 
-  
 
   # GET /portfolios
   # GET /portfolios.json
@@ -31,7 +31,7 @@ class PortfoliosController< ApplicationController
     @user = User.find(session[:user_id])
     clean_params = portfolio_params
 
-    #Clean paramters 
+    #Clean paramters
     name = clean_params[:name]
     description = clean_params[:description]
     tickers = clean_params[:tickers].split(",")
@@ -68,29 +68,28 @@ class PortfoliosController< ApplicationController
   #get portfolio page and display it in iframe
   #lightbox portfolio page
   def get_portfolio
-     #gets portfolio id
-     portfolio = Portfolio.find(params[:portfolio_id])
+    #gets portfolio
+    @portfolio = Portfolio.find_by(id: params[:portfolio_id])
 
-     #portfolio information
-     @portfolio = portfolio
-     @portfolio_capa_name = first_char_cap(portfolio.name) #Makes each first char upper case
+    #portfolio information
+    if @portfolio != nil
+      @portfolio_capa_name = first_char_cap(@portfolio.name) #Makes each first char upper case
 
-     #store each ticker into an array
-     @stock_ticker_array = Array.new
-     portfolio.stocks.each do |stock|
+      #store each ticker into an array
+      @stock_ticker_array = Array.new
+      @portfolio.stocks.each do |stock|
+        @stock_ticker_array << stock.ticker
+      end
 
-     @stock_ticker_array << stock.ticker
+    end
+    p "********************************"
 
-     end
-
-      p "********************************"
-
-      #p client.search("GOOGLE", :count => 100).first.id
-  
+    #p client.search("GOOGLE", :count => 100).first.id
 
 
 
-    if params[:type] == "iframe" 
+
+    if params[:type] == "iframe"
       p "*******TRUEEEEEEEEEEEEE"
       render :layout => "iframe_portfolio"
     elsif params[:type] == "page"
@@ -98,11 +97,9 @@ class PortfoliosController< ApplicationController
     end
   end
 
-    def first_char_cap(text)
- 
-     text.gsub(/\b\w/){ $&.upcase }
-  
-   end
+  def first_char_cap(text)
+    text.gsub(/\b\w/){ $&.upcase }
+  end
 
 
 
@@ -111,16 +108,13 @@ class PortfoliosController< ApplicationController
   # DELETE /portfolios/1.json
   def destroy
     @portfolio.destroy
-    respond_to do |format|
-      format.html { redirect_to portfolios_url }
-      format.json { head :no_content }
-    end
+    render :layout => "iframe_portfolio"
   end
 
   private
   # Use callbacks to share common setup or constraints between actions.
   def set_portfolio
-    @portfolio = portfolio.find(params[:id])
+    @portfolio = Portfolio.find(params[:id])
   end
 
   # Never trust parameters from the scary internet, only allow the white list through.
