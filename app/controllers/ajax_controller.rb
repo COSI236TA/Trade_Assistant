@@ -2,15 +2,6 @@ class AjaxController < ApplicationController
   include RulesHelper
   include PortfoliosHelper
 
-  def have_auth
-    if(request.env['omniauth.auth'] != nil)
-       render :text => "true"
-    else
-       render :text => "false"
-    end
-
-  end
-
   def close
     render :layout => "empty"
   end
